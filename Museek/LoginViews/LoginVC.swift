@@ -1,5 +1,5 @@
 //
-//  NewUserVC.swift
+//  LoginVC.swift
 //  Museek
 //
 //  Created by Mauricio Monsivais on 10/2/17.
@@ -7,16 +7,20 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseAuth
 
-class NewUserVC: UIViewController{
-    @IBOutlet private weak var usernameTextField: UITextField!
+class LoginVsC: UIViewController{
+    @IBOutlet private weak var userEmailTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
     
     @IBAction func signIn(_ sender: UIButton) {
-        let username = usernameTextField.text
+        let userEmail = userEmailTextField.text
         let password = passwordTextField.text
-        
+        Auth.auth().createUser(withEmail: userEmail!, password: password!) { (user, error) in
+            if error != nil {
+                //error logging in (incorrect email/password combination)
+            }
+        }
     }
     
     override func viewDidLoad() {
@@ -28,5 +32,4 @@ class NewUserVC: UIViewController{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 }
