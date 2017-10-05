@@ -9,16 +9,19 @@
 import UIKit
 import FirebaseAuth
 
-class LoginVsC: UIViewController{
+class LoginVC: UIViewController{
     @IBOutlet private weak var userEmailTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
     
     @IBAction func signIn(_ sender: UIButton) {
         let userEmail = userEmailTextField.text
         let password = passwordTextField.text
-        Auth.auth().createUser(withEmail: userEmail!, password: password!) { (user, error) in
+        Auth.auth().signIn(withEmail: userEmail!, password: password!) { (user, error) in
             if error != nil {
                 //error logging in (incorrect email/password combination)
+            }
+            else {
+                
             }
         }
     }
