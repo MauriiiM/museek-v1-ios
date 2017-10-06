@@ -18,6 +18,7 @@
 		22C4CD2C1F837F7900B155FE /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4CD2B1F837F7900B155FE /* RegisterVC.swift */; };
 		22C4CD301F85F7FF00B155FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22C4CD2F1F85F7FF00B155FE /* Main.storyboard */; };
 		22C4CD311F86035400B155FE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 229D07DF1F80CD3000FD24CC /* GoogleService-Info.plist */; };
+		22C4CD351F86CDF800B155FE /* OpeningVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4CD341F86CDF800B155FE /* OpeningVC.swift */; };
 		B5C6E451A7FF6140C9A2A9C6 /* Pods_Museek.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4333D572041915F1AFD10A5F /* Pods_Museek.framework */; };
 		C8284229BAF31A125D876BFA /* Pods_MuseekUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0270A0173A41D0492E066054 /* Pods_MuseekUITests.framework */; };
 /* End PBXBuildFile section */
@@ -57,6 +58,7 @@
 		22C4CD271F821E8F00B155FE /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		22C4CD2B1F837F7900B155FE /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		22C4CD2F1F85F7FF00B155FE /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		22C4CD341F86CDF800B155FE /* OpeningVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningVC.swift; sourceTree = "<group>"; };
 		4333D572041915F1AFD10A5F /* Pods_Museek.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Museek.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D371E01FAC4C731E285A59F /* Pods_MuseekTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MuseekTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D8B42F642EB77C5313B8F2B /* Pods-MuseekTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuseekTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MuseekTests/Pods-MuseekTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 		22C4CD291F821EA900B155FE /* LoginViews */ = {
 			isa = PBXGroup;
 			children = (
+				22C4CD341F86CDF800B155FE /* OpeningVC.swift */,
 				22C4CD271F821E8F00B155FE /* LoginVC.swift */,
 				22C4CD2B1F837F7900B155FE /* RegisterVC.swift */,
 			);
@@ -492,6 +495,7 @@
 				22C4CD2C1F837F7900B155FE /* RegisterVC.swift in Sources */,
 				22C4CD281F821E8F00B155FE /* LoginVC.swift in Sources */,
 				229D07B21F80CC8A00FD24CC /* AppDelegate.swift in Sources */,
+				22C4CD351F86CDF800B155FE /* OpeningVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

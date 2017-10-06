@@ -10,10 +10,8 @@ import UIKit
 import FirebaseAuth
 
 class RegisterVC: UIViewController{
-    @IBOutlet private weak var nameTextField: UITextField!
-    @IBOutlet private weak var usernameTextField: UITextField!
+
     @IBOutlet private weak var emailTextField: UITextField!
-    @IBOutlet private weak var passwordTextField: UITextField!
     
     private var nameIsOk = false
     private var ussernameIsOk = false
@@ -43,11 +41,11 @@ class RegisterVC: UIViewController{
     }
     
     @IBAction private func passwordsMatch(_ sender: UITextField) {
-        if sender.text == passwordTextField.text {
-//            display check mark
-        } else {
-//           say passwords dont match
-        }
+//        if sender.text == passwordTextField.text {
+////            display check mark
+//        } else {
+////           say passwords dont match
+//        }
         
     }
     
