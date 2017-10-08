@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NameSignUp" customModule="Museek" customModuleProvider="target">
+            <connections>
+                <outlet property="fullNameTextField" destination="0Iq-Ew-Lxs" id="BBW-gz-gX3"/>
+                <outlet property="nextButton" destination="Ktv-Ot-rcJ" id="f2f-LX-Jo8"/>
+                <outlet property="userNameTextField" destination="0WZ-Gn-FaK" id="amd-fJ-Kwh"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" userLabel="Name Sign Up View">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Full Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Iq-Ew-Lxs" userLabel="Full Name">
+                    <rect key="frame" x="25" y="265" width="325" height="32.5"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="0Iq-Ew-Lxs" secondAttribute="height" multiplier="10:1" id="C5W-DN-Izv"/>
+                    </constraints>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <textInputTraits key="textInputTraits" textContentType="nickname"/>
+                </textField>
+                <textField contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0WZ-Gn-FaK">
+                    <rect key="frame" x="25" y="327.5" width="325" height="32.5"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="0WZ-Gn-FaK" secondAttribute="height" multiplier="10:1" id="BYr-MH-TVB"/>
+                    </constraints>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <textInputTraits key="textInputTraits" textContentType="nickname"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ktv-Ot-rcJ">
+                    <rect key="frame" x="25" y="390" width="325" height="32.5"/>
+                    <color key="backgroundColor" red="0.92941176469999998" green="0.4039215686" blue="0.52827403750000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Ktv-Ot-rcJ" secondAttribute="height" multiplier="10:1" id="agT-4g-jGH"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <state key="normal" title="Next">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.40792796015739441" green="0.40791851282119751" blue="0.40792039036750793" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="Ktv-Ot-rcJ" firstAttribute="top" secondItem="0WZ-Gn-FaK" secondAttribute="bottom" constant="30" id="GG2-Rw-JHh"/>
+                <constraint firstItem="Ktv-Ot-rcJ" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="325:667" id="ISA-pR-8jt"/>
+                <constraint firstItem="0WZ-Gn-FaK" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="LUg-3i-SOp"/>
+                <constraint firstItem="0WZ-Gn-FaK" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="OyC-pp-1dU"/>
+                <constraint firstItem="0Iq-Ew-Lxs" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="VcR-zr-AV4"/>
+                <constraint firstItem="Ktv-Ot-rcJ" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="ltx-9o-L2v"/>
+                <constraint firstItem="0WZ-Gn-FaK" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="325:667" id="mw1-bh-DKh"/>
+                <constraint firstItem="0WZ-Gn-FaK" firstAttribute="top" secondItem="0Iq-Ew-Lxs" secondAttribute="bottom" constant="30" id="pk6-Mt-q0A"/>
+                <constraint firstItem="0Iq-Ew-Lxs" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="325:667" id="zt1-aS-IiL"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+</document>

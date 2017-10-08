@@ -14,11 +14,14 @@
 		229D07BC1F80CC8A00FD24CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 229D07BA1F80CC8A00FD24CC /* LaunchScreen.storyboard */; };
 		229D07C71F80CC8A00FD24CC /* MuseekTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229D07C61F80CC8A00FD24CC /* MuseekTests.swift */; };
 		229D07D21F80CC8A00FD24CC /* MuseekUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229D07D11F80CC8A00FD24CC /* MuseekUITests.swift */; };
+		22BF55B81F88CA8D0002C42C /* NameSignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BF55B71F88CA8D0002C42C /* NameSignUp.swift */; };
 		22C4CD281F821E8F00B155FE /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4CD271F821E8F00B155FE /* LoginVC.swift */; };
-		22C4CD2C1F837F7900B155FE /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4CD2B1F837F7900B155FE /* RegisterVC.swift */; };
+		22C4CD2C1F837F7900B155FE /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4CD2B1F837F7900B155FE /* SignUpVC.swift */; };
 		22C4CD301F85F7FF00B155FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22C4CD2F1F85F7FF00B155FE /* Main.storyboard */; };
 		22C4CD311F86035400B155FE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 229D07DF1F80CD3000FD24CC /* GoogleService-Info.plist */; };
 		22C4CD351F86CDF800B155FE /* OpeningVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4CD341F86CDF800B155FE /* OpeningVC.swift */; };
+		22C4CD471F88BD8600B155FE /* NameSignUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22C4CD461F88BD8600B155FE /* NameSignUp.xib */; };
+		22C4CD491F88C06B00B155FE /* EmailSignUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22C4CD481F88C06B00B155FE /* EmailSignUp.xib */; };
 		B5C6E451A7FF6140C9A2A9C6 /* Pods_Museek.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4333D572041915F1AFD10A5F /* Pods_Museek.framework */; };
 		C8284229BAF31A125D876BFA /* Pods_MuseekUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0270A0173A41D0492E066054 /* Pods_MuseekUITests.framework */; };
 /* End PBXBuildFile section */
@@ -55,10 +58,13 @@
 		229D07D11F80CC8A00FD24CC /* MuseekUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuseekUITests.swift; sourceTree = "<group>"; };
 		229D07D31F80CC8A00FD24CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		229D07DF1F80CD3000FD24CC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		22BF55B71F88CA8D0002C42C /* NameSignUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameSignUp.swift; sourceTree = "<group>"; };
 		22C4CD271F821E8F00B155FE /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
-		22C4CD2B1F837F7900B155FE /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
+		22C4CD2B1F837F7900B155FE /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		22C4CD2F1F85F7FF00B155FE /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		22C4CD341F86CDF800B155FE /* OpeningVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningVC.swift; sourceTree = "<group>"; };
+		22C4CD461F88BD8600B155FE /* NameSignUp.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NameSignUp.xib; sourceTree = "<group>"; };
+		22C4CD481F88C06B00B155FE /* EmailSignUp.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmailSignUp.xib; sourceTree = "<group>"; };
 		4333D572041915F1AFD10A5F /* Pods_Museek.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Museek.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D371E01FAC4C731E285A59F /* Pods_MuseekTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MuseekTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D8B42F642EB77C5313B8F2B /* Pods-MuseekTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuseekTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MuseekTests/Pods-MuseekTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -132,10 +138,13 @@
 		229D07B01F80CC8A00FD24CC /* Museek */ = {
 			isa = PBXGroup;
 			children = (
-				22C4CD2A1F821F1900B155FE /* Storyboards */,
-				22C4CD291F821EA900B155FE /* LoginViews */,
 				229D07B11F80CC8A00FD24CC /* AppDelegate.swift */,
 				229D07B81F80CC8A00FD24CC /* Assets.xcassets */,
+				22C4CD371F885CD000B155FE /* Explore */,
+				22C4CD361F885CC100B155FE /* Feed */,
+				22C4CD291F821EA900B155FE /* Login */,
+				22C4CD381F885CF700B155FE /* Profile */,
+				22C4CD2A1F821F1900B155FE /* Storyboards */,
 				229D07BD1F80CC8A00FD24CC /* Info.plist */,
 				229D07DF1F80CD3000FD24CC /* GoogleService-Info.plist */,
 			);
@@ -160,14 +169,25 @@
 			path = MuseekUITests;
 			sourceTree = "<group>";
 		};
-		22C4CD291F821EA900B155FE /* LoginViews */ = {
+		22BF55B41F88C90E0002C42C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				22C4CD341F86CDF800B155FE /* OpeningVC.swift */,
-				22C4CD271F821E8F00B155FE /* LoginVC.swift */,
-				22C4CD2B1F837F7900B155FE /* RegisterVC.swift */,
+				22BF55B71F88CA8D0002C42C /* NameSignUp.swift */,
+				22C4CD461F88BD8600B155FE /* NameSignUp.xib */,
+				22C4CD481F88C06B00B155FE /* EmailSignUp.xib */,
 			);
-			path = LoginViews;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		22C4CD291F821EA900B155FE /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				22BF55B41F88C90E0002C42C /* Views */,
+				22C4CD271F821E8F00B155FE /* LoginVC.swift */,
+				22C4CD341F86CDF800B155FE /* OpeningVC.swift */,
+				22C4CD2B1F837F7900B155FE /* SignUpVC.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		22C4CD2A1F821F1900B155FE /* Storyboards */ = {
@@ -178,6 +198,51 @@
 				22C4CD2F1F85F7FF00B155FE /* Main.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		22C4CD361F885CC100B155FE /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		22C4CD371F885CD000B155FE /* Explore */ = {
+			isa = PBXGroup;
+			children = (
+				22C4CD3C1F885D9000B155FE /* Controllers */,
+				22C4CD3B1F885D8500B155FE /* Views */,
+				22C4CD3A1F885D7C00B155FE /* Models */,
+			);
+			path = Explore;
+			sourceTree = "<group>";
+		};
+		22C4CD381F885CF700B155FE /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		22C4CD3A1F885D7C00B155FE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		22C4CD3B1F885D8500B155FE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		22C4CD3C1F885D9000B155FE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		A2F1FE9229C26333FDDECE14 /* Pods */ = {
@@ -310,8 +375,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				229D07BC1F80CC8A00FD24CC /* LaunchScreen.storyboard in Resources */,
+				22C4CD471F88BD8600B155FE /* NameSignUp.xib in Resources */,
 				229D07B91F80CC8A00FD24CC /* Assets.xcassets in Resources */,
 				22C4CD311F86035400B155FE /* GoogleService-Info.plist in Resources */,
+				22C4CD491F88C06B00B155FE /* EmailSignUp.xib in Resources */,
 				229D07B71F80CC8A00FD24CC /* SignUp.storyboard in Resources */,
 				22C4CD301F85F7FF00B155FE /* Main.storyboard in Resources */,
 			);
@@ -492,7 +559,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22C4CD2C1F837F7900B155FE /* RegisterVC.swift in Sources */,
+				22BF55B81F88CA8D0002C42C /* NameSignUp.swift in Sources */,
+				22C4CD2C1F837F7900B155FE /* SignUpVC.swift in Sources */,
 				22C4CD281F821E8F00B155FE /* LoginVC.swift in Sources */,
 				229D07B21F80CC8A00FD24CC /* AppDelegate.swift in Sources */,
 				22C4CD351F86CDF800B155FE /* OpeningVC.swift in Sources */,

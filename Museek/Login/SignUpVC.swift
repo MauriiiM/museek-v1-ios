@@ -9,45 +9,24 @@
 import UIKit
 import FirebaseAuth
 
-class RegisterVC: UIViewController{
+class SignUpVC: UIViewController{
 
-    @IBOutlet private weak var emailTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
     
     private var nameIsOk = false
     private var ussernameIsOk = false
     private var emailIsOk = false
     private var passwordIsOk = false
-
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-//         Do any additional setup after loading the view, typically from a nib.
-    }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-//         Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction private func createAccount(_ sender: Any) {
-    }
-    
-    @IBAction private func emailTextChanged(_ sender: UITextField) {
-        if(isValid(emailString: sender.text!)){
-//            display check mark
-        } else {
-//            display x
-        }
-    }
-    
-    @IBAction private func passwordsMatch(_ sender: UITextField) {
+//    @IBAction private func passwordsMatch(_ sender: UITextField) {
 //        if sender.text == passwordTextField.text {
 ////            display check mark
 //        } else {
 ////           say passwords dont match
 //        }
-        
-    }
+//
+//    }
     
     
     //checks wether enter email is in correct email format
