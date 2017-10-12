@@ -10,23 +10,14 @@ import UIKit
 import FirebaseAuth
 
 class SignUpVC: UIViewController{
-
+    @IBOutlet weak var nameView: NameSignUp!
+    @IBOutlet weak var emailAndPasswordView: EmailSignUp!
     
-    private var nameIsOk = false
-    private var ussernameIsOk = false
-    private var emailIsOk = false
-    private var passwordIsOk = false
-    
-    
-//    @IBAction private func passwordsMatch(_ sender: UITextField) {
-//        if sender.text == passwordTextField.text {
-////            display check mark
-//        } else {
-////           say passwords dont match
-//        }
-//
-//    }
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        nameView.nextButton.addTarget(self, action: #selector(nextButtonPressed(sender:)), for: .touchUpInside)
+        emailAndPasswordView.createButton.addTarget(self, action: #selector(createAccountButtonPressed(sender:)), for: .touchUpInside)
+    }
     
     //checks wether enter email is in correct email format
     private func isValid(emailString email: String)-> Bool{
@@ -34,5 +25,28 @@ class SignUpVC: UIViewController{
         let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
         
         return emailPredicate.evaluate(with: email)
+    }
+    
+    @objc func nextButtonPressed(sender: UIButton){
+        if let nameText = nameView.fullNameTextField.text, let userNameText = nameView.userNameTextField.text {
+            
+            if(!nameText.isEmpty && !userNameText.isEmpty){
+                nameView.isHidden = true
+                emailAndPasswordView.isHidden = false
+            }
+        }
+    }
+    
+    @objc func createAccountButtonPressed(sender: UIButton) {
+        if let emailText = emailAndPasswordView.emailTextField.text,
+            let passwordText = emailAndPasswordView.passwordTextField.text,
+            let confirmPasswordText = emailAndPasswordView.confirmPasswordTextField.text{
+            
+            if(!emailText.isEmpty && !passwordText.isEmpty && !confirmPasswordText.isEmpty){
+                if(passwordText == confirmPasswordText) {
+                    print("PASSWORDS MATCH")
+                }
+            }
+        }
     }
 }

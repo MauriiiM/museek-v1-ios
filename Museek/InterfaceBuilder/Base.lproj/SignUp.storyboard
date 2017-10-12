@@ -159,6 +159,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LOM-sY-IT6"/>
                     </view>
+                    <connections>
+                        <outlet property="emailAndPasswordView" destination="WKn-tb-apN" id="VCl-01-84Y"/>
+                        <outlet property="nameView" destination="Kzo-t5-ocu" id="5he-WZ-en4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mzu-2v-T9G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

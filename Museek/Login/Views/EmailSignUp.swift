@@ -10,6 +10,11 @@ import UIKit
 
 //@IBDesignable
 class EmailSignUp: UIView {
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var confirmPasswordTextField: UITextField!
+    @IBOutlet weak var createButton: UIButton!
+    
     //CONSTRUCTOR NEEDED FOR IBDESIGNABLE
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,5 +36,4 @@ class EmailSignUp: UIView {
         view.frame = self.bounds
         return view
     }
-
 }

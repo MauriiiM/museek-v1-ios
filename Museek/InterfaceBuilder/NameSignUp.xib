@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NameSignUp" customModule="Museek" customModuleProvider="target">
             <connections>
                 <outlet property="fullNameTextField" destination="0Iq-Ew-Lxs" id="iGQ-eC-let"/>
+                <outlet property="nextButton" destination="Ktv-Ot-rcJ" id="VTJ-x5-7RP"/>
                 <outlet property="userNameTextField" destination="0WZ-Gn-FaK" id="kBN-b6-xEV"/>
             </connections>
         </placeholder>
@@ -41,7 +42,7 @@
                     </constraints>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="nickname"/>
+                    <textInputTraits key="textInputTraits" textContentType="nickname"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ktv-Ot-rcJ">
                     <rect key="frame" x="25" y="390" width="325" height="32.5"/>
@@ -54,9 +55,6 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
-                    <connections>
-                        <action selector="nextButtonPress:" destination="-1" eventType="touchUpInside" id="9ab-G6-tBF"/>
-                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.40792796015739441" green="0.40791851282119751" blue="0.40792039036750793" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
