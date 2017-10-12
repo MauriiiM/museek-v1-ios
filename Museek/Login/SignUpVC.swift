@@ -19,7 +19,7 @@ class SignUpVC: UIViewController{
         emailAndPasswordView.createButton.addTarget(self, action: #selector(createAccountButtonPressed(sender:)), for: .touchUpInside)
     }
     
-    //checks wether enter email is in correct email format
+    //checks whether entered email is in correct email format
     private func isValid(emailString email: String)-> Bool{
         let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}" //regEx
         let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
@@ -44,8 +44,17 @@ class SignUpVC: UIViewController{
             
             if(!emailText.isEmpty && !passwordText.isEmpty && !confirmPasswordText.isEmpty){
                 if(passwordText == confirmPasswordText) {
-                    print("PASSWORDS MATCH")
-                }
+                    Auth.auth().createUser(withEmail: emailText, password: passwordText, completion: { (user, error) in
+                        //Check that user isn't NIL
+                        if let u = user {
+                            // User is found, goto home screen
+                            // self.performSegue(withIdentifier: "goToHome", sender: self)
+                        }
+                        else {
+                            //Check error and show message
+                        }
+                        
+                    })               }
             }
         }
     }
