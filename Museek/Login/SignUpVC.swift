@@ -11,7 +11,6 @@ import FirebaseAuth
 
 class SignUpVC: UIViewController{
 
-    @IBOutlet weak var emailTextField: UITextField!
     
     private var nameIsOk = false
     private var ussernameIsOk = false
