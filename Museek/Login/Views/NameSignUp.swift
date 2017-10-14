@@ -10,7 +10,6 @@ import UIKit
 
 //@IBDesignable
 class NameSignUp: UIView{
-    @IBOutlet weak var fullNameTextField: UITextField!
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var nextButton: UIButton!
     

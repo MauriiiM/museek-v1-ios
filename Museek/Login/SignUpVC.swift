@@ -66,9 +66,9 @@ class SignUpVC: UIViewController{
     }
     
     @objc private func nextButtonPressed(sender: UIButton){
-        if let name = nameView.fullNameTextField.text, let userName = nameView.userNameTextField.text {
+        if let userName = nameView.userNameTextField.text {
             self.userName = userName
-            if(!name.isEmpty && !userName.isEmpty){
+            if(!userName.isEmpty){
                 nameView.isHidden = true
                 emailAndPasswordView.isHidden = false
             }
