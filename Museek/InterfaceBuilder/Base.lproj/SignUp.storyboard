@@ -74,6 +74,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <segue destination="l5h-Rp-eiN" kind="show" id="WwN-81-ng5"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.40792796015739441" green="0.40791851282119751" blue="0.40792039036750793" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -100,7 +103,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="394" y="90"/>
+            <point key="canvasLocation" x="497" y="297"/>
         </scene>
         <!--Sign Up VC-->
         <scene sceneID="7MD-Tb-GgY">
@@ -141,6 +144,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <segue destination="fcv-t2-Rzb" kind="unwind" unwindAction="unwindWithSegue:" id="Nje-dw-wIK"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -165,8 +171,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mzu-2v-T9G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="fcv-t2-Rzb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-541" y="90"/>
+            <point key="canvasLocation" x="-603" y="297"/>
         </scene>
         <!--OpeningVC-->
         <scene sceneID="8mF-g1-Vfy">
@@ -250,4 +257,7 @@
             <point key="canvasLocation" x="-60.869565217391312" y="-657.88043478260875"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="WwN-81-ng5"/>
+    </inferredMetricsTieBreakers>
 </document>

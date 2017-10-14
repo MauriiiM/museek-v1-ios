@@ -74,4 +74,8 @@ class SignUpVC: UIViewController{
             }
         }
     }
+    
+    @IBAction private func unwind(segue: UIStoryboardSegue){
+        print("unwinded from sign in")
+    }
 }

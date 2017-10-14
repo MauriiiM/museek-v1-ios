@@ -9,17 +9,17 @@
 import UIKit
 class OpeningVC: UIViewController{
     
-    //when user goes from sign up to login
-    @IBAction func unwind(segue unwindSegue: UIStoryboardSegue) {
-        
-        switch unwindSegue.identifier! {
-        case "fromSignUp":
-            break
-        case "fromSignIn":
-            break
-        default:
-            //stay in openingVC
-            break
-        }
-    }
+//    //when user goes from sign up to login
+//    @IBAction func unwind(segue unwindSegue: UIStoryboardSegue) {
+//
+//        switch unwindSegue.identifier! {
+//        case "fromSignUp":
+//            break
+//        case "fromSignIn":
+//            break
+//        default:
+//            //stay in openingVC
+//            break
+//        }
+//    }
 }
