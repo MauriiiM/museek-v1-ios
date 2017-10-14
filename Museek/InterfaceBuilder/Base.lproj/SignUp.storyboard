@@ -29,7 +29,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zXA-Ib-wBd">
                                 <rect key="frame" x="41.333333333333343" y="424.66666666666669" width="331.33333333333337" height="33"/>
-                                <color key="backgroundColor" red="0.92941176469999998" green="0.4039215686" blue="0.52827403750000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.92941176470588238" green="0.40392156862745099" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="zXA-Ib-wBd" secondAttribute="height" multiplier="10:1" id="iCh-7C-kzw"/>
                                 </constraints>
@@ -67,7 +67,7 @@
                                         </fragment>
                                         <fragment content="Sign Up.">
                                             <attributes>
-                                                <color key="NSColor" red="0.92851245400000004" green="0.4009653628" blue="0.52944362160000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="NSColor" red="0.92941176470588238" green="0.40392156862745099" blue="0.52941176470588236" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <font key="NSFont" size="17" name=".SFNSText"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
@@ -100,7 +100,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="268" y="282"/>
+            <point key="canvasLocation" x="394" y="90"/>
         </scene>
         <!--Sign Up VC-->
         <scene sceneID="7MD-Tb-GgY">
@@ -166,7 +166,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mzu-2v-T9G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-383" y="282"/>
+            <point key="canvasLocation" x="-541" y="90"/>
         </scene>
         <!--OpeningVC-->
         <scene sceneID="8mF-g1-Vfy">
@@ -177,44 +177,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yIG-9h-1cm">
-                                <rect key="frame" x="41.333333333333343" y="328.33333333333331" width="331.33333333333337" height="33"/>
+                                <rect key="frame" x="42" y="330.66666666666669" width="330" height="35"/>
+                                <color key="backgroundColor" red="0.92941176470588238" green="0.40392156862745099" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="yIG-9h-1cm" secondAttribute="height" multiplier="10:1" id="Kp1-yd-e76"/>
+                                    <constraint firstAttribute="width" secondItem="yIG-9h-1cm" secondAttribute="height" multiplier="66:7" id="W45-RH-JCf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <state key="normal" title="Sign Up Using Email">
-                                    <color key="titleColor" red="0.92941176469999998" green="0.4039215686" blue="0.52827403750000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Create Account">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="l5h-Rp-eiN" kind="show" identifier="toSignUp" id="bEC-Oc-mYa"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Z3-VE-EJv">
-                                <rect key="frame" x="17.666666666666657" y="683" width="378.66666666666663" height="33"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="7Z3-VE-EJv" secondAttribute="height" multiplier="343:30" id="GPd-fW-laH"/>
-                                </constraints>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Already have an account? ">
-                                            <attributes>
-                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="17" name=".SFNSText"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="Sign In.">
-                                            <attributes>
-                                                <color key="NSColor" red="0.92851245400000004" green="0.4009653628" blue="0.52944362160000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <font key="NSFont" size="17" name=".SFNSText"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
-                                <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="toSignIn" id="5RR-sF-cek"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a08-zH-uDF">
@@ -223,7 +197,7 @@
                                 <attributedString key="attributedText">
                                     <fragment content="Mu">
                                         <attributes>
-                                            <color key="NSColor" red="0.92851245400000004" green="0.4009653628" blue="0.52944362160000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="NSColor" red="0.92941176470588238" green="0.40392156862745099" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <font key="NSFont" size="72" name=".SFNSText"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
@@ -238,43 +212,35 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZV3-XS-9Zc">
-                                <rect key="frame" x="17.666666666666657" y="361.33333333333331" width="378.66666666666663" height="33.333333333333371"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Z3-VE-EJv">
+                                <rect key="frame" x="42" y="390.66666666666669" width="330" height="35"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="ZV3-XS-9Zc" secondAttribute="height" multiplier="343:30" id="3Wj-JU-nCU"/>
+                                    <constraint firstAttribute="width" secondItem="7Z3-VE-EJv" secondAttribute="height" multiplier="66:7" id="xIC-uv-3GR"/>
                                 </constraints>
-                                <attributedString key="attributedText">
-                                    <fragment content="OR">
-                                        <attributes>
-                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="19" name=".SFNSDisplay"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGA-zb-Qrt">
-                                <rect key="frame" x="88" y="402" width="237" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.20782312112160947" green="0.39720455413453287" blue="0.66154681789088365" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="Sign up using FB">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Sign In">
+                                            <attributes>
+                                                <color key="NSColor" red="0.92941176470588238" green="0.40392156862745099" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <font key="NSFont" size="21" name=".SFNSText"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
                                 </state>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="toSignIn" id="5RR-sF-cek"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ZV3-XS-9Zc" firstAttribute="top" secondItem="yIG-9h-1cm" secondAttribute="bottom" id="24a-Iq-qTz"/>
-                            <constraint firstItem="7Z3-VE-EJv" firstAttribute="centerX" secondItem="1Qo-hi-LXd" secondAttribute="centerX" id="Rjb-Z6-Dx9"/>
-                            <constraint firstItem="1Qo-hi-LXd" firstAttribute="bottom" secondItem="7Z3-VE-EJv" secondAttribute="bottom" constant="20" id="YEJ-QQ-KVm"/>
-                            <constraint firstItem="yIG-9h-1cm" firstAttribute="centerX" secondItem="1Qo-hi-LXd" secondAttribute="centerX" id="Zbc-iB-zFJ"/>
-                            <constraint firstItem="ZV3-XS-9Zc" firstAttribute="centerX" secondItem="1Qo-hi-LXd" secondAttribute="centerX" id="clY-sX-FED"/>
-                            <constraint firstItem="7Z3-VE-EJv" firstAttribute="width" secondItem="g9R-un-l1i" secondAttribute="height" multiplier="343:667" id="qnR-v2-ksA"/>
-                            <constraint firstItem="yIG-9h-1cm" firstAttribute="width" secondItem="g9R-un-l1i" secondAttribute="height" multiplier="300:667" id="sAd-Ke-qOH"/>
-                            <constraint firstItem="ZV3-XS-9Zc" firstAttribute="width" secondItem="g9R-un-l1i" secondAttribute="height" multiplier="343:667" id="wvS-m9-AAY"/>
-                            <constraint firstItem="ZV3-XS-9Zc" firstAttribute="centerY" secondItem="1Qo-hi-LXd" secondAttribute="centerY" id="zCY-bv-jta"/>
+                            <constraint firstItem="yIG-9h-1cm" firstAttribute="centerY" secondItem="1Qo-hi-LXd" secondAttribute="centerY" constant="-30" id="9Vf-ge-Km0"/>
+                            <constraint firstItem="7Z3-VE-EJv" firstAttribute="centerY" secondItem="1Qo-hi-LXd" secondAttribute="centerY" constant="30" id="GfL-0h-osr"/>
+                            <constraint firstItem="7Z3-VE-EJv" firstAttribute="centerX" secondItem="1Qo-hi-LXd" secondAttribute="centerX" id="VZo-va-e9c"/>
+                            <constraint firstItem="yIG-9h-1cm" firstAttribute="width" secondItem="g9R-un-l1i" secondAttribute="height" multiplier="165:368" id="XDT-Ef-B9O"/>
+                            <constraint firstItem="yIG-9h-1cm" firstAttribute="centerX" secondItem="1Qo-hi-LXd" secondAttribute="centerX" id="jK3-tz-eoE"/>
+                            <constraint firstItem="7Z3-VE-EJv" firstAttribute="width" secondItem="g9R-un-l1i" secondAttribute="height" multiplier="165:368" id="knv-K1-94Y"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1Qo-hi-LXd"/>
                     </view>

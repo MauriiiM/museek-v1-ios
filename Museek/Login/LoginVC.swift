@@ -16,14 +16,15 @@ class LoginVC: UIViewController{
     @IBAction func signIn(_ sender: UIButton) {
         let userEmail = userEmailTextField.text
         let password = passwordTextField.text
-        Auth.auth().signIn(withEmail: userEmail!, password: password!) { (user, error) in
-            if error != nil {
-                //error logging in (incorrect email/password combination)
-            }
-            else {
-                
-            }
-        }
+        Auth.auth().signIn(withEmail: userEmail!,
+                           password: password!,
+                           completion: { (user, error) in
+                            if let u = user {
+                                print("user LOGGED IN")
+                            } else {
+                                //
+                            }
+        })
     }
     
     override func viewDidLoad() {
