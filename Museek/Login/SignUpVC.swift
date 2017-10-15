@@ -36,30 +36,31 @@ class SignUpVC: UIViewController{
             
             if(!email.isEmpty && !password.isEmpty && !confirmPassword.isEmpty){
                 if(password == confirmPassword) {
-                    Auth.auth().createUser(withEmail: email,
-                                           password: password,
-                                           completion: { (user, error) in
-                                            //Check that user isn't NIL
-                                            if let u = user {
-                                                //will do what's in closure AFTER account's been created
-                                                let profileChange = u.createProfileChangeRequest()
-                                                profileChange.displayName = self.userName
-                                                profileChange.commitChanges(completion: { error in
-                                                    if let e = error {
-                                                        print("\n\n\nerrorrrrr")
-                                                    } else {
-                                                        print("\n\n\nprofile updated")
-                                                    }
-                                                })
-                                                print("ACCOUNT CREATED \n -username-> \(String(describing: u.displayName))")
-                                                // self.performSegue(withIdentifier: "goToHome", sender: self)
-                                            } else {
-                                                //Check error and show message
-                                            }
+                    Auth.auth().createUser(withEmail: email, password: password, completion: { 
+                        (user, error) in
+                        if let u = user {
+                            //will do what's in closure AFTER account's been created
+                            let profileChange = u.createProfileChangeRequest()
+                            profileChange.displayName = self.userName
+                            profileChange.commitChanges(completion: { error in
+                                if let e = error {
+                                    print("\n\n\nerrorrrrr")
+                                } else {
+                                    print("\n\n\nprofile updated")
+                                }
+                            })
+                            print("ACCOUNT CREATED \n -username-> \(String(describing: u.displayName))")
+                            // self.performSegue(withIdentifier: "goToHome", sender: self)
+                        } else {
+                            //Sign up error, present alert
+                            let errorMsg = error?.localizedDescription
+                            let alert = UIAlertController(title: "Error Occurred", message: errorMsg, preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                            self.present(alert, animated: true, completion: nil)
+                        }
                     })
                 } else {
                     //password doesnt match
-                    // self.present(UIAlertController(title: "TEST", message: "some", preferredStyle: .alert), animated: true, completion: nil)
                 }
             }
         }

@@ -51,10 +51,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" textContentType="nickname"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LZ6-Zy-5eB">
-                                <rect key="frame" x="17.666666666666657" y="683" width="378.66666666666663" height="33"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LZ6-Zy-5eB" userLabel="Sign Up.">
+                                <rect key="frame" x="0.0" y="681" width="414" height="55"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="LZ6-Zy-5eB" secondAttribute="height" multiplier="343:30" id="FAY-gz-PYD"/>
+                                    <constraint firstAttribute="width" secondItem="LZ6-Zy-5eB" secondAttribute="height" multiplier="414:55" id="FAY-gz-PYD"/>
                                 </constraints>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
@@ -74,9 +74,6 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
-                                <connections>
-                                    <segue destination="l5h-Rp-eiN" kind="show" id="WwN-81-ng5"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.40792796015739441" green="0.40791851282119751" blue="0.40792039036750793" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -86,11 +83,12 @@
                             <constraint firstItem="LZ6-Zy-5eB" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="4X4-WZ-5JH"/>
                             <constraint firstItem="cY4-h6-x4y" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="300:667" id="AHJ-Dw-q5g"/>
                             <constraint firstItem="zXA-Ib-wBd" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="B7Y-fc-Yy7"/>
-                            <constraint firstItem="LZ6-Zy-5eB" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="343:667" id="RTY-Pq-ojS"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="LZ6-Zy-5eB" secondAttribute="bottom" id="N2g-oO-b7Q"/>
                             <constraint firstItem="zXA-Ib-wBd" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="300:667" id="X8c-Pz-oF7"/>
                             <constraint firstItem="06m-Jv-M4p" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Xqc-aL-8an"/>
+                            <constraint firstItem="LZ6-Zy-5eB" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="207:358" id="cRj-KR-PCn"/>
+                            <constraint firstItem="LZ6-Zy-5eB" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="fWY-zd-JJG"/>
                             <constraint firstItem="cY4-h6-x4y" firstAttribute="top" secondItem="06m-Jv-M4p" secondAttribute="bottom" constant="30" id="hXu-SQ-VfX"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="LZ6-Zy-5eB" secondAttribute="bottom" constant="20" id="ktq-6B-ZvE"/>
                             <constraint firstItem="cY4-h6-x4y" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="t4Z-bZ-RTu"/>
                             <constraint firstItem="cY4-h6-x4y" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="tQa-xg-byC"/>
                         </constraints>
@@ -114,17 +112,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kzo-t5-ocu" userLabel="Name TF View" customClass="NameSignUp" customModule="Museek" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="680.66666666666663"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="681"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WKn-tb-apN" userLabel="Email TF View" customClass="EmailSignUp" customModule="Museek" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="680.66666666666663"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="681"/>
                                 <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PVh-uT-0KT" userLabel="Sign In.">
-                                <rect key="frame" x="0.0" y="680.66666666666652" width="414" height="35.333333333333371"/>
+                                <rect key="frame" x="0.0" y="681" width="414" height="55"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="PVh-uT-0KT" secondAttribute="height" multiplier="375:32" id="E7m-sk-Ou5"/>
+                                    <constraint firstAttribute="width" secondItem="PVh-uT-0KT" secondAttribute="height" multiplier="414:55" id="mU6-Oh-vr3"/>
                                 </constraints>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
@@ -144,22 +142,21 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
-                                <connections>
-                                    <segue destination="fcv-t2-Rzb" kind="unwind" unwindAction="unwindWithSegue:" id="Nje-dw-wIK"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="LOM-sY-IT6" firstAttribute="bottom" secondItem="WKn-tb-apN" secondAttribute="bottom" constant="55.329999999999998" id="8xZ-Fs-mK5"/>
-                            <constraint firstItem="LOM-sY-IT6" firstAttribute="bottom" secondItem="PVh-uT-0KT" secondAttribute="bottom" constant="20" id="Ct1-oh-E7l"/>
+                            <constraint firstItem="PVh-uT-0KT" firstAttribute="top" secondItem="WKn-tb-apN" secondAttribute="bottom" id="3Cd-Sk-3uT"/>
+                            <constraint firstItem="LOM-sY-IT6" firstAttribute="bottom" secondItem="PVh-uT-0KT" secondAttribute="bottom" id="Ct1-oh-E7l"/>
                             <constraint firstItem="Kzo-t5-ocu" firstAttribute="centerX" secondItem="zea-Cb-EcA" secondAttribute="centerX" id="Dak-8k-BbJ"/>
                             <constraint firstItem="Kzo-t5-ocu" firstAttribute="top" secondItem="zea-Cb-EcA" secondAttribute="top" id="EJZ-yp-YcX"/>
+                            <constraint firstItem="PVh-uT-0KT" firstAttribute="width" secondItem="LOM-sY-IT6" secondAttribute="height" multiplier="207:358" id="I3V-bj-Pdr"/>
                             <constraint firstItem="WKn-tb-apN" firstAttribute="top" secondItem="zea-Cb-EcA" secondAttribute="top" id="JcV-mj-VYP"/>
                             <constraint firstItem="Kzo-t5-ocu" firstAttribute="width" secondItem="zea-Cb-EcA" secondAttribute="width" id="KMZ-Xo-1Ks"/>
+                            <constraint firstItem="Kzo-t5-ocu" firstAttribute="height" secondItem="WKn-tb-apN" secondAttribute="height" id="Kt4-4p-WzD"/>
                             <constraint firstItem="WKn-tb-apN" firstAttribute="centerX" secondItem="zea-Cb-EcA" secondAttribute="centerX" id="TMK-hP-Acd"/>
                             <constraint firstItem="WKn-tb-apN" firstAttribute="width" secondItem="zea-Cb-EcA" secondAttribute="width" id="Uhb-i8-2B7"/>
-                            <constraint firstItem="PVh-uT-0KT" firstAttribute="top" secondItem="Kzo-t5-ocu" secondAttribute="bottom" id="lZA-J6-UCJ"/>
+                            <constraint firstItem="PVh-uT-0KT" firstAttribute="top" secondItem="Kzo-t5-ocu" secondAttribute="bottom" id="kWU-ci-coS"/>
                             <constraint firstItem="PVh-uT-0KT" firstAttribute="width" secondItem="LOM-sY-IT6" secondAttribute="width" id="p8x-Nf-IxF"/>
                             <constraint firstItem="PVh-uT-0KT" firstAttribute="centerX" secondItem="zea-Cb-EcA" secondAttribute="centerX" id="uVF-hA-Ep6"/>
                         </constraints>
@@ -171,9 +168,8 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mzu-2v-T9G" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="fcv-t2-Rzb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-603" y="297"/>
+            <point key="canvasLocation" x="-604.34782608695662" y="296.73913043478262"/>
         </scene>
         <!--OpeningVC-->
         <scene sceneID="8mF-g1-Vfy">
@@ -257,7 +253,4 @@
             <point key="canvasLocation" x="-60.869565217391312" y="-657.88043478260875"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="WwN-81-ng5"/>
-    </inferredMetricsTieBreakers>
 </document>
