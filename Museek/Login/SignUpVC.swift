@@ -43,13 +43,10 @@ class SignUpVC: UIViewController{
                             let profileChange = u.createProfileChangeRequest()
                             profileChange.displayName = self.userName
                             profileChange.commitChanges(completion: { error in
-                                if let e = error {
+                                if let _ = error {
                                     print("\n\n\nerrorrrrr")
-                                } else {
-                                    print("\n\n\nprofile updated")
                                 }
                             })
-                            print("ACCOUNT CREATED \n -username-> \(String(describing: u.displayName))")
                             // self.performSegue(withIdentifier: "goToHome", sender: self)
                         } else {
                             //Sign up error, present alert
@@ -74,9 +71,5 @@ class SignUpVC: UIViewController{
                 emailAndPasswordView.isHidden = false
             }
         }
-    }
-    
-    @IBAction private func unwind(segue: UIStoryboardSegue){
-        print("unwinded from sign in")
     }
 }

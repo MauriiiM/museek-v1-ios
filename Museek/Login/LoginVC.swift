@@ -19,7 +19,7 @@ class LoginVC: UIViewController{
         Auth.auth().signIn(withEmail: userEmail!,
                            password: password!,
                            completion: { (user, error) in
-                            if let e = error{
+                            if let _ = error{
                                 //user wasn't logged in
                                 let errorMsg = "Please check your email and password, then try again."
                                 let alert = UIAlertController(title: "Error Occurred", message: errorMsg, preferredStyle: .alert)
@@ -27,10 +27,6 @@ class LoginVC: UIViewController{
                                 self.present(alert, animated: true, completion: nil)
                             }
         })
-    }
-    
-    @IBAction private func unwind(segue: UIStoryboardSegue){
-        print("came from login")
     }
     
     override func viewDidLoad() {
