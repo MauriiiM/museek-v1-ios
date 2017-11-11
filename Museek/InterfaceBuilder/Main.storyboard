@@ -1,89 +1,140 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="N1r-n3-7a5">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="N1r-n3-7a5">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Explore-->
+        <!--View Controller-->
         <scene sceneID="Psj-62-PjA">
             <objects>
                 <viewController id="rnV-4P-MSy" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vIw-Ea-peZ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="zk2-dc-pog"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Explore" id="EmO-XK-HUQ"/>
+                    <tabBarItem key="tabBarItem" title="" image="explore" selectedImage="explore (filled)" id="EmO-XK-HUQ">
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oef-v5-cqs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1737" y="544"/>
         </scene>
-        <!--Camera-->
+        <!--CameraVC-->
         <scene sceneID="t6K-uc-ewR">
             <objects>
-                <viewController id="Zh0-Ua-B0O" sceneMemberID="viewController">
+                <viewController id="Zh0-Ua-B0O" customClass="CameraVC" customModule="Museek" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Jr-6x-rB9">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rsv-Gw-MVF" userLabel="Camera View">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHH-64-69R" customClass="RoundedButton" customModule="Museek" customModuleProvider="target">
+                                        <rect key="frame" x="130" y="451" width="60" height="60"/>
+                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="gHH-64-69R" secondAttribute="height" multiplier="1:1" id="PQN-e7-KXS"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="40"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="recordButtonPressed:" destination="Zh0-Ua-B0O" eventType="touchUpInside" id="rsy-nr-1er"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="gHH-64-69R" secondAttribute="bottom" constant="8" id="S2b-r8-Fw9"/>
+                                    <constraint firstAttribute="bottom" secondItem="gHH-64-69R" secondAttribute="bottom" constant="8" id="Ufo-4c-33K"/>
+                                    <constraint firstItem="gHH-64-69R" firstAttribute="centerX" secondItem="rsv-Gw-MVF" secondAttribute="centerX" id="ava-a8-R9H"/>
+                                    <constraint firstItem="gHH-64-69R" firstAttribute="width" secondItem="rsv-Gw-MVF" secondAttribute="height" multiplier="80:687" id="bCm-XN-YJz"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rsv-Gw-MVF" firstAttribute="bottom" secondItem="mGV-9e-Uxf" secondAttribute="bottom" id="07u-nd-a01"/>
+                            <constraint firstItem="rsv-Gw-MVF" firstAttribute="leading" secondItem="mGV-9e-Uxf" secondAttribute="leading" id="0Vd-5A-wfN"/>
+                            <constraint firstItem="rsv-Gw-MVF" firstAttribute="top" secondItem="8Jr-6x-rB9" secondAttribute="top" id="6nc-hM-pVI"/>
+                            <constraint firstItem="rsv-Gw-MVF" firstAttribute="trailing" secondItem="mGV-9e-Uxf" secondAttribute="trailing" id="PoU-Ve-plo"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="mGV-9e-Uxf"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Camera" id="opq-kG-ii8"/>
+                    <tabBarItem key="tabBarItem" title="" image="video icon" selectedImage="video (filled) icon" id="opq-kG-ii8">
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
+                    </tabBarItem>
+                    <connections>
+                        <outlet property="CameraView" destination="rsv-Gw-MVF" id="Uvu-xf-PlJ"/>
+                        <outlet property="cameraView" destination="rsv-Gw-MVF" id="5al-UR-fGZ"/>
+                        <outlet property="recButton" destination="gHH-64-69R" id="TJC-4M-3Eh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TH3-wc-En4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1026" y="544"/>
+            <point key="canvasLocation" x="-1026.0869565217392" y="543.75"/>
         </scene>
-        <!--Notifications-->
+        <!--View Controller-->
         <scene sceneID="hVS-PZ-UOT">
             <objects>
                 <viewController id="dqD-Ao-35i" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7TK-aZ-noA">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="H2C-7G-J5r"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Notifications" id="n33-P0-eN1"/>
+                    <tabBarItem key="tabBarItem" title="" image="support" selectedImage="support (filled)" id="n33-P0-eN1">
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NIt-OL-Grk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-330" y="544"/>
+            <point key="canvasLocation" x="-294" y="544"/>
         </scene>
-        <!--Profile-->
+        <!--View Controller-->
         <scene sceneID="0lu-w5-9mp">
             <objects>
                 <viewController id="GLW-eZ-scU" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zzl-qQ-Unh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="X2S-hD-EDI"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" id="wda-da-N7C"/>
+                    <tabBarItem key="tabBarItem" title="" id="wda-da-N7C">
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8vp-Nt-mJ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="417" y="544"/>
+            <point key="canvasLocation" x="435" y="544"/>
         </scene>
-        <!--Feed-->
+        <!--View Controller-->
         <scene sceneID="hI2-A1-os6">
             <objects>
                 <viewController id="5JD-HL-gwa" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h2q-yf-gdA">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="BJe-Gb-8to"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Feed" id="Co5-fg-7lV"/>
+                    <tabBarItem key="tabBarItem" title="" image="xylophone" selectedImage="xylophone (filled)" id="Co5-fg-7lV">
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W8r-aN-1w8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -92,23 +143,38 @@
         <!--Main Tab Bar Controller-->
         <scene sceneID="FiS-Mo-uWc">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BT7-nc-Evh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarController id="N1r-n3-7a5" userLabel="Main Tab Bar Controller" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iHr-PA-fSW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.92941176469999998" green="0.4039215686" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="5JD-HL-gwa" kind="relationship" relationship="viewControllers" id="GhH-Ox-sXl"/>
                         <segue destination="rnV-4P-MSy" kind="relationship" relationship="viewControllers" id="cmK-Qa-Mla"/>
+                        <segue destination="Zh0-Ua-B0O" kind="relationship" relationship="viewControllers" id="Vbp-8G-8xc"/>
                         <segue destination="dqD-Ao-35i" kind="relationship" relationship="viewControllers" id="evF-mt-kfv"/>
                         <segue destination="GLW-eZ-scU" kind="relationship" relationship="viewControllers" id="pg3-GC-SiZ"/>
-                        <segue destination="Zh0-Ua-B0O" kind="relationship" relationship="viewControllers" id="Vbp-8G-8xc"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BT7-nc-Evh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1025" y="-237"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="explore" width="33" height="33"/>
+        <image name="explore (filled)" width="33" height="33"/>
+        <image name="support" width="33" height="33"/>
+        <image name="support (filled)" width="33" height="33"/>
+        <image name="video (filled) icon" width="33" height="33"/>
+        <image name="video icon" width="33" height="33"/>
+        <image name="xylophone" width="33" height="33"/>
+        <image name="xylophone (filled)" width="33" height="33"/>
+    </resources>
 </document>
