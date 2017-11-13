@@ -134,8 +134,8 @@
 		2241686B1F8E15BC000D9237 /* XIBs */ = {
 			isa = PBXGroup;
 			children = (
-				22C4CD461F88BD8600B155FE /* NameSignUp.xib */,
 				22C4CD481F88C06B00B155FE /* EmailSignUp.xib */,
+				22C4CD461F88BD8600B155FE /* NameSignUp.xib */,
 			);
 			name = XIBs;
 			sourceTree = "<group>";

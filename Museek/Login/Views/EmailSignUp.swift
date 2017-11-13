@@ -8,7 +8,7 @@
 
 import UIKit
 
-//@IBDesignable
+@IBDesignable
 class EmailSignUp: UIView {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -32,7 +32,8 @@ class EmailSignUp: UIView {
     }
     
     private func viewFromNib() -> UIView {
-        let view = Bundle.main.loadNibNamed("EmailSignUp", owner: self, options: nil)!.first as! UIView
+        let bundle = Bundle(for: type(of: self))
+        let view = bundle.loadNibNamed("EmailSignUp", owner: self, options: nil)!.first as! UIView
         view.frame = self.bounds
         return view
     }

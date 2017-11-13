@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -22,10 +22,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ktv-Ot-rcJ" customClass="RoundedButton" customModule="Museek" customModuleProvider="target">
-                    <rect key="frame" x="25" y="379.5" width="325" height="32.5"/>
+                    <rect key="frame" x="20" y="380" width="335" height="33"/>
                     <color key="backgroundColor" red="0.92941176470588238" green="0.40392156862745099" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="Ktv-Ot-rcJ" secondAttribute="height" multiplier="10:1" id="agT-4g-jGH"/>
+                        <constraint firstAttribute="width" secondItem="Ktv-Ot-rcJ" secondAttribute="height" multiplier="10:1" constant="5" id="agT-4g-jGH"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <state key="normal" title="Next">
@@ -38,7 +38,7 @@
                     </userDefinedRuntimeAttributes>
                 </button>
                 <textField contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0WZ-Gn-FaK">
-                    <rect key="frame" x="25" y="317" width="325" height="32.5"/>
+                    <rect key="frame" x="22.5" y="317" width="330" height="33"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="tintColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -52,11 +52,11 @@
             <color key="backgroundColor" red="0.40792796015739441" green="0.40791851282119751" blue="0.40792039036750793" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstItem="Ktv-Ot-rcJ" firstAttribute="top" secondItem="0WZ-Gn-FaK" secondAttribute="bottom" constant="30" id="GG2-Rw-JHh"/>
-                <constraint firstItem="Ktv-Ot-rcJ" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="325:667" id="ISA-pR-8jt"/>
-                <constraint firstItem="0WZ-Gn-FaK" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="LUg-3i-SOp"/>
+                <constraint firstItem="Ktv-Ot-rcJ" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="330:667" constant="5" id="ISA-pR-8jt"/>
                 <constraint firstItem="0WZ-Gn-FaK" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" constant="-10.25" id="OyC-pp-1dU"/>
-                <constraint firstItem="Ktv-Ot-rcJ" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="ltx-9o-L2v"/>
-                <constraint firstItem="0WZ-Gn-FaK" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="325:667" id="mw1-bh-DKh"/>
+                <constraint firstItem="Ktv-Ot-rcJ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Tfx-zk-dCM"/>
+                <constraint firstItem="0WZ-Gn-FaK" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="WNm-sd-EMX"/>
+                <constraint firstItem="0WZ-Gn-FaK" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="330:667" id="mw1-bh-DKh"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
         </view>

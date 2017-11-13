@@ -21,7 +21,18 @@ class CameraVC: UIViewController {
     @IBOutlet private weak var recButton: RoundedButton!
     private var isRecording = false
     
-    private let captureSession = AVCaptureSession() //to transfer data between one or more device inputs
+    //singlteton
+    fileprivate static var _captureSession: AVCaptureSession? //to transfer data between one or more device inputs
+    static var captureSession: AVCaptureSession{
+        get{
+            if let sesh = _captureSession { return sesh }
+            else {
+                _captureSession = AVCaptureSession()
+                return _captureSession!
+            }
+        }
+    }
+    
     private var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     
     
@@ -73,7 +84,7 @@ class CameraVC: UIViewController {
      sets up a video preview of the camera to display in view
      */
     private func setupVideoPreviewLayer(){
-        videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        videoPreviewLayer = AVCaptureVideoPreviewLayer(session: CameraVC.captureSession)
         videoPreviewLayer?.videoGravity = .resizeAspectFill
         videoPreviewLayer?.frame = cameraView.layer.bounds
         cameraView.layer.addSublayer(videoPreviewLayer!)
@@ -85,11 +96,13 @@ class CameraVC: UIViewController {
         // let audioCapture = AVCaptureDevice.default(for: .audio)
         do {
             let videoInput = try AVCaptureDeviceInput(device: cameraCapture!)//reason for do-catch
-            self.captureSession.sessionPreset = .high
-            self.captureSession.addInput(videoInput)
+            CameraVC.captureSession.sessionPreset = .high
+            if CameraVC.captureSession.inputs.isEmpty {
+                CameraVC.captureSession.addInput(videoInput)
+            }
             
             self.setupVideoPreviewLayer()
-            self.captureSession.startRunning()
+            CameraVC.captureSession.startRunning()
             
         } catch { print(error) }
     }
