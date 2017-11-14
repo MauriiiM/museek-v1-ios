@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		0F814EF5A0C86CA18BC79F83 /* Pods_MuseekTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D371E01FAC4C731E285A59F /* Pods_MuseekTests.framework */; };
+		227E70501FBA41EE00D9EE22 /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 227E704F1FBA41EE00D9EE22 /* Feed.storyboard */; };
+		227E70521FBA421700D9EE22 /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 227E70511FBA421700D9EE22 /* Discover.storyboard */; };
+		227E70541FBA425100D9EE22 /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 227E70531FBA425100D9EE22 /* Notifications.storyboard */; };
+		227E70581FBA429700D9EE22 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 227E70571FBA429700D9EE22 /* Profile.storyboard */; };
+		227E705A1FBA4C7400D9EE22 /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 227E70591FBA4C7400D9EE22 /* Camera.storyboard */; };
 		22936E2C1F9461B300256C75 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22936E2B1F9461B300256C75 /* RoundedButton.swift */; };
 		229D07B21F80CC8A00FD24CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229D07B11F80CC8A00FD24CC /* AppDelegate.swift */; };
 		229D07B71F80CC8A00FD24CC /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 229D07B51F80CC8A00FD24CC /* SignUp.storyboard */; };
@@ -49,6 +54,11 @@
 
 /* Begin PBXFileReference section */
 		0270A0173A41D0492E066054 /* Pods_MuseekUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MuseekUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		227E704F1FBA41EE00D9EE22 /* Feed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Feed.storyboard; sourceTree = "<group>"; };
+		227E70511FBA421700D9EE22 /* Discover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Discover.storyboard; sourceTree = "<group>"; };
+		227E70531FBA425100D9EE22 /* Notifications.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Notifications.storyboard; sourceTree = "<group>"; };
+		227E70571FBA429700D9EE22 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		227E70591FBA4C7400D9EE22 /* Camera.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
 		22936E2B1F9461B300256C75 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		229D07AE1F80CC8A00FD24CC /* Museek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Museek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		229D07B11F80CC8A00FD24CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -124,9 +134,10 @@
 		2241686A1F8E15A5000D9237 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				227E705B1FBA505F00D9EE22 /* Main Tabs */,
 				229D07BA1F80CC8A00FD24CC /* LaunchScreen.storyboard */,
-				229D07B51F80CC8A00FD24CC /* SignUp.storyboard */,
 				22C4CD2F1F85F7FF00B155FE /* Main.storyboard */,
+				229D07B51F80CC8A00FD24CC /* SignUp.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -138,6 +149,18 @@
 				22C4CD461F88BD8600B155FE /* NameSignUp.xib */,
 			);
 			name = XIBs;
+			sourceTree = "<group>";
+		};
+		227E705B1FBA505F00D9EE22 /* Main Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				227E704F1FBA41EE00D9EE22 /* Feed.storyboard */,
+				227E70511FBA421700D9EE22 /* Discover.storyboard */,
+				227E70591FBA4C7400D9EE22 /* Camera.storyboard */,
+				227E70531FBA425100D9EE22 /* Notifications.storyboard */,
+				227E70571FBA429700D9EE22 /* Profile.storyboard */,
+			);
+			name = "Main Tabs";
 			sourceTree = "<group>";
 		};
 		22936E2A1F94617600256C75 /* CustomUI */ = {
@@ -419,12 +442,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				229D07BC1F80CC8A00FD24CC /* LaunchScreen.storyboard in Resources */,
+				227E705A1FBA4C7400D9EE22 /* Camera.storyboard in Resources */,
+				227E70581FBA429700D9EE22 /* Profile.storyboard in Resources */,
+				227E70541FBA425100D9EE22 /* Notifications.storyboard in Resources */,
 				22C4CD471F88BD8600B155FE /* NameSignUp.xib in Resources */,
+				227E70501FBA41EE00D9EE22 /* Feed.storyboard in Resources */,
 				229D07B91F80CC8A00FD24CC /* Assets.xcassets in Resources */,
 				22C4CD311F86035400B155FE /* GoogleService-Info.plist in Resources */,
 				22C4CD491F88C06B00B155FE /* EmailSignUp.xib in Resources */,
 				229D07B71F80CC8A00FD24CC /* SignUp.storyboard in Resources */,
 				22C4CD301F85F7FF00B155FE /* Main.storyboard in Resources */,
+				227E70521FBA421700D9EE22 /* Discover.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

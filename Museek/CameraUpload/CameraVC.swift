@@ -17,10 +17,10 @@ import AVFoundation
  guidance from "https://github.com/codepath/ios_guides/wiki/Creating-a-Custom-Camera-View "
  */
 class CameraVC: UIViewController {
-    @IBOutlet private weak var cameraView: UIView!
     @IBOutlet private weak var recButton: RoundedButton!
     private var isRecording = false
     
+    private var previewLayer: AVCaptureVideoPreviewLayer!
     //singlteton
     fileprivate static var _captureSession: AVCaptureSession? //to transfer data between one or more device inputs
     static var captureSession: AVCaptureSession{
@@ -32,9 +32,6 @@ class CameraVC: UIViewController {
             }
         }
     }
-    
-    private var videoPreviewLayer: AVCaptureVideoPreviewLayer?
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -49,9 +46,8 @@ class CameraVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewDidDisappear(_ animated: Bool) {
+        CameraVC.captureSession.stopRunning()
     }
     
     private func checkCameraAuthorization(_ completionHandler: @escaping ((_ authorized: Bool) -> Void)) {
@@ -84,26 +80,28 @@ class CameraVC: UIViewController {
      sets up a video preview of the camera to display in view
      */
     private func setupVideoPreviewLayer(){
-        videoPreviewLayer = AVCaptureVideoPreviewLayer(session: CameraVC.captureSession)
-        videoPreviewLayer?.videoGravity = .resizeAspectFill
-        videoPreviewLayer?.frame = cameraView.layer.bounds
-        cameraView.layer.addSublayer(videoPreviewLayer!)
-        
+        previewLayer = AVCaptureVideoPreviewLayer(session: CameraVC.captureSession)
+//        previewLayer.videoGravity = .resizeAspectFill
+        previewLayer.frame = self.view.layer.bounds
+        self.view.layer.addSublayer(previewLayer)
     }
     
     private func setupCaptureSession(){
-        let cameraCapture = AVCaptureDevice.default(for: .video)
-        // let audioCapture = AVCaptureDevice.default(for: .audio)
-        do {
-            let videoInput = try AVCaptureDeviceInput(device: cameraCapture!)//reason for do-catch
-            CameraVC.captureSession.sessionPreset = .high
-            if CameraVC.captureSession.inputs.isEmpty {
-                CameraVC.captureSession.addInput(videoInput)
-            }
-            
-            self.setupVideoPreviewLayer()
-            CameraVC.captureSession.startRunning()
-            
-        } catch { print(error) }
+        if let captureDevice = AVCaptureDevice.default(for: .video) {
+            // let audioCapture = AVCaptureDevice.default(for: .audio)
+            do {
+                let videoInput = try AVCaptureDeviceInput(device: captureDevice)//reason for do-catch
+                if CameraVC.captureSession.inputs.isEmpty {
+                    CameraVC.captureSession.addInput(videoInput)
+                }
+                self.setupVideoPreviewLayer()
+                CameraVC.captureSession.startRunning()
+                self.setupOutput()
+            } catch { print(error.localizedDescription) }
+        }
+    }
+    
+    private func setupOutput() {
+        
     }
 }

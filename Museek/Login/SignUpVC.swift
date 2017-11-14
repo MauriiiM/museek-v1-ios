@@ -42,11 +42,7 @@ class SignUpVC: UIViewController{
                             //will do what's in closure AFTER account's been created
                             let profileChange = u.createProfileChangeRequest()
                             profileChange.displayName = self.userName
-                            profileChange.commitChanges(completion: { error in
-                                if let _ = error {
-                                    print("\n\n\nerrorrrrr")
-                                }
-                            })
+                            profileChange.commitChanges(completion: nil)
                             // self.performSegue(withIdentifier: "goToHome", sender: self)
                         } else {
                             //Sign up error, present alert
@@ -54,8 +50,7 @@ class SignUpVC: UIViewController{
                             let alert = UIAlertController(title: "Error Occurred", message: errorMsg, preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
                             self.present(alert, animated: true, completion: nil)
-                        }
-                    })
+                        }})
                 } else {
                     //password doesnt match
                 }
