@@ -12,7 +12,7 @@
         <scene sceneID="FiS-Mo-uWc">
             <objects>
                 <tabBarController storyboardIdentifier="mainTabID" title="MainTabBar" id="N1r-n3-7a5" userLabel="Main Tab Bar Controller" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iHr-PA-fSW">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="iHr-PA-fSW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <userDefinedRuntimeAttributes>
@@ -84,4 +84,5 @@
             <point key="canvasLocation" x="-1025" y="319"/>
         </scene>
     </scenes>
+    <color key="tintColor" name="AppAccent"/>
 </document>

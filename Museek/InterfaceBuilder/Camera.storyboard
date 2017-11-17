@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ARi-5O-7VP">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--CameraVC-->
+        <scene sceneID="t6K-uc-ewR">
+            <objects>
+                <viewController id="Zh0-Ua-B0O" customClass="CameraVC" customModule="Museek" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8Jr-6x-rB9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHH-64-69R" customClass="RoundedButton" customModule="Museek" customModuleProvider="target">
+                                <rect key="frame" x="270" y="291" width="85" height="85"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="gHH-64-69R" secondAttribute="height" multiplier="1:1" id="L6w-Ls-Vr0"/>
+                                </constraints>
+                                <state key="normal" image="record"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="recordButtonPressed:" destination="Zh0-Ua-B0O" eventType="touchUpInside" id="rsy-nr-1er"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mGV-9e-Uxf" firstAttribute="trailing" secondItem="gHH-64-69R" secondAttribute="trailing" constant="20" id="bjV-1W-qst"/>
+                            <constraint firstItem="gHH-64-69R" firstAttribute="centerY" secondItem="8Jr-6x-rB9" secondAttribute="centerY" id="n4D-KB-sWv"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mGV-9e-Uxf"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="68s-BC-JEw">
+                        <barButtonItem key="backBarButtonItem" title="Exit" id="55S-xW-Sfx"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="recButton" destination="gHH-64-69R" id="TJC-4M-3Eh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TH3-wc-En4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1026" y="1658"/>
+        </scene>
+        <!--Camera-->
+        <scene sceneID="m9m-uS-HHt">
+            <objects>
+                <navigationController storyboardIdentifier="NavCamera" title="Camera" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="ARi-5O-7VP" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="video" selectedImage="video (filled)" id="0gr-30-uBX">
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5LL-2q-ZNR">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Zh0-Ua-B0O" kind="relationship" relationship="rootViewController" id="Haw-pA-qKe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gXZ-9J-nYk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1026.0869565217392" y="938.31521739130437"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="record" width="84" height="85"/>
+        <image name="video" width="25" height="25"/>
+        <image name="video (filled)" width="25" height="25"/>
+    </resources>
+</document>
