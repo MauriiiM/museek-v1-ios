@@ -11,8 +11,25 @@ import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
+    static var top: UIViewController? {
+        get { return topViewController()}
+    }
+    static var root: UIViewController? {
+        get { return UIApplication.shared.delegate?.window??.rootViewController }
+    }
     var window: UIWindow?
+    
+    static func topViewController(from viewController: UIViewController? = root) -> UIViewController? {
+        if let tabBarViewController = viewController as? UITabBarController {
+            return topViewController(from: tabBarViewController.selectedViewController)
+        } else if let navigationController = viewController as? UINavigationController {
+            return topViewController(from: navigationController.visibleViewController)
+        } else if let presentedViewController = viewController?.presentedViewController {
+            return topViewController(from: presentedViewController)
+        } else {
+            return viewController
+        }
+    }
     
     //@TODO Product > Scheme > Edit Scheme... [Diagnostics/Zombie mode off]
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -44,16 +61,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     /**
-     added method to force camera to be in landscape mode
+       "hack overwriting" method to force camera to be in landscape mode
      */
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-        if self.window?.rootViewController?.presentedViewController is CameraVC {
-            print("22222222")
-            let secondController = self.window!.rootViewController!.presentedViewController as! CameraVC
-            if secondController.isPresented {
-                return .landscape }
-        }
-        return .portrait
+        let presentedVC = AppDelegate.top
+        var vcShouldBePortrait = true
+        if presentedVC is CameraVC{
+            vcShouldBePortrait = true
+        } /*else if presentedVC is FullVideoVC {
+            vcShouldBeLandscape = true
+        }*/
+        return vcShouldBePortrait ? .portrait : .landscape
     }
 }
 
