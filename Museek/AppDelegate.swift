@@ -67,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let presentedVC = AppDelegate.top
         var vcShouldBePortrait = true
         if presentedVC is CameraVC{
-            vcShouldBePortrait = true
+            vcShouldBePortrait = false
         } /*else if presentedVC is FullVideoVC {
             vcShouldBeLandscape = true
         }*/
