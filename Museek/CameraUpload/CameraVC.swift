@@ -20,7 +20,6 @@ class CameraVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     var isPresented = true //used in appDelegate as check for landscape
     @IBOutlet private weak var recButton: RoundedButton!
     private var isRecording = false
-    
     private var previewLayer: AVCaptureVideoPreviewLayer!
     fileprivate static var _captureSession: AVCaptureSession? //to transfer data between one or more device inputs
     static var captureSession: AVCaptureSession { //singleton pattern
@@ -39,16 +38,21 @@ class CameraVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
             if authorized { self.setupCamera()}
             else { print("Permission to use camera denied.") }
         }
+        self.navigationController?.navigationBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     internal override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
     
     internal override func viewDidDisappear(_ animated: Bool) {
         isPresented = false // Set this flag to NO before dismissing controller, so that correct orientation will be chosen
         CameraVC.captureSession.stopRunning()
+    }
+    
+    internal override func viewDidLayoutSubviews() {
+        self.configureVideoOrientation()
     }
     
     internal func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
@@ -63,8 +67,19 @@ class CameraVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
      starts recording a video until method is called again
      */
     @IBAction private func recordButtonPressed(_ sender: UIButton) {
-        isRecording = !isRecording
-        //logic in captureOutput
+        if UIDevice.current.orientation != .portrait {
+            if !isRecording {
+                isRecording = true
+                recButton.setImage(UIImage(named: "record (filled)"), for: .normal)
+                recButton.blink(duration: 0.75)
+            } else {
+                isRecording = false;
+                recButton.setImage(UIImage(named: "record"), for: .normal)
+                recButton.blink(enabled: false)
+                performSegue(withIdentifier: "CameraToUpload", sender: self)
+            }
+            //logic in captureOutput
+        }
     }
     
     /**
@@ -90,9 +105,25 @@ class CameraVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     }
     
     /**
-    called every time camera VC willAppear().
+     should be called when phone is changing orientation to correct how the camera is previewed
+     */
+    private func configureVideoOrientation() {
+        if let previewLayer = self.previewLayer,
+            let connection = previewLayer.connection {
+            let orientation = UIDevice.current.orientation
+            
+            if connection.isVideoOrientationSupported,
+                let videoOrientation = AVCaptureVideoOrientation(rawValue: orientation.rawValue) {
+                previewLayer.frame = self.view.bounds
+                previewLayer.connection?.videoOrientation = videoOrientation
+            }
+        }
+    }
+    
+    /**
+     called every time camera VC willAppear().
      Sets up capture session, preview layer, and output queue
-    */
+     */
     private func setupCamera(){
         if let captureDevice = AVCaptureDevice.default(for: .video) {
             // let audioCapture = AVCaptureDevice.default(for: .audio)
@@ -129,8 +160,8 @@ class CameraVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     private func setupVideoPreviewLayer(){
         previewLayer = AVCaptureVideoPreviewLayer(session: CameraVC.captureSession)
         //        previewLayer.videoGravity = .resizeAspectFill
-        previewLayer.frame = self.view.layer.bounds
+        previewLayer.frame = self.view.bounds
         self.view.layer.sublayers?.insert(previewLayer, at: 0)
-
+        
     }
 }
