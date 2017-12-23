@@ -9,18 +9,41 @@
 import UIKit
 import AVFoundation
 
+extension CameraVC: AVCaptureFileOutputRecordingDelegate{
+    func fileOutput(_ output: AVCaptureFileOutput,
+                    didFinishRecordingTo outputFileURL: URL,
+                    from connections: [AVCaptureConnection],
+                    error: Error?) {
+        //@TODO
+        if let err = error { print(err) }
+    }
+}
+
 /**
- Will ask for camera permision, if given will display camera in view
- and with 45 second recording capabilities.
+ Will ask for camera permision, if given, will display camera in view sublayer
+ and record video once recording button is pressed.
  - Author: Mauricio Monsivais
  - Note:
  guidance from "https://github.com/codepath/ios_guides/wiki/Creating-a-Custom-Camera-View "
  */
-class CameraVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
-    var isPresented = true //used in appDelegate as check for landscape
-    @IBOutlet private weak var recButton: RoundedButton!
-    private var isRecording = false
-    private var previewLayer: AVCaptureVideoPreviewLayer!
+class CameraVC: UIViewController {
+    @IBOutlet weak var flashButton: UIButton!
+    @IBOutlet weak var recButton: UIButton!
+    static var isPresented = false //used in appDelegate as check for landscape
+    private lazy var previewLayer: AVCaptureVideoPreviewLayer? = {
+        let layer = AVCaptureVideoPreviewLayer(session: CameraVC.captureSession)
+        layer.videoGravity = .resizeAspectFill
+        layer.frame = self.view.bounds
+        self.view.layer.sublayers?.insert(layer, at: 0)
+        return layer
+    }()
+    fileprivate let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy-HH:mm"
+        return formatter
+    }()
+    
+    //capture objects
     fileprivate static var _captureSession: AVCaptureSession? //to transfer data between one or more device inputs
     static var captureSession: AVCaptureSession { //singleton pattern
         get{
@@ -31,9 +54,26 @@ class CameraVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
             }
         }
     }
+    fileprivate var captureDevice: AVCaptureDevice?
+    fileprivate var movieOutput: AVCaptureMovieFileOutput!
+    fileprivate var movieURL: URL!
+    fileprivate var docDirectory: URL {
+        get{
+            return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        }
+    }
+    //end vars
     
-    internal override func viewWillAppear(_ animated: Bool) {
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let uploadVC = segue.destination as! UploadVC
+        uploadVC.movieURL = movieURL
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        CameraVC.isPresented = true
         self.checkCameraAuthorization { authorized in
             if authorized { self.setupCamera()}
             else { print("Permission to use camera denied.") }
@@ -42,43 +82,63 @@ class CameraVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
         self.tabBarController?.tabBar.isHidden = false
     }
     
-    internal override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    internal override func viewDidDisappear(_ animated: Bool) {
-        isPresented = false // Set this flag to NO before dismissing controller, so that correct orientation will be chosen
+    override func viewWillDisappear(_ animated: Bool) {
+        CameraVC.isPresented = false // Set this flag to NO before dismissing controller, so that correct orientation will be chosen
+        if(movieOutput.isRecording){ stopRecording()}
         CameraVC.captureSession.stopRunning()
     }
     
-    internal override func viewDidLayoutSubviews() {
+    override func viewDidLayoutSubviews() {
         self.configureVideoOrientation()
     }
     
-    internal func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        if isRecording {
-        }
-        else {
-            
+    /**
+     toggles flash on/off whenever flash button is pressed
+     */
+    @IBAction private func flashButtonPressed(_ sender: UIButton) {
+        guard let device = AVCaptureDevice.default(for: .video) else { return }
+        
+        if device.hasTorch {
+            do {
+                try device.lockForConfiguration()
+                
+                if device.torchMode == .off {
+                    device.torchMode = .on
+                    sender.setImage(UIImage(named: "flash (filled)"), for: .normal)
+                }
+                else /*if device.torchMode == .on*/{
+                    device.torchMode = .off
+                    sender.setImage(UIImage(named: "flash"), for: .normal)
+                } /*else {
+                 device.torchMode = .auto
+                 }*/
+                
+                device.unlockForConfiguration()
+            } catch { print("problem with flash \(error)") }
         }
     }
     
     /**
      starts recording a video until method is called again
+     @TODO use AVAssetExportSession to changef rom .mov to mp4
      */
     @IBAction private func recordButtonPressed(_ sender: UIButton) {
         if UIDevice.current.orientation != .portrait {
-            if !isRecording {
-                isRecording = true
-                recButton.setImage(UIImage(named: "record (filled)"), for: .normal)
-                recButton.blink(duration: 0.75)
-            } else {
-                isRecording = false;
-                recButton.setImage(UIImage(named: "record"), for: .normal)
-                recButton.blink(enabled: false)
+            if !movieOutput.isRecording {//start recording
+                pageSwipe(isEnabled: false)
+                sender.setImage(UIImage(named: "record (filled)"), for: .normal)
+                sender.blink(duration: 0.75)
+                flashButton.isHidden = true
+                flashButton.isEnabled = false
+                movieURL = docDirectory.appendingPathComponent("museek_\(dateFormatter.string(from: Date())).mov")
+                try? FileManager.default.removeItem(at: movieURL)
+                movieOutput.startRecording(to: movieURL, recordingDelegate: self)
+            } else {//stop recording
+                stopRecording()
                 performSegue(withIdentifier: "CameraToUpload", sender: self)
             }
-            //logic in captureOutput
+        } else {
+            //@TODO show turn phone animation
         }
     }
     
@@ -93,8 +153,7 @@ class CameraVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
         case .notDetermined:
             // The user has not yet been presented with the option to grant video access so request access.
             AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: { success in
-                completionHandler(success)
-            })
+                completionHandler(success)})
         case .denied:
             // The user has previously denied access.
             completionHandler(false)
@@ -120,48 +179,50 @@ class CameraVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
         }
     }
     
+    fileprivate func pageSwipe(isEnabled: Bool){
+        if isEnabled { NotificationCenter.default.post(name: NSNotification.Name(rawValue: "enableSwipe"), object: nil) }
+        else { NotificationCenter.default.post(name: NSNotification.Name(rawValue: "disableSwipe"), object: nil) }
+    }
+    
     /**
      called every time camera VC willAppear().
-     Sets up capture session, preview layer, and output queue
+     Sets up capture session, adds a capture input to it, and sets up output queue
      */
     private func setupCamera(){
         if let captureDevice = AVCaptureDevice.default(for: .video) {
+            self.captureDevice = captureDevice
             // let audioCapture = AVCaptureDevice.default(for: .audio)
             do {
                 let videoInput = try AVCaptureDeviceInput(device: captureDevice)//reason for do-catch
-                if CameraVC.captureSession.inputs.isEmpty {
+                if CameraVC.captureSession.canAddInput(videoInput) {
                     CameraVC.captureSession.addInput(videoInput)
                 }
                 
-                self.setupVideoPreviewLayer()
+                CameraVC.captureSession.sessionPreset = .high
                 CameraVC.captureSession.startRunning()
                 self.setupOutput()
-                
             } catch { print(error.localizedDescription) }
         }
     }
     
     private func setupOutput() {
-        let outputQueue = DispatchQueue(label: "outputQueue")
-        let videoOutput = AVCaptureVideoDataOutput()
-        videoOutput.videoSettings =
-            [(kCVPixelBufferPixelFormatTypeKey as String) : NSNumber(value:kCVPixelFormatType_32BGRA)]//@TODO: do research on video format
-        videoOutput.alwaysDiscardsLateVideoFrames = true
-        if CameraVC.captureSession.canAddOutput(videoOutput) {
-            CameraVC.captureSession.addOutput(videoOutput)
+        movieOutput = AVCaptureMovieFileOutput()
+        if CameraVC.captureSession.canAddOutput(movieOutput) {
+            CameraVC.captureSession.addOutput(movieOutput)
         }
         CameraVC.captureSession.commitConfiguration()
-        videoOutput.setSampleBufferDelegate(self, queue: outputQueue)
     }
     
     /**
-     sets up a video preview of the camera to display in view
+     stops AVCaptureMovieOutput's instance from recording and returns camera
+     buttons (flash, record) to original state.
      */
-    private func setupVideoPreviewLayer(){
-        previewLayer = AVCaptureVideoPreviewLayer(session: CameraVC.captureSession)
-        //        previewLayer.videoGravity = .resizeAspectFill
-        previewLayer.frame = self.view.bounds
-        self.view.layer.sublayers?.insert(previewLayer, at: 0)
-        
+    fileprivate func stopRecording(){
+        pageSwipe(isEnabled: true)
+        recButton.setImage(UIImage(named: "record"), for: .normal)
+        recButton.blink(enabled: false)
+        flashButton.isHidden = false
+        flashButton.isEnabled = true
+        movieOutput.stopRecording()
     }
 }

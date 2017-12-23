@@ -14,7 +14,7 @@
         <!--CameraVC-->
         <scene sceneID="t6K-uc-ewR">
             <objects>
-                <viewController title="CameraVC" id="Zh0-Ua-B0O" customClass="CameraVC" customModule="Museek" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CameraVC" title="CameraVC" id="Zh0-Ua-B0O" customClass="CameraVC" customModule="Museek" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Jr-6x-rB9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -34,9 +34,22 @@
                                     <action selector="recordButtonPressed:" destination="Zh0-Ua-B0O" eventType="touchUpInside" id="rsy-nr-1er"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z4g-eq-P49">
+                                <rect key="frame" x="326" y="55" width="33" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="z4g-eq-P49" secondAttribute="height" multiplier="1:1" id="H4Z-sp-O9q"/>
+                                </constraints>
+                                <state key="normal" image="flash"/>
+                                <connections>
+                                    <action selector="flashButtonPressed:" destination="Zh0-Ua-B0O" eventType="touchUpInside" id="zbd-ph-C7e"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="mGV-9e-Uxf" firstAttribute="trailing" secondItem="z4g-eq-P49" secondAttribute="trailing" constant="16" id="RGl-H0-eVY"/>
+                            <constraint firstItem="z4g-eq-P49" firstAttribute="top" secondItem="mGV-9e-Uxf" secondAttribute="top" constant="11" id="W87-kv-mJj"/>
                             <constraint firstItem="mGV-9e-Uxf" firstAttribute="trailing" secondItem="gHH-64-69R" secondAttribute="trailing" constant="20" id="bjV-1W-qst"/>
                             <constraint firstItem="gHH-64-69R" firstAttribute="centerY" secondItem="8Jr-6x-rB9" secondAttribute="centerY" id="n4D-KB-sWv"/>
                         </constraints>
@@ -46,13 +59,14 @@
                         <barButtonItem key="backBarButtonItem" title="Camera" id="55S-xW-Sfx"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="recButton" destination="gHH-64-69R" id="TJC-4M-3Eh"/>
+                        <outlet property="flashButton" destination="z4g-eq-P49" id="8uJ-I5-lMg"/>
+                        <outlet property="recButton" destination="gHH-64-69R" id="a5K-AV-Ic3"/>
                         <segue destination="NYm-K4-Vgd" kind="show" identifier="CameraToUpload" id="61C-5x-sls"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TH3-wc-En4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1028" y="1441.6256157635469"/>
+            <point key="canvasLocation" x="-1604" y="1441.6256157635469"/>
         </scene>
         <!--UploadVC-->
         <scene sceneID="SfK-qN-idM">
@@ -63,71 +77,90 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="J6M-K1-PEb">
-                                <rect key="frame" x="310" y="481" width="51" height="31"/>
+                                <rect key="frame" x="310" y="429" width="51" height="31"/>
                                 <color key="onTintColor" name="AppAccent"/>
                             </switch>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4g7-NR-tgr">
-                                <rect key="frame" x="16" y="130" width="343" height="202"/>
+                                <rect key="frame" x="16" y="54" width="343" height="300"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="4g7-NR-tgr" secondAttribute="height" multiplier="343:202" id="cS5-r7-P8p"/>
+                                    <constraint firstAttribute="width" secondItem="4g7-NR-tgr" secondAttribute="height" multiplier="343:300" id="WOI-zE-3za"/>
                                 </constraints>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Song Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YTA-Cs-tOk">
-                                <rect key="frame" x="16" y="443" width="343" height="30"/>
+                                <rect key="frame" x="16" y="391" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is your song a cover?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BbJ-HJ-IUD">
-                                <rect key="frame" x="16" y="481" width="286" height="20"/>
+                                <rect key="frame" x="16" y="429" width="162" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I3G-zY-mQ6">
-                                <rect key="frame" x="16" y="517" width="343" height="132"/>
+                                <rect key="frame" x="16" y="457" width="343" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" name="AppAccent"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="I3G-zY-mQ6" secondAttribute="height" multiplier="343:150" id="DBx-YO-XY9"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="alert" enablesReturnKeyAutomatically="YES"/>
                             </textView>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="4.5" translatesAutoresizingMaskIntoConstraints="NO" id="6iE-Dn-h6E">
-                                <rect key="frame" x="14" y="391" width="347" height="30"/>
-                                <color key="minimumTrackTintColor" name="AppAccent"/>
-                                <color key="thumbTintColor" name="AppMain"/>
-                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="sf1-zd-hJG" firstAttribute="trailing" secondItem="6iE-Dn-h6E" secondAttribute="trailing" constant="16" id="5rL-iq-cqI"/>
-                            <constraint firstItem="J6M-K1-PEb" firstAttribute="top" secondItem="YTA-Cs-tOk" secondAttribute="bottom" constant="8" id="M3i-lg-W19"/>
-                            <constraint firstItem="YTA-Cs-tOk" firstAttribute="top" secondItem="6iE-Dn-h6E" secondAttribute="bottom" constant="23" id="OmL-nW-saS"/>
-                            <constraint firstItem="6iE-Dn-h6E" firstAttribute="centerY" secondItem="bJZ-g2-OJN" secondAttribute="centerY" id="TZ1-0u-WK9"/>
-                            <constraint firstItem="YTA-Cs-tOk" firstAttribute="centerX" secondItem="bJZ-g2-OJN" secondAttribute="centerX" id="TsI-wM-TlO"/>
-                            <constraint firstItem="sf1-zd-hJG" firstAttribute="trailing" secondItem="4g7-NR-tgr" secondAttribute="trailing" constant="16" id="UkI-sg-h6d"/>
-                            <constraint firstItem="6iE-Dn-h6E" firstAttribute="top" secondItem="4g7-NR-tgr" secondAttribute="bottom" constant="59" id="VG5-bA-upb"/>
-                            <constraint firstItem="4g7-NR-tgr" firstAttribute="leading" secondItem="sf1-zd-hJG" secondAttribute="leading" constant="16" id="Vho-GC-Oif"/>
-                            <constraint firstItem="sf1-zd-hJG" firstAttribute="trailing" secondItem="YTA-Cs-tOk" secondAttribute="trailing" constant="16" id="abb-Mf-yid"/>
-                            <constraint firstItem="sf1-zd-hJG" firstAttribute="trailing" secondItem="I3G-zY-mQ6" secondAttribute="trailing" constant="16" id="acE-CQ-Ioe"/>
-                            <constraint firstItem="I3G-zY-mQ6" firstAttribute="centerX" secondItem="bJZ-g2-OJN" secondAttribute="centerX" id="aeC-ou-JX5"/>
-                            <constraint firstItem="J6M-K1-PEb" firstAttribute="leading" secondItem="BbJ-HJ-IUD" secondAttribute="trailing" constant="8" id="bgS-9U-I0r"/>
-                            <constraint firstItem="BbJ-HJ-IUD" firstAttribute="leading" secondItem="sf1-zd-hJG" secondAttribute="leading" constant="16" id="eJx-F3-wwu"/>
-                            <constraint firstItem="I3G-zY-mQ6" firstAttribute="leading" secondItem="sf1-zd-hJG" secondAttribute="leading" constant="16" id="hYW-qn-Wlx"/>
-                            <constraint firstItem="4g7-NR-tgr" firstAttribute="top" secondItem="sf1-zd-hJG" secondAttribute="top" constant="42" id="mBE-rb-9O1"/>
-                            <constraint firstItem="sf1-zd-hJG" firstAttribute="bottom" secondItem="I3G-zY-mQ6" secondAttribute="bottom" constant="129" id="mHS-84-4XW"/>
-                            <constraint firstItem="sf1-zd-hJG" firstAttribute="trailing" secondItem="J6M-K1-PEb" secondAttribute="trailing" constant="16" id="niW-rQ-op3"/>
-                            <constraint firstItem="YTA-Cs-tOk" firstAttribute="leading" secondItem="sf1-zd-hJG" secondAttribute="leading" constant="16" id="no0-0i-MU1"/>
-                            <constraint firstItem="I3G-zY-mQ6" firstAttribute="top" secondItem="BbJ-HJ-IUD" secondAttribute="bottom" constant="16" id="p2a-of-GlX"/>
-                            <constraint firstItem="BbJ-HJ-IUD" firstAttribute="top" secondItem="YTA-Cs-tOk" secondAttribute="bottom" constant="8" id="w8n-hv-oJs"/>
-                            <constraint firstItem="6iE-Dn-h6E" firstAttribute="leading" secondItem="sf1-zd-hJG" secondAttribute="leading" constant="16" id="xJ3-LB-gHy"/>
+                            <constraint firstItem="sf1-zd-hJG" firstAttribute="trailing" secondItem="I3G-zY-mQ6" secondAttribute="trailing" constant="16" id="8A2-QO-r3e"/>
+                            <constraint firstItem="I3G-zY-mQ6" firstAttribute="leading" secondItem="sf1-zd-hJG" secondAttribute="leading" constant="16" id="9Xt-L1-y0x"/>
+                            <constraint firstItem="YTA-Cs-tOk" firstAttribute="centerY" secondItem="bJZ-g2-OJN" secondAttribute="centerY" id="BTa-4e-KAw"/>
+                            <constraint firstItem="BbJ-HJ-IUD" firstAttribute="top" secondItem="YTA-Cs-tOk" secondAttribute="bottom" constant="8" id="E18-al-6Sa"/>
+                            <constraint firstItem="YTA-Cs-tOk" firstAttribute="leading" secondItem="sf1-zd-hJG" secondAttribute="leading" constant="16" id="EZN-uL-1s7"/>
+                            <constraint firstItem="4g7-NR-tgr" firstAttribute="top" secondItem="sf1-zd-hJG" secondAttribute="top" constant="10" id="Men-eX-fsI"/>
+                            <constraint firstItem="sf1-zd-hJG" firstAttribute="trailing" secondItem="4g7-NR-tgr" secondAttribute="trailing" constant="16" id="VBl-s5-Hxp"/>
+                            <constraint firstItem="sf1-zd-hJG" firstAttribute="trailing" secondItem="YTA-Cs-tOk" secondAttribute="trailing" constant="16" id="XgX-7A-2rE"/>
+                            <constraint firstItem="sf1-zd-hJG" firstAttribute="trailing" secondItem="J6M-K1-PEb" secondAttribute="trailing" constant="16" id="djf-EZ-0fL"/>
+                            <constraint firstItem="YTA-Cs-tOk" firstAttribute="centerX" secondItem="bJZ-g2-OJN" secondAttribute="centerX" id="fd7-hG-s4w"/>
+                            <constraint firstItem="J6M-K1-PEb" firstAttribute="top" secondItem="YTA-Cs-tOk" secondAttribute="bottom" constant="8" id="hQx-NX-sI8"/>
+                            <constraint firstItem="BbJ-HJ-IUD" firstAttribute="leading" secondItem="sf1-zd-hJG" secondAttribute="leading" constant="16" id="jDV-vG-Ghb"/>
+                            <constraint firstItem="4g7-NR-tgr" firstAttribute="leading" secondItem="sf1-zd-hJG" secondAttribute="leading" constant="16" id="lIU-5U-4vm"/>
+                            <constraint firstItem="I3G-zY-mQ6" firstAttribute="top" secondItem="BbJ-HJ-IUD" secondAttribute="bottom" constant="8" id="sQe-a1-ZlG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sf1-zd-hJG"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HKC-e0-Frw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-231.19999999999999" y="1441.6256157635469"/>
+            <point key="canvasLocation" x="-1028" y="2254.4334975369461"/>
+        </scene>
+        <!--Camera Root PageVC-->
+        <scene sceneID="XMH-I5-MJO">
+            <objects>
+                <pageViewController storyboardIdentifier="CameraPageVC" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="vertical" spineLocation="none" id="BPw-xw-gYO" customClass="CameraRootPageVC" customModule="Museek" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="KIL-7Z-2TZ"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5cr-3X-zg2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1028" y="715"/>
+        </scene>
+        <!--Media LibraryVC-->
+        <scene sceneID="0HS-dD-Dh5">
+            <objects>
+                <viewController storyboardIdentifier="MediaGalleryVC" id="Uvs-jV-YbE" customClass="MediaLibraryVC" customModule="Museek" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="n1k-p4-OWk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="dIL-Pg-tka"/>
+                    </view>
+                    <connections>
+                        <segue destination="NYm-K4-Vgd" kind="show" identifier="MediaGalleryToUpload" id="uat-ds-5Nj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bpb-oZ-kue" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-414" y="1442"/>
         </scene>
         <!--Camera-->
         <scene sceneID="m9m-uS-HHt">
@@ -141,21 +174,22 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Zh0-Ua-B0O" kind="relationship" relationship="rootViewController" id="Haw-pA-qKe"/>
+                        <segue destination="BPw-xw-gYO" kind="relationship" relationship="rootViewController" id="D7X-g1-VYF"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gXZ-9J-nYk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1027" y="632"/>
+            <point key="canvasLocation" x="-1028" y="-49"/>
         </scene>
     </scenes>
     <resources>
+        <image name="flash" width="33" height="33"/>
         <image name="record" width="84" height="85"/>
         <namedColor name="AppAccent">
             <color red="0.92941176470588238" green="0.40392156862745099" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
-        <namedColor name="AppMain">
-            <color red="0.40799999237060547" green="0.40799999237060547" blue="0.40799999237060547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="61C-5x-sls"/>
+    </inferredMetricsTieBreakers>
 </document>

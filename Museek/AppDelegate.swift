@@ -11,14 +11,18 @@ import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    var window: UIWindow?
+
     static var top: UIViewController? {
         get { return topViewController()}
     }
     static var root: UIViewController? {
         get { return UIApplication.shared.delegate?.window??.rootViewController }
     }
-    var window: UIWindow?
-    
+    /**
+     recursively calls deeper into vc stack to get top most view
+     from: " https://stackoverflow.com/questions/41073915/how-to-get-the-current-displaying-uiviewcontroller-not-in-appdelegate/41074725#41074725 "
+     */
     static func topViewController(from viewController: UIViewController? = root) -> UIViewController? {
         if let tabBarViewController = viewController as? UITabBarController {
             return topViewController(from: tabBarViewController.selectedViewController)
@@ -29,6 +33,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             return viewController
         }
+    }
+    
+    /**
+     "hack overwriting" method to force camera to be in landscape mode
+     */
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        let vcShouldBeLandscape = CameraVC.isPresented || CameraVC.isPresented
+    
+        return vcShouldBeLandscape ? .landscape : .portrait
     }
     
     //@TODO Product > Scheme > Edit Scheme... [Diagnostics/Zombie mode off]
@@ -58,20 +71,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-    
-    /**
-       "hack overwriting" method to force camera to be in landscape mode
-     */
-    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-        let presentedVC = AppDelegate.top
-        var vcShouldBePortrait = true
-        if presentedVC is CameraVC{
-            vcShouldBePortrait = false
-        } /*else if presentedVC is FullVideoVC {
-            vcShouldBeLandscape = true
-        }*/
-        return vcShouldBePortrait ? .portrait : .landscape
     }
 }
 

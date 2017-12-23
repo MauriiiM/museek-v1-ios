@@ -10,6 +10,8 @@ import UIKit
 
 class UploadVC: UIViewController {
 
+    var movieURL: Any?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
