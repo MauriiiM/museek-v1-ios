@@ -5,17 +5,17 @@
   },
   "images" : [
     {
-      "filename" : "flash~iphone@1x.png",
+      "filename" : "flash (on)~iphone@1x.png",
       "idiom" : "iphone",
       "scale" : "1x"
     },
     {
-      "filename" : "flash~iphone@2x.png",
+      "filename" : "flash (on)~iphone@2x.png",
       "idiom" : "iphone",
       "scale" : "2x"
     },
     {
-      "filename" : "flash~iphone@3x.png",
+      "filename" : "flash (on)~iphone@3x.png",
       "idiom" : "iphone",
       "scale" : "3x"
     }

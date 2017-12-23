@@ -35,23 +35,32 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z4g-eq-P49">
-                                <rect key="frame" x="326" y="55" width="33" height="33"/>
+                                <rect key="frame" x="324" y="55" width="35" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="z4g-eq-P49" secondAttribute="height" multiplier="1:1" id="H4Z-sp-O9q"/>
                                 </constraints>
-                                <state key="normal" image="flash"/>
+                                <state key="normal" image="flash (off)"/>
                                 <connections>
                                     <action selector="flashButtonPressed:" destination="Zh0-Ua-B0O" eventType="touchUpInside" id="zbd-ph-C7e"/>
                                 </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ci-Xi-hy7">
+                                <rect key="frame" x="16" y="55" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="9Ci-Xi-hy7" secondAttribute="height" multiplier="1:1" id="PXl-Sr-29W"/>
+                                </constraints>
+                                <state key="normal" image="switch camera"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="9Ci-Xi-hy7" firstAttribute="leading" secondItem="mGV-9e-Uxf" secondAttribute="leading" constant="16" id="Py9-Kl-mHb"/>
                             <constraint firstItem="mGV-9e-Uxf" firstAttribute="trailing" secondItem="z4g-eq-P49" secondAttribute="trailing" constant="16" id="RGl-H0-eVY"/>
                             <constraint firstItem="z4g-eq-P49" firstAttribute="top" secondItem="mGV-9e-Uxf" secondAttribute="top" constant="11" id="W87-kv-mJj"/>
                             <constraint firstItem="mGV-9e-Uxf" firstAttribute="trailing" secondItem="gHH-64-69R" secondAttribute="trailing" constant="20" id="bjV-1W-qst"/>
                             <constraint firstItem="gHH-64-69R" firstAttribute="centerY" secondItem="8Jr-6x-rB9" secondAttribute="centerY" id="n4D-KB-sWv"/>
+                            <constraint firstItem="9Ci-Xi-hy7" firstAttribute="top" secondItem="mGV-9e-Uxf" secondAttribute="top" constant="11" id="pbW-td-gKv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mGV-9e-Uxf"/>
                     </view>
@@ -183,8 +192,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="flash" width="33" height="33"/>
+        <image name="flash (off)" width="35" height="35"/>
         <image name="record" width="84" height="85"/>
+        <image name="switch camera" width="35" height="35"/>
         <namedColor name="AppAccent">
             <color red="0.92941176470588238" green="0.40392156862745099" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

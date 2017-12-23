@@ -104,11 +104,11 @@ class CameraVC: UIViewController {
                 
                 if device.torchMode == .off {
                     device.torchMode = .on
-                    sender.setImage(UIImage(named: "flash (filled)"), for: .normal)
+                    sender.setImage(UIImage(named: "flash (on)"), for: .normal)
                 }
                 else /*if device.torchMode == .on*/{
                     device.torchMode = .off
-                    sender.setImage(UIImage(named: "flash"), for: .normal)
+                    sender.setImage(UIImage(named: "flash (off)"), for: .normal)
                 } /*else {
                  device.torchMode = .auto
                  }*/
