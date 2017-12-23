@@ -13,9 +13,12 @@
 		226D72171FBEA70900B149AA /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 226D72161FBEA70900B149AA /* Colors.xcassets */; };
 		227E705A1FBA4C7400D9EE22 /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 227E70591FBA4C7400D9EE22 /* Camera.storyboard */; };
 		2282152C1FE8D1A000E7BFB9 /* CameraRootPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2282152B1FE8D1A000E7BFB9 /* CameraRootPageVC.swift */; };
-		2282152E1FE8F73600E7BFB9 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2282152D1FE8F73600E7BFB9 /* VideoView.swift */; };
+		2282152E1FE8F73600E7BFB9 /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2282152D1FE8F73600E7BFB9 /* VideoPlayer.swift */; };
 		228215301FE8F77C00E7BFB9 /* MediaLibraryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2282152F1FE8F77C00E7BFB9 /* MediaLibraryVC.swift */; };
 		22907A8A1FE9E60E00FC7C06 /* VideoPreview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22907A891FE9E60E00FC7C06 /* VideoPreview.xib */; };
+		22907A8C1FEE224D00FC7C06 /* VideoEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22907A8B1FEE224D00FC7C06 /* VideoEditVC.swift */; };
+		22907A8E1FEE543200FC7C06 /* OutlinedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22907A8D1FEE543200FC7C06 /* OutlinedTextView.swift */; };
+		22907A901FEE56EA00FC7C06 /* UIVC+HidingKeyBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22907A8F1FEE56EA00FC7C06 /* UIVC+HidingKeyBoard.swift */; };
 		22936E2C1F9461B300256C75 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22936E2B1F9461B300256C75 /* RoundedButton.swift */; };
 		229D07B21F80CC8A00FD24CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229D07B11F80CC8A00FD24CC /* AppDelegate.swift */; };
 		229D07B71F80CC8A00FD24CC /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 229D07B51F80CC8A00FD24CC /* SignUp.storyboard */; };
@@ -63,9 +66,12 @@
 		226D72161FBEA70900B149AA /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		227E70591FBA4C7400D9EE22 /* Camera.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
 		2282152B1FE8D1A000E7BFB9 /* CameraRootPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraRootPageVC.swift; sourceTree = "<group>"; };
-		2282152D1FE8F73600E7BFB9 /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
+		2282152D1FE8F73600E7BFB9 /* VideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
 		2282152F1FE8F77C00E7BFB9 /* MediaLibraryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLibraryVC.swift; sourceTree = "<group>"; };
 		22907A891FE9E60E00FC7C06 /* VideoPreview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoPreview.xib; sourceTree = "<group>"; };
+		22907A8B1FEE224D00FC7C06 /* VideoEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditVC.swift; sourceTree = "<group>"; };
+		22907A8D1FEE543200FC7C06 /* OutlinedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedTextView.swift; sourceTree = "<group>"; };
+		22907A8F1FEE56EA00FC7C06 /* UIVC+HidingKeyBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVC+HidingKeyBoard.swift"; sourceTree = "<group>"; };
 		22936E2B1F9461B300256C75 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		229D07AE1F80CC8A00FD24CC /* Museek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Museek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		229D07B11F80CC8A00FD24CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -143,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				220394B81FE642A600B6195F /* UIButton+Blinking.swift */,
+				22907A8F1FEE56EA00FC7C06 /* UIVC+HidingKeyBoard.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -191,6 +198,7 @@
 				22936E2B1F9461B300256C75 /* RoundedButton.swift */,
 				22E6A8601F8DFD36004DB54C /* CustomView.swift */,
 				222796211FCC661D00659A4A /* VideoHighlightSlide.swift */,
+				22907A8D1FEE543200FC7C06 /* OutlinedTextView.swift */,
 			);
 			name = CustomUI;
 			sourceTree = "<group>";
@@ -335,7 +343,8 @@
 				22E288481FABA5FD00F2D706 /* CameraVC.swift */,
 				2282152F1FE8F77C00E7BFB9 /* MediaLibraryVC.swift */,
 				22E36D041FE3C54100CC004D /* UploadVC.swift */,
-				2282152D1FE8F73600E7BFB9 /* VideoView.swift */,
+				2282152D1FE8F73600E7BFB9 /* VideoPlayer.swift */,
+				22907A8B1FEE224D00FC7C06 /* VideoEditVC.swift */,
 			);
 			path = CameraUpload;
 			sourceTree = "<group>";
@@ -659,14 +668,17 @@
 			files = (
 				22BF55B81F88CA8D0002C42C /* NameSignUp.swift in Sources */,
 				228215301FE8F77C00E7BFB9 /* MediaLibraryVC.swift in Sources */,
+				22907A8C1FEE224D00FC7C06 /* VideoEditVC.swift in Sources */,
 				220394B91FE642A600B6195F /* UIButton+Blinking.swift in Sources */,
 				22C4CD2C1F837F7900B155FE /* SignUpVC.swift in Sources */,
+				22907A8E1FEE543200FC7C06 /* OutlinedTextView.swift in Sources */,
 				22B30FCB1F8B56B6002A9DD6 /* EmailSignUp.swift in Sources */,
+				22907A901FEE56EA00FC7C06 /* UIVC+HidingKeyBoard.swift in Sources */,
 				22936E2C1F9461B300256C75 /* RoundedButton.swift in Sources */,
 				22E36D051FE3C54100CC004D /* UploadVC.swift in Sources */,
 				22E6A8611F8DFD36004DB54C /* CustomView.swift in Sources */,
 				22C4CD281F821E8F00B155FE /* LoginVC.swift in Sources */,
-				2282152E1FE8F73600E7BFB9 /* VideoView.swift in Sources */,
+				2282152E1FE8F73600E7BFB9 /* VideoPlayer.swift in Sources */,
 				2282152C1FE8D1A000E7BFB9 /* CameraRootPageVC.swift in Sources */,
 				229D07B21F80CC8A00FD24CC /* AppDelegate.swift in Sources */,
 				22E288491FABA5FD00F2D706 /* CameraVC.swift in Sources */,

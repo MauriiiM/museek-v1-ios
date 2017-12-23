@@ -35,7 +35,7 @@ extension MediaLibraryVC: UIImagePickerControllerDelegate, UINavigationControlle
 class MediaLibraryVC: UIViewController {
     
     var moviePicker: UIImagePickerController = UIImagePickerController()
-    var selectedMovie: Any?
+    var selectedMovie: URL?
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true

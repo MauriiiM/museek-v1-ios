@@ -89,13 +89,6 @@
                                 <rect key="frame" x="310" y="429" width="51" height="31"/>
                                 <color key="onTintColor" name="AppAccent"/>
                             </switch>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4g7-NR-tgr">
-                                <rect key="frame" x="16" y="54" width="343" height="300"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="4g7-NR-tgr" secondAttribute="height" multiplier="343:300" id="WOI-zE-3za"/>
-                                </constraints>
-                            </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Song Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YTA-Cs-tOk">
                                 <rect key="frame" x="16" y="391" width="343" height="30"/>
                                 <nil key="textColor"/>
@@ -108,8 +101,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I3G-zY-mQ6">
-                                <rect key="frame" x="16" y="457" width="343" height="150"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="89p-oj-x9l">
+                                <rect key="frame" x="16" y="60" width="343" height="294"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="AppAccent"/>
+                                <connections>
+                                    <segue destination="73i-io-N3h" kind="embed" identifier="VideoContainerSegue" id="y9c-rh-v2t"/>
+                                </connections>
+                            </containerView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I3G-zY-mQ6" customClass="OutlinedTextView" customModule="Museek" customModuleProvider="target">
+                                <rect key="frame" x="16" y="468" width="343" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" name="AppAccent"/>
                                 <constraints>
@@ -117,27 +118,45 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="alert" enablesReturnKeyAutomatically="YES"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Small comment on your music."/>
+                                </userDefinedRuntimeAttributes>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="YTA-Cs-tOk" firstAttribute="top" secondItem="89p-oj-x9l" secondAttribute="bottom" constant="37" id="3B5-vT-ZI4"/>
                             <constraint firstItem="sf1-zd-hJG" firstAttribute="trailing" secondItem="I3G-zY-mQ6" secondAttribute="trailing" constant="16" id="8A2-QO-r3e"/>
                             <constraint firstItem="I3G-zY-mQ6" firstAttribute="leading" secondItem="sf1-zd-hJG" secondAttribute="leading" constant="16" id="9Xt-L1-y0x"/>
                             <constraint firstItem="YTA-Cs-tOk" firstAttribute="centerY" secondItem="bJZ-g2-OJN" secondAttribute="centerY" id="BTa-4e-KAw"/>
                             <constraint firstItem="BbJ-HJ-IUD" firstAttribute="top" secondItem="YTA-Cs-tOk" secondAttribute="bottom" constant="8" id="E18-al-6Sa"/>
                             <constraint firstItem="YTA-Cs-tOk" firstAttribute="leading" secondItem="sf1-zd-hJG" secondAttribute="leading" constant="16" id="EZN-uL-1s7"/>
-                            <constraint firstItem="4g7-NR-tgr" firstAttribute="top" secondItem="sf1-zd-hJG" secondAttribute="top" constant="10" id="Men-eX-fsI"/>
-                            <constraint firstItem="sf1-zd-hJG" firstAttribute="trailing" secondItem="4g7-NR-tgr" secondAttribute="trailing" constant="16" id="VBl-s5-Hxp"/>
+                            <constraint firstItem="89p-oj-x9l" firstAttribute="top" secondItem="sf1-zd-hJG" secondAttribute="top" constant="16" id="KNo-tD-ohn"/>
                             <constraint firstItem="sf1-zd-hJG" firstAttribute="trailing" secondItem="YTA-Cs-tOk" secondAttribute="trailing" constant="16" id="XgX-7A-2rE"/>
                             <constraint firstItem="sf1-zd-hJG" firstAttribute="trailing" secondItem="J6M-K1-PEb" secondAttribute="trailing" constant="16" id="djf-EZ-0fL"/>
+                            <constraint firstItem="89p-oj-x9l" firstAttribute="leading" secondItem="sf1-zd-hJG" secondAttribute="leading" constant="16" id="drn-bP-Poc"/>
                             <constraint firstItem="YTA-Cs-tOk" firstAttribute="centerX" secondItem="bJZ-g2-OJN" secondAttribute="centerX" id="fd7-hG-s4w"/>
                             <constraint firstItem="J6M-K1-PEb" firstAttribute="top" secondItem="YTA-Cs-tOk" secondAttribute="bottom" constant="8" id="hQx-NX-sI8"/>
                             <constraint firstItem="BbJ-HJ-IUD" firstAttribute="leading" secondItem="sf1-zd-hJG" secondAttribute="leading" constant="16" id="jDV-vG-Ghb"/>
-                            <constraint firstItem="4g7-NR-tgr" firstAttribute="leading" secondItem="sf1-zd-hJG" secondAttribute="leading" constant="16" id="lIU-5U-4vm"/>
-                            <constraint firstItem="I3G-zY-mQ6" firstAttribute="top" secondItem="BbJ-HJ-IUD" secondAttribute="bottom" constant="8" id="sQe-a1-ZlG"/>
+                            <constraint firstItem="I3G-zY-mQ6" firstAttribute="top" secondItem="BbJ-HJ-IUD" secondAttribute="bottom" constant="19" id="sQe-a1-ZlG"/>
+                            <constraint firstItem="sf1-zd-hJG" firstAttribute="trailing" secondItem="89p-oj-x9l" secondAttribute="trailing" constant="16" id="vnf-2W-htz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sf1-zd-hJG"/>
                     </view>
+                    <connections>
+                        <outlet property="coverSongSwitch" destination="J6M-K1-PEb" id="hcb-PO-TWa"/>
+                        <outlet property="descriptionTV" destination="I3G-zY-mQ6" id="dUa-EJ-gps"/>
+                        <outlet property="songTitleTF" destination="YTA-Cs-tOk" id="UyG-r5-IDS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HKC-e0-Frw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -190,6 +209,25 @@
             </objects>
             <point key="canvasLocation" x="-1028" y="-49"/>
         </scene>
+        <!--Video EditVC-->
+        <scene sceneID="138-qu-9Zu">
+            <objects>
+                <viewController id="73i-io-N3h" customClass="VideoEditVC" customModule="Museek" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SMN-YB-2sF">
+                        <rect key="frame" x="0.0" y="0.0" width="343" height="294"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" name="AppMain"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="6fJ-ge-4aD" appends="YES" id="P4U-hX-5OK"/>
+                        </connections>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UD9-5a-dpo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="6fJ-ge-4aD"/>
+            </objects>
+            <point key="canvasLocation" x="-14" y="2254"/>
+        </scene>
     </scenes>
     <resources>
         <image name="flash (off)" width="35" height="35"/>
@@ -197,6 +235,12 @@
         <image name="switch camera" width="35" height="35"/>
         <namedColor name="AppAccent">
             <color red="0.92941176470588238" green="0.40392156862745099" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="AppAccent">
+            <color red="0.92941176470588238" green="0.40392156862745099" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="AppMain">
+            <color red="0.40799999237060547" green="0.40799999237060547" blue="0.40799999237060547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
