@@ -12,7 +12,6 @@ class UploadVC: UIViewController, ContainerMaster {
     @IBOutlet weak var songTitleTF: UITextField!
     @IBOutlet weak var coverSongSwitch: UISwitch!
     @IBOutlet weak var descriptionTV: UITextView!
-//    @IBOutlet weak var videoView: UIView!
     fileprivate var videoEditVC: VideoEditVC!
     fileprivate var _movieURL: URL?
     var movieURL: URL {
@@ -29,13 +28,45 @@ class UploadVC: UIViewController, ContainerMaster {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupNavigationBar()
         self.tabBarController?.tabBar.isHidden = true
-        self.navigationController?.navigationBar.isHidden = false
         self.hideKeyboardWhenTappedAround()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    fileprivate func setupNavigationBar(){
+        if let navCtrlr = self.navigationController {
+            navCtrlr.navigationBar.isHidden = false
+            navCtrlr.title = ""
+            self.navigationItem.rightBarButtonItem = setupUploadButton()
+            //            navCtrlr.childViewControllers.last?.navigationItem.backBarButtonItem?.title = "Camera"
+        }
+    }
+    
+    fileprivate func setupUploadButton() -> UIBarButtonItem {
+        let buttonAccent = UIColor(named: "AppAccent")!
+        let button = RoundedButton(frame: CGRect(x: 0, y: 0, width: 50, height: 5))
+        button.setTitle("Share", for: .normal)
+        button.setTitleColor(buttonAccent, for: .normal)
+        button.setTitleColor(UIColor(named: "AppMain"), for: .highlighted)
+        button.borderWidth = 1
+        button.borderColor = buttonAccent
+        button.cornerRadius = 7
+        button.addTarget(self, action: #selector(self.uploadButtonPressed(_:)), for: .touchUpInside)
+        let uploadButton = UIBarButtonItem(customView: button)
+        uploadButton.isEnabled = true
+        return uploadButton
+    }
+    
+    /**
+     called when upload button in navigation bar is pressed.
+     Uploads video (and accompanied information) to Firebase.
+     */
+    @objc func uploadButtonPressed(_ sender: UIBarButtonItem){
+        print("\n\nupload!\n\n")
     }
 }

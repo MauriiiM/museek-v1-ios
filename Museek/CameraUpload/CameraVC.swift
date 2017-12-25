@@ -54,7 +54,8 @@ class CameraVC: UIViewController {
             }
         }
     }
-    fileprivate var captureDevice: AVCaptureDevice?
+    fileprivate var videoCaptureDevice: AVCaptureDevice?
+    fileprivate var audioCaptureDevice: AVCaptureDevice?
     fileprivate var movieOutput: AVCaptureMovieFileOutput!
     fileprivate var movieURL: URL!
     fileprivate var docDirectory: URL {
@@ -88,6 +89,16 @@ class CameraVC: UIViewController {
         CameraVC.captureSession.stopRunning()
     }
     
+    /**
+     called when every orientation change
+     */
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        self.configureVideoOrientation()
+    }
+    
+    /**
+     called when camera first opens and changes from portrait to landscape
+     */
     override func viewDidLayoutSubviews() {
         self.configureVideoOrientation()
     }
@@ -121,22 +132,26 @@ class CameraVC: UIViewController {
     /**
      starts recording a video until method is called again
      @TODO use AVAssetExportSession to changef rom .mov to mp4
+     @TODO fix record repeatability
      */
     @IBAction private func recordButtonPressed(_ sender: UIButton) {
-        if UIDevice.current.orientation != .portrait {
-            if !movieOutput.isRecording {//start recording
-                pageSwipe(isEnabled: false)
-                sender.setImage(UIImage(named: "record (filled)"), for: .normal)
-                sender.blink(duration: 0.75)
-                flashButton.isHidden = true
-                flashButton.isEnabled = false
-                movieURL = docDirectory.appendingPathComponent("museek_\(dateFormatter.string(from: Date())).mov")
-                try? FileManager.default.removeItem(at: movieURL)
-                movieOutput.startRecording(to: movieURL, recordingDelegate: self)
-            } else {//stop recording
-                stopRecording()
-                performSegue(withIdentifier: "CameraToUpload", sender: self)
-            }
+        
+        if /*UIDevice.current.orientation == .landscapeRight
+             || UIDevice.current.orientation == .landscapeLeft
+             && */!movieOutput.isRecording {//start recording
+            
+            pageSwipe(isEnabled: false)
+            sender.setImage(UIImage(named: "record (filled)"), for: .normal)
+            sender.blink(duration: 0.75)
+            flashButton.isHidden = true
+            flashButton.isEnabled = false
+            movieURL = docDirectory.appendingPathComponent("museek_\(dateFormatter.string(from: Date())).mov")
+            try? FileManager.default.removeItem(at: movieURL)
+            movieOutput.startRecording(to: movieURL, recordingDelegate: self)
+        } else if movieOutput.isRecording { //stop recording
+            stopRecording()
+            performSegue(withIdentifier: "CameraToUpload", sender: self)
+            
         } else {
             //@TODO show turn phone animation
         }
@@ -167,14 +182,15 @@ class CameraVC: UIViewController {
      should be called when phone is changing orientation to correct how the camera is previewed
      */
     private func configureVideoOrientation() {
-        if let previewLayer = self.previewLayer,
-            let connection = previewLayer.connection {
+        if let previewLayer = self.previewLayer, let connection = previewLayer.connection {
             let orientation = UIDevice.current.orientation
             
             if connection.isVideoOrientationSupported,
                 let videoOrientation = AVCaptureVideoOrientation(rawValue: orientation.rawValue) {
                 previewLayer.frame = self.view.bounds
-                previewLayer.connection?.videoOrientation = videoOrientation
+                connection.videoOrientation = videoOrientation//this one's from preview layer
+                movieOutput.connection(with: .video)?.videoOrientation = videoOrientation//Ffor actual video
+                CameraVC.captureSession.commitConfiguration()
             }
         }
     }
@@ -189,23 +205,33 @@ class CameraVC: UIViewController {
      Sets up capture session, adds a capture input to it, and sets up output queue
      */
     private func setupCamera(){
-        if let captureDevice = AVCaptureDevice.default(for: .video) {
-            self.captureDevice = captureDevice
-            // let audioCapture = AVCaptureDevice.default(for: .audio)
+        if let vidCaptureDevice = AVCaptureDevice.default(for: .video),
+            let audCaptureDevice = AVCaptureDevice.default(for: .audio){
+            videoCaptureDevice = vidCaptureDevice
+            audioCaptureDevice = audCaptureDevice
             do {
-                let videoInput = try AVCaptureDeviceInput(device: captureDevice)//reason for do-catch
-                if CameraVC.captureSession.canAddInput(videoInput) {
-                    CameraVC.captureSession.addInput(videoInput)
-                }
-                
                 CameraVC.captureSession.sessionPreset = .high
+                try self.setupCapture(audioDevice: audCaptureDevice, videoDevice: vidCaptureDevice)
                 CameraVC.captureSession.startRunning()
                 self.setupOutput()
             } catch { print(error.localizedDescription) }
         }
     }
     
-    private func setupOutput() {
+    fileprivate func setupCapture(audioDevice audio: AVCaptureDevice, videoDevice video: AVCaptureDevice) throws {
+        let videoInput = try AVCaptureDeviceInput(device: video)//reason for do-catch
+        let audioInput = try AVCaptureDeviceInput(device: audio)
+        
+        if CameraVC.captureSession.canAddInput(videoInput) {
+            CameraVC.captureSession.addInput(videoInput)
+        }
+        if CameraVC.captureSession.canAddInput(audioInput) {
+            CameraVC.captureSession.addInput(audioInput)
+        }
+        CameraVC.captureSession.commitConfiguration()
+    }
+    
+    fileprivate func setupOutput() {
         movieOutput = AVCaptureMovieFileOutput()
         if CameraVC.captureSession.canAddOutput(movieOutput) {
             CameraVC.captureSession.addOutput(movieOutput)

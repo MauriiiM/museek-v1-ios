@@ -80,7 +80,7 @@
         <!--UploadVC-->
         <scene sceneID="SfK-qN-idM">
             <objects>
-                <viewController storyboardIdentifier="Upload" title="UploadVC" id="NYm-K4-Vgd" customClass="UploadVC" customModule="Museek" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Upload" id="NYm-K4-Vgd" customClass="UploadVC" customModule="Museek" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bJZ-g2-OJN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -102,7 +102,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="89p-oj-x9l">
-                                <rect key="frame" x="16" y="60" width="343" height="294"/>
+                                <rect key="frame" x="16" y="104" width="343" height="250"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" name="AppAccent"/>
                                 <connections>
@@ -152,6 +152,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sf1-zd-hJG"/>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black"/>
                     <connections>
                         <outlet property="coverSongSwitch" destination="J6M-K1-PEb" id="hcb-PO-TWa"/>
                         <outlet property="descriptionTV" destination="I3G-zY-mQ6" id="dUa-EJ-gps"/>
@@ -214,17 +215,13 @@
             <objects>
                 <viewController id="73i-io-N3h" customClass="VideoEditVC" customModule="Museek" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SMN-YB-2sF">
-                        <rect key="frame" x="0.0" y="0.0" width="343" height="294"/>
+                        <rect key="frame" x="0.0" y="0.0" width="343" height="250"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="AppMain"/>
                         <gestureRecognizers/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="6fJ-ge-4aD" appends="YES" id="P4U-hX-5OK"/>
-                        </connections>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UD9-5a-dpo" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="6fJ-ge-4aD"/>
             </objects>
             <point key="canvasLocation" x="-14" y="2254"/>
         </scene>
