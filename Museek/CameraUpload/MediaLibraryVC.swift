@@ -53,7 +53,7 @@ class MediaLibraryVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let uploadVC = segue.destination as! UploadVC
         if let movie = selectedMovie {
-            uploadVC.movieURL = movie
+            uploadVC.url.movie = movie
         }
         moviePicker.dismiss(animated: true, completion: nil)
     }

@@ -27,10 +27,11 @@ extension CameraVC: AVCaptureFileOutputRecordingDelegate{
  guidance from "https://github.com/codepath/ios_guides/wiki/Creating-a-Custom-Camera-View "
  */
 class CameraVC: UIViewController {
-    @IBOutlet weak var flashButton: UIButton!
-    @IBOutlet weak var recButton: UIButton!
+    @IBOutlet weak fileprivate var flashButton: UIButton!
+    @IBOutlet weak fileprivate var recButton: UIButton!
+    
     static var isPresented = false //used in appDelegate as check for landscape
-    private lazy var previewLayer: AVCaptureVideoPreviewLayer? = {
+    fileprivate lazy var previewLayer: AVCaptureVideoPreviewLayer? = {
         let layer = AVCaptureVideoPreviewLayer(session: CameraVC.captureSession)
         layer.videoGravity = .resizeAspectFill
         layer.frame = self.view.bounds
@@ -42,8 +43,13 @@ class CameraVC: UIViewController {
         formatter.dateFormat = "dd.MM.yyyy-HH:mm"
         return formatter
     }()
-    
-    //capture objects
+    //timer vars
+    @IBOutlet weak fileprivate var timeLabel: UILabel!
+    fileprivate var timer = Timer()
+    fileprivate var recMin = 0
+    fileprivate var recSec = 0
+    //end timer vars
+    //capture objects vars
     fileprivate static var _captureSession: AVCaptureSession? //to transfer data between one or more device inputs
     static var captureSession: AVCaptureSession { //singleton pattern
         get{
@@ -69,9 +75,9 @@ class CameraVC: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let uploadVC = segue.destination as! UploadVC
-        uploadVC.movieURL = movieURL
+        uploadVC.url.movie = movieURL
     }
-    
+ 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         CameraVC.isPresented = true
@@ -79,6 +85,7 @@ class CameraVC: UIViewController {
             if authorized { self.setupCamera()}
             else { print("Permission to use camera denied.") }
         }
+        timeLabel.backgroundColor = UIColor(white: 0, alpha: 0.5)
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = false
     }
@@ -90,16 +97,16 @@ class CameraVC: UIViewController {
     }
     
     /**
-     called when every orientation change
+     called when camera first opens and changes from portrait to landscape
      */
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    override func viewDidLayoutSubviews() {
         self.configureVideoOrientation()
     }
     
     /**
-     called when camera first opens and changes from portrait to landscape
+     called when every orientation change
      */
-    override func viewDidLayoutSubviews() {
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         self.configureVideoOrientation()
     }
     
@@ -136,9 +143,9 @@ class CameraVC: UIViewController {
      */
     @IBAction private func recordButtonPressed(_ sender: UIButton) {
         
-        if /*UIDevice.current.orientation == .landscapeRight
+        if UIDevice.current.orientation == .landscapeRight
              || UIDevice.current.orientation == .landscapeLeft
-             && */!movieOutput.isRecording {//start recording
+             && !movieOutput.isRecording {//start recording
             
             pageSwipe(isEnabled: false)
             sender.setImage(UIImage(named: "record (filled)"), for: .normal)

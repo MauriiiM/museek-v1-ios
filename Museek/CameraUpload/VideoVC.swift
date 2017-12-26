@@ -11,17 +11,26 @@ import AVKit
 import AVFoundation
 
 protocol ContainerMaster {
-    var movieURL: URL {get set}
+    var url: (movie: URL?, highlightClip: URL?) {get set}
+   
+//    var movieURL: URL {get set}
+//    var highlightURL: URL{get set}
 }
 
-extension VideoEditVC: UINavigationControllerDelegate, UIVideoEditorControllerDelegate{
+extension VideoVC: UINavigationControllerDelegate, UIVideoEditorControllerDelegate{
+    func videoEditorController(_ editor: UIVideoEditorController, didSaveEditedVideoToPath editedVideoPath: String) {
+//        containerMaster?.highlightURL =
+        containerMaster?.url.highlightClip = URL(fileURLWithPath: editedVideoPath)
+    }
     
 }
 
-class VideoEditVC: UIViewController {
+class VideoVC: UIViewController {
     var containerMaster: ContainerMaster?
+    @IBOutlet weak fileprivate var topClearView: UIView!
     fileprivate var player: AVPlayer!
     fileprivate var avPlayerVC = AVPlayerViewController()
+    fileprivate var movieEditor = UIVideoEditorController()
     
     override func viewDidAppear(_ animated: Bool) {
         avPlayerVC.player?.play()
@@ -36,29 +45,35 @@ class VideoEditVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         if let cm = containerMaster {
             if player == nil {
-                player = AVPlayer(url: cm.movieURL)
+                player = AVPlayer(url: cm.url.movie!)
                 avPlayerVC = AVPlayerViewController()
                 avPlayerVC.showsPlaybackControls = false
                 avPlayerVC.player = self.player
                 avPlayerVC.view.frame = self.view.frame
                 self.addChildViewController(avPlayerVC)
+                avPlayerVC.view.addSubview(topClearView)
                 self.view.addSubview(avPlayerVC.view)//allows for video to play outside of fullscreen
-            }
-        } else { player.play() }
+            } else { player.play() }
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+//        avPlayerVC.view.isUserInteractionEnabled = false
+        
+        movieEditor.delegate = self
+        movieEditor.videoPath = containerMaster!.url.movie!.absoluteString
+        movieEditor.videoQuality = .typeHigh
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.videoWasTapped))
+        tapGesture.delegate = self as? UIGestureRecognizerDelegate
+        topClearView.addGestureRecognizer(tapGesture)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         player.pause()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.videoWasTapped))
-//        tapGesture.delegate = self as? UIGestureRecognizerDelegate
-//        avPlayerVC.view.addGestureRecognizer(tapGesture)
-        
-        print("\n\n\(String(describing: avPlayerVC.view.gestureRecognizers))\n")
-    }
     
     deinit {
         player.pause()
@@ -67,6 +82,7 @@ class VideoEditVC: UIViewController {
     }
     
     @objc fileprivate func videoWasTapped(){
-        print("\n\nVIEW WAS TAPPED!!!!!!!\n\n")
+        print("\n\\nVIDEO WAS TAPPED!!!!!!!\n\n")
+        present(movieEditor, animated: true, completion: nil)
     }
 }

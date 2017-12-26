@@ -51,10 +51,19 @@
                                 </constraints>
                                 <state key="normal" image="switch camera"/>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3y2-sp-DV1">
+                                <rect key="frame" x="165" y="698" width="45" height="21"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="3y2-sp-DV1" firstAttribute="centerX" secondItem="8Jr-6x-rB9" secondAttribute="centerX" id="Eaz-h3-XBf"/>
+                            <constraint firstItem="mGV-9e-Uxf" firstAttribute="bottom" secondItem="3y2-sp-DV1" secondAttribute="bottom" constant="10" id="Mzk-49-IRG"/>
                             <constraint firstItem="9Ci-Xi-hy7" firstAttribute="leading" secondItem="mGV-9e-Uxf" secondAttribute="leading" constant="16" id="Py9-Kl-mHb"/>
                             <constraint firstItem="mGV-9e-Uxf" firstAttribute="trailing" secondItem="z4g-eq-P49" secondAttribute="trailing" constant="16" id="RGl-H0-eVY"/>
                             <constraint firstItem="z4g-eq-P49" firstAttribute="top" secondItem="mGV-9e-Uxf" secondAttribute="top" constant="11" id="W87-kv-mJj"/>
@@ -64,12 +73,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mGV-9e-Uxf"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" image="video" selectedImage="video (filled)" id="Vfi-Dx-d2V"/>
                     <navigationItem key="navigationItem" id="68s-BC-JEw">
                         <barButtonItem key="backBarButtonItem" title="Camera" id="55S-xW-Sfx"/>
                     </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="flashButton" destination="z4g-eq-P49" id="8uJ-I5-lMg"/>
                         <outlet property="recButton" destination="gHH-64-69R" id="a5K-AV-Ic3"/>
+                        <outlet property="timeLabel" destination="3y2-sp-DV1" id="Mjg-Y8-Idc"/>
                         <segue destination="NYm-K4-Vgd" kind="show" identifier="CameraToUpload" id="61C-5x-sls"/>
                     </connections>
                 </viewController>
@@ -103,7 +115,7 @@
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="89p-oj-x9l">
                                 <rect key="frame" x="16" y="104" width="343" height="250"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" name="AppAccent"/>
                                 <connections>
                                     <segue destination="73i-io-N3h" kind="embed" identifier="VideoContainerSegue" id="y9c-rh-v2t"/>
@@ -195,7 +207,9 @@
         <scene sceneID="m9m-uS-HHt">
             <objects>
                 <navigationController storyboardIdentifier="NavCamera" title="Camera" automaticallyAdjustsScrollViewInsets="NO" id="ARi-5O-7VP" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="I8y-tg-hsh"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="5LL-2q-ZNR">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -210,34 +224,45 @@
             </objects>
             <point key="canvasLocation" x="-1028" y="-49"/>
         </scene>
-        <!--Video EditVC-->
+        <!--VideoVC-->
         <scene sceneID="138-qu-9Zu">
             <objects>
-                <viewController id="73i-io-N3h" customClass="VideoEditVC" customModule="Museek" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="73i-io-N3h" customClass="VideoVC" customModule="Museek" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SMN-YB-2sF">
                         <rect key="frame" x="0.0" y="0.0" width="343" height="250"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" name="AppMain"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A0C-1P-U0O">
+                                <rect key="frame" x="0.0" y="0.0" width="343" height="250"/>
+                                <gestureRecognizers/>
+                            </view>
+                        </subviews>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="A0C-1P-U0O" secondAttribute="bottom" id="Hze-dr-oxR"/>
+                            <constraint firstItem="A0C-1P-U0O" firstAttribute="top" secondItem="SMN-YB-2sF" secondAttribute="top" id="WUB-Ma-7Td"/>
+                            <constraint firstAttribute="trailing" secondItem="A0C-1P-U0O" secondAttribute="trailing" id="dWI-dr-ghI"/>
+                            <constraint firstItem="A0C-1P-U0O" firstAttribute="leading" secondItem="SMN-YB-2sF" secondAttribute="leading" id="kCv-sL-BsP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="sAc-dK-L3Y"/>
                     </view>
+                    <connections>
+                        <outlet property="topClearView" destination="A0C-1P-U0O" id="ap8-2A-070"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UD9-5a-dpo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-14" y="2254"/>
+            <point key="canvasLocation" x="-15.199999999999999" y="2253.6945812807885"/>
         </scene>
     </scenes>
     <resources>
         <image name="flash (off)" width="35" height="35"/>
         <image name="record" width="84" height="85"/>
         <image name="switch camera" width="35" height="35"/>
+        <image name="video" width="25" height="25"/>
+        <image name="video (filled)" width="25" height="25"/>
         <namedColor name="AppAccent">
             <color red="0.92941176470588238" green="0.40392156862745099" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
-        <namedColor name="AppAccent">
-            <color red="0.92941176470588238" green="0.40392156862745099" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
-        <namedColor name="AppMain">
-            <color red="0.40799999237060547" green="0.40799999237060547" blue="0.40799999237060547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>

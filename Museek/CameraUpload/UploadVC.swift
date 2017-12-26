@@ -9,19 +9,34 @@
 import UIKit
 
 class UploadVC: UIViewController, ContainerMaster {
+    fileprivate var _url: (movie: URL?, highlightClip: URL?)?
+    var url: (movie: URL?, highlightClip: URL?) {
+        get {
+            if let _url = _url { return _url }
+            else {
+                return (nil, nil) }
+        }
+        set(passedUrl){
+            _url = passedUrl
+        }
+    }
+    
     @IBOutlet weak var songTitleTF: UITextField!
     @IBOutlet weak var coverSongSwitch: UISwitch!
     @IBOutlet weak var descriptionTV: UITextView!
-    fileprivate var videoEditVC: VideoEditVC!
-    fileprivate var _movieURL: URL?
-    var movieURL: URL {
-        get { return _movieURL! }
-        set(url){ _movieURL = url }
-    }
+    fileprivate var videoEditVC: VideoVC!
+    fileprivate var _highlight: URL?
     
+//    var highlightURL: URL
+//    fileprivate var _movieURL: URL?
+//    var movieURL: URL {
+//        get { return _movieURL! }
+//        set(url){ _movieURL = url }
+//    }
+//
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is VideoEditVC {
-            videoEditVC = segue.destination as! VideoEditVC
+        if segue.destination is VideoVC {
+            videoEditVC = segue.destination as! VideoVC
             videoEditVC.containerMaster = self
         }
     }
@@ -43,7 +58,7 @@ class UploadVC: UIViewController, ContainerMaster {
             navCtrlr.navigationBar.isHidden = false
             navCtrlr.title = ""
             self.navigationItem.rightBarButtonItem = setupUploadButton()
-            //            navCtrlr.childViewControllers.last?.navigationItem.backBarButtonItem?.title = "Camera"
+            // navCtrlr.childViewControllers.last?.navigationItem.backBarButtonItem?.title = "Camera"
         }
     }
     
@@ -64,7 +79,7 @@ class UploadVC: UIViewController, ContainerMaster {
     
     /**
      called when upload button in navigation bar is pressed.
-     Uploads video (and accompanied information) to Firebase.
+     Uploads video (and accompaning information) to Firebase.
      */
     @objc func uploadButtonPressed(_ sender: UIBarButtonItem){
         print("\n\nupload!\n\n")
