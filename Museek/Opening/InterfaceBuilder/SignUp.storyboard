@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="l5h-Rp-eiN">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Sign Up VC-->
+        <scene sceneID="7MD-Tb-GgY">
+            <objects>
+                <viewController id="l5h-Rp-eiN" userLabel="Sign Up VC" customClass="SignUpVC" customModule="Museek" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zea-Cb-EcA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kzo-t5-ocu" userLabel="Name TF View" customClass="NameSignUp" customModule="Museek" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WKn-tb-apN" userLabel="Email TF View" customClass="EmailSignUp" customModule="Museek" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
+                                <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PVh-uT-0KT" userLabel="Sign In.">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="PVh-uT-0KT" secondAttribute="height" multiplier="414:55" id="mU6-Oh-vr3"/>
+                                </constraints>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Already have an account? ">
+                                            <attributes>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="17" name=".SFNSText"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content="Sign In.">
+                                            <attributes>
+                                                <color key="NSColor" red="0.92851245400000004" green="0.4009653628" blue="0.52944362160000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <font key="NSFont" size="17" name=".SFNSText"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <segue destination="i86-qb-bCo" kind="show" id="CWb-rm-VCe"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PVh-uT-0KT" firstAttribute="top" secondItem="WKn-tb-apN" secondAttribute="bottom" id="3Cd-Sk-3uT"/>
+                            <constraint firstItem="LOM-sY-IT6" firstAttribute="bottom" secondItem="PVh-uT-0KT" secondAttribute="bottom" id="Ct1-oh-E7l"/>
+                            <constraint firstItem="Kzo-t5-ocu" firstAttribute="centerX" secondItem="zea-Cb-EcA" secondAttribute="centerX" id="Dak-8k-BbJ"/>
+                            <constraint firstItem="Kzo-t5-ocu" firstAttribute="top" secondItem="zea-Cb-EcA" secondAttribute="top" id="EJZ-yp-YcX"/>
+                            <constraint firstItem="WKn-tb-apN" firstAttribute="top" secondItem="zea-Cb-EcA" secondAttribute="top" id="JcV-mj-VYP"/>
+                            <constraint firstItem="Kzo-t5-ocu" firstAttribute="width" secondItem="zea-Cb-EcA" secondAttribute="width" id="KMZ-Xo-1Ks"/>
+                            <constraint firstItem="Kzo-t5-ocu" firstAttribute="height" secondItem="WKn-tb-apN" secondAttribute="height" id="Kt4-4p-WzD"/>
+                            <constraint firstItem="WKn-tb-apN" firstAttribute="centerX" secondItem="zea-Cb-EcA" secondAttribute="centerX" id="TMK-hP-Acd"/>
+                            <constraint firstItem="WKn-tb-apN" firstAttribute="width" secondItem="zea-Cb-EcA" secondAttribute="width" id="Uhb-i8-2B7"/>
+                            <constraint firstItem="PVh-uT-0KT" firstAttribute="top" secondItem="Kzo-t5-ocu" secondAttribute="bottom" id="kWU-ci-coS"/>
+                            <constraint firstItem="PVh-uT-0KT" firstAttribute="width" secondItem="LOM-sY-IT6" secondAttribute="width" id="p8x-Nf-IxF"/>
+                            <constraint firstItem="PVh-uT-0KT" firstAttribute="centerX" secondItem="zea-Cb-EcA" secondAttribute="centerX" id="uVF-hA-Ep6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="LOM-sY-IT6"/>
+                    </view>
+                    <connections>
+                        <outlet property="emailAndPasswordView" destination="WKn-tb-apN" id="VCl-01-84Y"/>
+                        <outlet property="nameView" destination="Kzo-t5-ocu" id="5he-WZ-en4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mzu-2v-T9G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-659" y="29"/>
+        </scene>
+        <!--Opening-->
+        <scene sceneID="uB1-bs-TYp">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Opening" id="i86-qb-bCo" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T7f-5h-ij4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="575" y="29"/>
+        </scene>
+        <!--Sign Up VC-->
+        <scene sceneID="7il-wl-pCm">
+            <objects>
+                <viewController id="BFZ-nH-7Zz" userLabel="Sign Up VC" customClass="SignUpVC" customModule="Museek" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4oK-Pt-3HA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pK9-ck-JjQ" userLabel="Email TF View" customClass="EmailSignUp" customModule="Museek" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
+                                <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rrX-4W-AHq" userLabel="Sign In.">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="rrX-4W-AHq" secondAttribute="height" multiplier="414:55" id="7hU-pa-RYy"/>
+                                </constraints>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Already have an account? ">
+                                            <attributes>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="17" name=".SFNSText"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content="Sign In.">
+                                            <attributes>
+                                                <color key="NSColor" red="0.92851245400000004" green="0.4009653628" blue="0.52944362160000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <font key="NSFont" size="17" name=".SFNSText"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pK9-ck-JjQ" firstAttribute="centerX" secondItem="4oK-Pt-3HA" secondAttribute="centerX" id="0Ug-Bi-fzj"/>
+                            <constraint firstItem="rrX-4W-AHq" firstAttribute="top" secondItem="pK9-ck-JjQ" secondAttribute="bottom" id="G9o-wT-HWh"/>
+                            <constraint firstItem="wr7-1G-wtQ" firstAttribute="bottom" secondItem="rrX-4W-AHq" secondAttribute="bottom" id="UIq-ey-N1N"/>
+                            <constraint firstItem="rrX-4W-AHq" firstAttribute="width" secondItem="wr7-1G-wtQ" secondAttribute="width" id="Wr5-6O-s3D"/>
+                            <constraint firstItem="rrX-4W-AHq" firstAttribute="centerX" secondItem="4oK-Pt-3HA" secondAttribute="centerX" id="Z47-Du-OLF"/>
+                            <constraint firstItem="pK9-ck-JjQ" firstAttribute="width" secondItem="4oK-Pt-3HA" secondAttribute="width" id="aMC-eC-g8K"/>
+                            <constraint firstItem="pK9-ck-JjQ" firstAttribute="top" secondItem="4oK-Pt-3HA" secondAttribute="top" id="xpQ-5q-19a"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wr7-1G-wtQ"/>
+                    </view>
+                    <connections>
+                        <outlet property="emailAndPasswordView" destination="pK9-ck-JjQ" id="s4j-Uk-zqK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zN5-Ua-bI6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-660" y="798"/>
+        </scene>
+    </scenes>
+</document>

@@ -12,17 +12,26 @@ import AVFoundation
 
 protocol ContainerMaster {
     var url: (movie: URL?, highlightClip: URL?) {get set}
-   
-//    var movieURL: URL {get set}
-//    var highlightURL: URL{get set}
+    var canUpload: Bool {get set}
 }
 
 extension VideoVC: UINavigationControllerDelegate, UIVideoEditorControllerDelegate{
+    
+    /**
+     called if UIVideoEditor succesfully saved new 30 second video
+     */
     func videoEditorController(_ editor: UIVideoEditorController, didSaveEditedVideoToPath editedVideoPath: String) {
-//        containerMaster?.highlightURL =
         containerMaster?.url.highlightClip = URL(fileURLWithPath: editedVideoPath)
+//        print("\n\noriginalURL=\(containerMaster?.url.movie)\nclipURL=\(containerMaster?.url.highlightClip)\n\n")
+        containerMaster?.canUpload = true
     }
     
+    /**
+     called if UIVideoEditor couldn't save new clip
+     */
+    func videoEditorController(_ editor: UIVideoEditorController, didFailWithError error: Error) {
+        print("\n\nSOMETHING WENT WRONG\n\n")
+    }
 }
 
 class VideoVC: UIViewController {
@@ -51,19 +60,20 @@ class VideoVC: UIViewController {
                 avPlayerVC.player = self.player
                 avPlayerVC.view.frame = self.view.frame
                 self.addChildViewController(avPlayerVC)
-                avPlayerVC.view.addSubview(topClearView)
                 self.view.addSubview(avPlayerVC.view)//allows for video to play outside of fullscreen
+                self.view.addSubview(topClearView)
             } else { player.play() }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        avPlayerVC.view.isUserInteractionEnabled = false
+        //        avPlayerVC.view.isUserInteractionEnabled = false
         
         movieEditor.delegate = self
         movieEditor.videoPath = containerMaster!.url.movie!.absoluteString
         movieEditor.videoQuality = .typeHigh
+//        movieEditor.videoMaximumDuration = 30//seconds
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.videoWasTapped))
         tapGesture.delegate = self as? UIGestureRecognizerDelegate
@@ -82,7 +92,8 @@ class VideoVC: UIViewController {
     }
     
     @objc fileprivate func videoWasTapped(){
-        print("\n\\nVIDEO WAS TAPPED!!!!!!!\n\n")
-        present(movieEditor, animated: true, completion: nil)
+        if UIVideoEditorController.canEditVideo(atPath: containerMaster!.url.movie!.absoluteString) {
+            present(movieEditor, animated: true, completion: nil)
+        } else { print("\nVIDEO CAN'T BE EDITEd") }
     }
 }

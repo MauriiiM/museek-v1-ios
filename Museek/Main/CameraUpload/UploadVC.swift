@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseStorage
 
 class UploadVC: UIViewController, ContainerMaster {
     fileprivate var _url: (movie: URL?, highlightClip: URL?)?
@@ -20,12 +22,17 @@ class UploadVC: UIViewController, ContainerMaster {
             _url = passedUrl
         }
     }
+    var canUpload: Bool{
+        get { return uploadButton!.isEnabled }
+        set { uploadButton?.isEnabled = newValue }
+    }
     
     @IBOutlet weak var songTitleTF: UITextField!
     @IBOutlet weak var coverSongSwitch: UISwitch!
     @IBOutlet weak var descriptionTV: UITextView!
     fileprivate var videoEditVC: VideoVC!
     fileprivate var _highlight: URL?
+    fileprivate var uploadButton: UIBarButtonItem?
     
 //    var highlightURL: URL
 //    fileprivate var _movieURL: URL?
@@ -57,7 +64,8 @@ class UploadVC: UIViewController, ContainerMaster {
         if let navCtrlr = self.navigationController {
             navCtrlr.navigationBar.isHidden = false
             navCtrlr.title = ""
-            self.navigationItem.rightBarButtonItem = setupUploadButton()
+            uploadButton = setupUploadButton()
+            self.navigationItem.rightBarButtonItem = uploadButton
             // navCtrlr.childViewControllers.last?.navigationItem.backBarButtonItem?.title = "Camera"
         }
     }
@@ -73,7 +81,7 @@ class UploadVC: UIViewController, ContainerMaster {
         button.cornerRadius = 7
         button.addTarget(self, action: #selector(self.uploadButtonPressed(_:)), for: .touchUpInside)
         let uploadButton = UIBarButtonItem(customView: button)
-        uploadButton.isEnabled = true
+        uploadButton.isEnabled = false //until highlight clip is made
         return uploadButton
     }
     
@@ -81,7 +89,14 @@ class UploadVC: UIViewController, ContainerMaster {
      called when upload button in navigation bar is pressed.
      Uploads video (and accompaning information) to Firebase.
      */
-    @objc func uploadButtonPressed(_ sender: UIBarButtonItem){
+    @objc fileprivate func uploadButtonPressed(_ sender: UIBarButtonItem){
         print("\n\nupload!\n\n")
+        let db = Database.database()
+        uploadVideoData(to: db)
+    }
+    
+    fileprivate func uploadVideoData(to database: Database){
+        //let ref = database.reference()
+        //let userRef = ref.child("Full_Uploads")
     }
 }
