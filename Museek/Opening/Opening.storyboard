@@ -5,7 +5,6 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,17 +13,14 @@
         <!--OpeningVC-->
         <scene sceneID="8mF-g1-Vfy">
             <objects>
-                <viewController id="ejd-jw-rnw" customClass="OpeningVC" customModule="Museek" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OpeningVC" id="ejd-jw-rnw" customClass="OpeningVC" customModule="Museek" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="g9R-un-l1i">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yIG-9h-1cm" customClass="RoundedButton" customModule="Museek" customModuleProvider="target">
-                                <rect key="frame" x="5.3333333333333428" y="361.66666666666669" width="364.33333333333326" height="38.666666666666686"/>
+                                <rect key="frame" x="8" y="367" width="359" height="38"/>
                                 <color key="backgroundColor" name="AppAccent"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="yIG-9h-1cm" secondAttribute="height" multiplier="66:7" id="W45-RH-JCf"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <state key="normal" title="Create Account">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -40,10 +36,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Z3-VE-EJv" customClass="RoundedButton" customModule="Museek" customModuleProvider="target">
-                                <rect key="frame" x="5.3333333333333428" y="421.66666666666669" width="364.33333333333326" height="38.666666666666686"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="7Z3-VE-EJv" secondAttribute="height" multiplier="66:7" id="xIC-uv-3GR"/>
-                                </constraints>
+                                <rect key="frame" x="8" y="418" width="359" height="36.333333333333314"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
                                         <fragment content="Sign In">
@@ -94,12 +87,13 @@
                         </subviews>
                         <color key="backgroundColor" name="AppMain"/>
                         <constraints>
-                            <constraint firstItem="yIG-9h-1cm" firstAttribute="centerY" secondItem="1Qo-hi-LXd" secondAttribute="centerY" constant="-30" id="9Vf-ge-Km0"/>
-                            <constraint firstItem="7Z3-VE-EJv" firstAttribute="centerY" secondItem="1Qo-hi-LXd" secondAttribute="centerY" constant="30" id="GfL-0h-osr"/>
+                            <constraint firstItem="1Qo-hi-LXd" firstAttribute="trailing" secondItem="yIG-9h-1cm" secondAttribute="trailing" constant="8" id="8AJ-I1-fbd"/>
+                            <constraint firstItem="7Z3-VE-EJv" firstAttribute="centerY" secondItem="1Qo-hi-LXd" secondAttribute="centerY" constant="25" id="GfL-0h-osr"/>
+                            <constraint firstItem="7Z3-VE-EJv" firstAttribute="width" secondItem="yIG-9h-1cm" secondAttribute="width" id="JMV-mM-t9Z"/>
                             <constraint firstItem="7Z3-VE-EJv" firstAttribute="centerX" secondItem="1Qo-hi-LXd" secondAttribute="centerX" id="VZo-va-e9c"/>
-                            <constraint firstItem="yIG-9h-1cm" firstAttribute="width" secondItem="g9R-un-l1i" secondAttribute="height" multiplier="165:368" id="XDT-Ef-B9O"/>
+                            <constraint firstItem="yIG-9h-1cm" firstAttribute="centerY" secondItem="1Qo-hi-LXd" secondAttribute="centerY" constant="-25" id="eSZ-tg-D4A"/>
                             <constraint firstItem="yIG-9h-1cm" firstAttribute="centerX" secondItem="1Qo-hi-LXd" secondAttribute="centerX" id="jK3-tz-eoE"/>
-                            <constraint firstItem="7Z3-VE-EJv" firstAttribute="width" secondItem="g9R-un-l1i" secondAttribute="height" multiplier="165:368" id="knv-K1-94Y"/>
+                            <constraint firstItem="yIG-9h-1cm" firstAttribute="leading" secondItem="1Qo-hi-LXd" secondAttribute="leading" constant="8" id="oTW-li-LhD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1Qo-hi-LXd"/>
                     </view>

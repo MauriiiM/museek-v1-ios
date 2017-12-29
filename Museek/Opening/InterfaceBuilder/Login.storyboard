@@ -20,20 +20,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cY4-h6-x4y" userLabel="password">
-                                <rect key="frame" x="38" y="328.5" width="299" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="cY4-h6-x4y" secondAttribute="height" multiplier="10:1" constant="-3.3333333333332575" id="TQx-Sr-rlJ"/>
-                                </constraints>
+                                <rect key="frame" x="8" y="275.5" width="359" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zXA-Ib-wBd" customClass="RoundedButton" customModule="Museek" customModuleProvider="target">
-                                <rect key="frame" x="38" y="388.5" width="299" height="30"/>
+                                <rect key="frame" x="8" y="325.5" width="359" height="36"/>
                                 <color key="backgroundColor" name="AppAccent"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="zXA-Ib-wBd" secondAttribute="height" multiplier="10:1" id="iCh-7C-kzw"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Sign In">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -48,15 +42,11 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="signIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="acR-GA-bOc"/>
-                                    <segue destination="zpY-7i-ai1" kind="show" id="Ba1-Zt-CI6"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="06m-Jv-M4p" userLabel="name">
-                                <rect key="frame" x="38" y="268.5" width="299" height="30"/>
+                                <rect key="frame" x="8" y="225.5" width="359" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="06m-Jv-M4p" secondAttribute="height" multiplier="10:1" id="QX1-Rc-0TW"/>
-                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" textContentType="email"/>
@@ -91,24 +81,25 @@
                         </subviews>
                         <color key="backgroundColor" name="AppMain"/>
                         <constraints>
-                            <constraint firstItem="zXA-Ib-wBd" firstAttribute="top" secondItem="cY4-h6-x4y" secondAttribute="bottom" constant="30" id="1g9-K7-PB9"/>
-                            <constraint firstItem="06m-Jv-M4p" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="300:667" constant="-1.0344827586206975" id="35F-7o-reT"/>
+                            <constraint firstItem="06m-Jv-M4p" firstAttribute="width" secondItem="zXA-Ib-wBd" secondAttribute="width" id="1bW-EE-e3Z"/>
                             <constraint firstItem="LZ6-Zy-5eB" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="4X4-WZ-5JH"/>
-                            <constraint firstItem="cY4-h6-x4y" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="300:667" constant="-1.0344827586206975" id="AHJ-Dw-q5g"/>
-                            <constraint firstItem="zXA-Ib-wBd" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="B7Y-fc-Yy7"/>
+                            <constraint firstItem="zXA-Ib-wBd" firstAttribute="top" secondItem="cY4-h6-x4y" secondAttribute="bottom" constant="20" id="CZY-B3-vaZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="LZ6-Zy-5eB" secondAttribute="bottom" id="N2g-oO-b7Q"/>
-                            <constraint firstItem="zXA-Ib-wBd" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="300:667" constant="-1.0344827586206975" id="X8c-Pz-oF7"/>
-                            <constraint firstItem="06m-Jv-M4p" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Xqc-aL-8an"/>
+                            <constraint firstItem="06m-Jv-M4p" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="QHu-4v-v39"/>
+                            <constraint firstItem="cY4-h6-x4y" firstAttribute="top" secondItem="06m-Jv-M4p" secondAttribute="bottom" constant="20" id="TSL-bw-3iI"/>
+                            <constraint firstItem="cY4-h6-x4y" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XhM-vz-ffq"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zXA-Ib-wBd" secondAttribute="trailing" constant="8" id="Y2N-h0-Aoh"/>
+                            <constraint firstItem="zXA-Ib-wBd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="aa5-gG-ure"/>
+                            <constraint firstItem="cY4-h6-x4y" firstAttribute="width" secondItem="zXA-Ib-wBd" secondAttribute="width" id="ebK-ey-9wG"/>
+                            <constraint firstItem="zXA-Ib-wBd" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="f3V-ej-PIK"/>
                             <constraint firstItem="LZ6-Zy-5eB" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="fWY-zd-JJG"/>
-                            <constraint firstItem="cY4-h6-x4y" firstAttribute="top" secondItem="06m-Jv-M4p" secondAttribute="bottom" constant="30" id="hXu-SQ-VfX"/>
-                            <constraint firstItem="cY4-h6-x4y" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="t4Z-bZ-RTu"/>
-                            <constraint firstItem="cY4-h6-x4y" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="tQa-xg-byC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="passwordTextField" destination="cY4-h6-x4y" id="Ez9-JQ-OaX"/>
                         <outlet property="userEmailTextField" destination="06m-Jv-M4p" id="U6t-P5-7Jg"/>
+                        <segue destination="zpY-7i-ai1" kind="presentation" identifier="toMainSb" id="JdQ-qH-b13"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

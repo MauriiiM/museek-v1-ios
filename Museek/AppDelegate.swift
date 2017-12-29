@@ -12,6 +12,7 @@ import Firebase
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
+    var storyboard: UIStoryboard?
 
     static var top: UIViewController? {
         get { return topViewController()}
@@ -19,35 +20,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static var root: UIViewController? {
         get { return UIApplication.shared.delegate?.window??.rootViewController }
     }
-    /**
-     recursively calls deeper into vc stack to get top most view
-     from: " https://stackoverflow.com/questions/41073915/how-to-get-the-current-displaying-uiviewcontroller-not-in-appdelegate/41074725#41074725 "
-     */
-    static func topViewController(from viewController: UIViewController? = root) -> UIViewController? {
-        if let tabBarViewController = viewController as? UITabBarController {
-            return topViewController(from: tabBarViewController.selectedViewController)
-        } else if let navigationController = viewController as? UINavigationController {
-            return topViewController(from: navigationController.visibleViewController)
-        } else if let presentedViewController = viewController?.presentedViewController {
-            return topViewController(from: presentedViewController)
-        } else {
-            return viewController
-        }
-    }
-    
-    /**
-     "hack overwriting" method to force camera to be in landscape mode
-     */
-    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-        let vcShouldBeLandscape = CameraVC.isPresented || CameraVC.isPresented
-    
-        return vcShouldBeLandscape ? .landscape : .portrait
-    }
     
     //@TODO Product > Scheme > Edit Scheme... [Diagnostics/Zombie mode off]
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+//        self.window = UIWindow(frame: UIScreen.main.bounds)
         FirebaseApp.configure()
         
+        if let _ = Auth.auth().currentUser { //user is logged in
+            storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            window?.rootViewController = storyboard?.instantiateViewController(withIdentifier: "MainTabBar")
+        } else { //user isn't logged in
+            storyboard = UIStoryboard(name: "Opening", bundle: Bundle.main)
+            window?.rootViewController = storyboard?.instantiateViewController(withIdentifier: "OpeningVC")
+        }
         return true
     }
     
@@ -71,6 +56,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    /**
+     "hack overwriting" method to force camera to be in landscape mode
+     */
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        let vcShouldBeLandscape = CameraVC.isPresented || CameraVC.isPresented
+        
+        return vcShouldBeLandscape ? .landscape : .portrait
+    }
+    
+    /**
+     recursively calls deeper into vc stack to get top most view
+     from: " https://stackoverflow.com/questions/41073915/how-to-get-the-current-displaying-uiviewcontroller-not-in-appdelegate/41074725#41074725 "
+     */
+    static func topViewController(from viewController: UIViewController? = root) -> UIViewController? {
+        if let tabBarViewController = viewController as? UITabBarController {
+            return topViewController(from: tabBarViewController.selectedViewController)
+        } else if let navigationController = viewController as? UINavigationController {
+            return topViewController(from: navigationController.visibleViewController)
+        } else if let presentedViewController = viewController?.presentedViewController {
+            return topViewController(from: presentedViewController)
+        } else {
+            return viewController
+        }
     }
 }
 
