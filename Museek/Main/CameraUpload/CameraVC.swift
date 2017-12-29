@@ -188,7 +188,7 @@ class CameraVC: UIViewController {
     /**
      should be called when phone is changing orientation to correct how the camera is previewed
      */
-    private func configureVideoOrientation() {
+    fileprivate func configureVideoOrientation() {
         if let previewLayer = self.previewLayer, let connection = previewLayer.connection {
             let orientation = UIDevice.current.orientation
             
@@ -211,7 +211,7 @@ class CameraVC: UIViewController {
      called every time camera VC willAppear().
      Sets up capture session, adds a capture input to it, and sets up output queue
      */
-    private func setupCamera(){
+    fileprivate func setupCamera(){
         if let vidCaptureDevice = AVCaptureDevice.default(for: .video),
             let audCaptureDevice = AVCaptureDevice.default(for: .audio){
             videoCaptureDevice = vidCaptureDevice

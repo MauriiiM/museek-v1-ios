@@ -9,16 +9,19 @@
 import Foundation
 
 class User {
-    fileprivate let email: String
-    fileprivate var username: String?
-    fileprivate var password: String?
-    fileprivate var location: Any?
-    
-    init(email: String){
+    var email: String
+    var location: Any?
+    var username: String?
+
+    init(withEmail email: String){
         self.email = email
     }
     
     deinit {
-        password = nil
+//        password = nil
+    }
+    
+    func changeEmail(to newEmail: String){
+        email = newEmail
     }
 }

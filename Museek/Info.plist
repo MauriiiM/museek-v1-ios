@@ -22,6 +22,10 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>so you can film your songs.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>so we can show you local artsits&apos; ranking.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>so you can see artists&apos; ranking even when traveling.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>so you can record your music along with the video.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
@@ -29,7 +33,7 @@
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
+	<string>Opening</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

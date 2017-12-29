@@ -36,7 +36,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="ura-eC-lhR" kind="show" identifier="toSignUp" id="bEC-Oc-mYa"/>
+                                    <segue destination="F9Y-We-G4Y" kind="show" identifier="toSignUp" id="5Na-hD-d02"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Z3-VE-EJv" customClass="RoundedButton" customModule="Museek" customModuleProvider="target">
@@ -109,12 +109,12 @@
             <point key="canvasLocation" x="25" y="-873"/>
         </scene>
         <!--SignUp-->
-        <scene sceneID="Z8x-9I-aay">
+        <scene sceneID="c6z-mS-ewW">
             <objects>
-                <viewControllerPlaceholder storyboardName="SignUp" id="ura-eC-lhR" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ueP-3G-Lin" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="SignUp" id="F9Y-We-G4Y" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y0L-5z-xkX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-453" y="-426"/>
+            <point key="canvasLocation" x="-380" y="-426"/>
         </scene>
         <!--Login-->
         <scene sceneID="sTx-c0-Of6">
