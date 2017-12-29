@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //@TODO Product > Scheme > Edit Scheme... [Diagnostics/Zombie mode off]
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-//        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window = UIWindow(frame: UIScreen.main.bounds)
         FirebaseApp.configure()
         
         if let _ = Auth.auth().currentUser { //user is logged in

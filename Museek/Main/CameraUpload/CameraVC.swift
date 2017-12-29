@@ -62,7 +62,7 @@ class CameraVC: UIViewController {
     }
     fileprivate var videoCaptureDevice: AVCaptureDevice?
     fileprivate var audioCaptureDevice: AVCaptureDevice?
-    fileprivate var movieOutput: AVCaptureMovieFileOutput!
+    fileprivate var movieOutput: AVCaptureMovieFileOutput?
     fileprivate var movieURL: URL!
     fileprivate var docDirectory: URL {
         get{
@@ -80,6 +80,7 @@ class CameraVC: UIViewController {
  
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.setupOutput()
         CameraVC.isPresented = true
         self.checkCameraAuthorization { authorized in
             if authorized { self.setupCamera()}
@@ -92,7 +93,7 @@ class CameraVC: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         CameraVC.isPresented = false // Set this flag to NO before dismissing controller, so that correct orientation will be chosen
-        if(movieOutput.isRecording){ stopRecording()}
+        if movieOutput != nil && movieOutput!.isRecording { stopRecording() }
         CameraVC.captureSession.stopRunning()
     }
     
@@ -142,25 +143,27 @@ class CameraVC: UIViewController {
      @TODO fix record repeatability
      */
     @IBAction private func recordButtonPressed(_ sender: UIButton) {
-        
-        if UIDevice.current.orientation == .landscapeRight
-             || UIDevice.current.orientation == .landscapeLeft
-             && !movieOutput.isRecording {//start recording
-            
-            pageSwipe(isEnabled: false)
-            sender.setImage(UIImage(named: "record (filled)"), for: .normal)
-            sender.blink(duration: 0.75)
-            flashButton.isHidden = true
-            flashButton.isEnabled = false
-            movieURL = docDirectory.appendingPathComponent("museek_\(dateFormatter.string(from: Date())).mov")
-            try? FileManager.default.removeItem(at: movieURL)
-            movieOutput.startRecording(to: movieURL, recordingDelegate: self)
-        } else if movieOutput.isRecording { //stop recording
-            stopRecording()
-            performSegue(withIdentifier: "CameraToUpload", sender: self)
-            
-        } else {
-            //@TODO show turn phone animation
+        if let output = movieOutput {
+            if UIDevice.current.orientation == .landscapeRight
+                || UIDevice.current.orientation == .landscapeLeft
+                && !output.isRecording {//start recording
+                self.setupOutput()
+                
+                pageSwipe(isEnabled: false)
+                sender.setImage(UIImage(named: "record (filled)"), for: .normal)
+                sender.blink(duration: 0.75)
+                flashButton.isHidden = true
+                flashButton.isEnabled = false
+                movieURL = docDirectory.appendingPathComponent("museek_\(dateFormatter.string(from: Date())).mov")
+                try? FileManager.default.removeItem(at: movieURL)
+                output.startRecording(to: movieURL, recordingDelegate: self)
+            } else if output.isRecording { //stop recording
+                stopRecording()
+                performSegue(withIdentifier: "CameraToUpload", sender: self)
+                
+            } else {
+                //@TODO show turn phone animation
+            }
         }
     }
     
@@ -196,7 +199,7 @@ class CameraVC: UIViewController {
                 let videoOrientation = AVCaptureVideoOrientation(rawValue: orientation.rawValue) {
                 previewLayer.frame = self.view.bounds
                 connection.videoOrientation = videoOrientation//this one's from preview layer
-                movieOutput.connection(with: .video)?.videoOrientation = videoOrientation//Ffor actual video
+                movieOutput?.connection(with: .video)?.videoOrientation = videoOrientation//Ffor actual video
                 CameraVC.captureSession.commitConfiguration()
             }
         }
@@ -220,7 +223,6 @@ class CameraVC: UIViewController {
                 CameraVC.captureSession.sessionPreset = .high
                 try self.setupCapture(audioDevice: audCaptureDevice, videoDevice: vidCaptureDevice)
                 CameraVC.captureSession.startRunning()
-                self.setupOutput()
             } catch { print(error.localizedDescription) }
         }
     }
@@ -239,9 +241,9 @@ class CameraVC: UIViewController {
     }
     
     fileprivate func setupOutput() {
-        movieOutput = AVCaptureMovieFileOutput()
-        if CameraVC.captureSession.canAddOutput(movieOutput) {
-            CameraVC.captureSession.addOutput(movieOutput)
+        if movieOutput == nil { movieOutput = AVCaptureMovieFileOutput() }
+        if CameraVC.captureSession.canAddOutput(movieOutput!) {
+            CameraVC.captureSession.addOutput(movieOutput!)
         }
         CameraVC.captureSession.commitConfiguration()
     }
@@ -256,6 +258,6 @@ class CameraVC: UIViewController {
         recButton.blink(enabled: false)
         flashButton.isHidden = false
         flashButton.isEnabled = true
-        movieOutput.stopRecording()
+        movieOutput?.stopRecording()
     }
 }
