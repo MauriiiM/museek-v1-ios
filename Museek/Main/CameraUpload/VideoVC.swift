@@ -35,21 +35,12 @@ extension VideoVC: UINavigationControllerDelegate, UIVideoEditorControllerDelega
 }
 
 class VideoVC: UIViewController {
-    var containerMaster: ContainerMaster?
+    var containerMaster: ContainerMaster?//is set when segued from camVC
     @IBOutlet weak fileprivate var topClearView: UIView!
     fileprivate var player: AVPlayer!
     fileprivate var avPlayerVC = AVPlayerViewController()
     fileprivate var movieEditor = UIVideoEditorController()
-    
-    override func viewDidAppear(_ animated: Bool) {
-        avPlayerVC.player?.play()
-        //notification listens for video end, then resets time to 0
-        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
-                                               object: self.player.currentItem,
-                                               queue: .main) { _ in
-                                                self.player?.seek(to: kCMTimeZero)
-                                                self.player?.play() }
-    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         if let cm = containerMaster {
@@ -66,15 +57,22 @@ class VideoVC: UIViewController {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        print("VIEW APPEARED")
+        avPlayerVC.player?.play()
+        //notification listens for video end, then resets time to 0
+        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
+                                               object: self.player.currentItem,
+                                               queue: .main) { _ in
+                                                self.player?.seek(to: kCMTimeZero)
+                                                self.player?.play() }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //        avPlayerVC.view.isUserInteractionEnabled = false
         
         movieEditor.delegate = self
-        movieEditor.videoPath = containerMaster!.url.movie!.absoluteString
-        movieEditor.videoQuality = .typeHigh
-//        movieEditor.videoMaximumDuration = 30//seconds
-        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.videoWasTapped))
         tapGesture.delegate = self as? UIGestureRecognizerDelegate
         topClearView.addGestureRecognizer(tapGesture)
@@ -84,7 +82,6 @@ class VideoVC: UIViewController {
         player.pause()
     }
     
-    
     deinit {
         player.pause()
         avPlayerVC.view.removeFromSuperview()
@@ -93,6 +90,9 @@ class VideoVC: UIViewController {
     
     @objc fileprivate func videoWasTapped(){
         if UIVideoEditorController.canEditVideo(atPath: containerMaster!.url.movie!.absoluteString) {
+            movieEditor.videoPath = containerMaster!.url.movie!.absoluteString
+            movieEditor.videoQuality = .typeHigh
+            movieEditor.videoMaximumDuration = 30//seconds
             present(movieEditor, animated: true, completion: nil)
         } else { print("\nVIDEO CAN'T BE EDITEd") }
     }

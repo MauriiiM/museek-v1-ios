@@ -82,7 +82,7 @@
                         <outlet property="flashButton" destination="z4g-eq-P49" id="8uJ-I5-lMg"/>
                         <outlet property="recButton" destination="gHH-64-69R" id="a5K-AV-Ic3"/>
                         <outlet property="timeLabel" destination="3y2-sp-DV1" id="Mjg-Y8-Idc"/>
-                        <segue destination="NYm-K4-Vgd" kind="show" identifier="CameraToUpload" id="61C-5x-sls"/>
+                        <segue destination="NYm-K4-Vgd" kind="show" identifier="toUploadVC" id="61C-5x-sls"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TH3-wc-En4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -135,12 +135,11 @@
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="value" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="7"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Small comment on your music."/>
                                 </userDefinedRuntimeAttributes>
                             </textView>
                         </subviews>
@@ -167,7 +166,6 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black"/>
                     <connections>
                         <outlet property="coverSongSwitch" destination="J6M-K1-PEb" id="hcb-PO-TWa"/>
-                        <outlet property="descriptionTV" destination="I3G-zY-mQ6" id="dUa-EJ-gps"/>
                         <outlet property="songTitleTF" destination="YTA-Cs-tOk" id="UyG-r5-IDS"/>
                     </connections>
                 </viewController>
@@ -196,7 +194,7 @@
                         <viewLayoutGuide key="safeArea" id="dIL-Pg-tka"/>
                     </view>
                     <connections>
-                        <segue destination="NYm-K4-Vgd" kind="show" identifier="MediaGalleryToUpload" id="uat-ds-5Nj"/>
+                        <segue destination="NYm-K4-Vgd" kind="show" identifier="toUploadVC" id="uat-ds-5Nj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bpb-oZ-kue" userLabel="First Responder" sceneMemberID="firstResponder"/>

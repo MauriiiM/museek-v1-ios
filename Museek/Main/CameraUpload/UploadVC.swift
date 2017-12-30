@@ -15,32 +15,21 @@ class UploadVC: UIViewController, ContainerMaster {
     var url: (movie: URL?, highlightClip: URL?) {
         get {
             if let _url = _url { return _url }
-            else {
-                return (nil, nil) }
+            else { return (nil, nil) }
         }
-        set(passedUrl){
-            _url = passedUrl
-        }
+        set { _url = newValue }
     }
     var canUpload: Bool{
         get { return uploadButton!.isEnabled }
         set { uploadButton?.isEnabled = newValue }
     }
     
-    @IBOutlet weak var songTitleTF: UITextField!
-    @IBOutlet weak var coverSongSwitch: UISwitch!
-    @IBOutlet weak var descriptionTV: UITextView!
+    @IBOutlet fileprivate weak var songTitleTF: UITextField!
+    @IBOutlet fileprivate weak var coverSongSwitch: UISwitch!
     fileprivate var videoEditVC: VideoVC!
     fileprivate var _highlight: URL?
     fileprivate var uploadButton: UIBarButtonItem?
     
-//    var highlightURL: URL
-//    fileprivate var _movieURL: URL?
-//    var movieURL: URL {
-//        get { return _movieURL! }
-//        set(url){ _movieURL = url }
-//    }
-//
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is VideoVC {
             videoEditVC = segue.destination as! VideoVC

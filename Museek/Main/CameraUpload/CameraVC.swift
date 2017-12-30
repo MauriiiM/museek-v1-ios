@@ -147,8 +147,6 @@ class CameraVC: UIViewController {
             if UIDevice.current.orientation == .landscapeRight
                 || UIDevice.current.orientation == .landscapeLeft
                 && !output.isRecording {//start recording
-                self.setupOutput()
-                
                 pageSwipe(isEnabled: false)
                 sender.setImage(UIImage(named: "record (filled)"), for: .normal)
                 sender.blink(duration: 0.75)
@@ -159,8 +157,7 @@ class CameraVC: UIViewController {
                 output.startRecording(to: movieURL, recordingDelegate: self)
             } else if output.isRecording { //stop recording
                 stopRecording()
-                performSegue(withIdentifier: "CameraToUpload", sender: self)
-                
+                performSegue(withIdentifier: "toUploadVC", sender: self)
             } else {
                 //@TODO show turn phone animation
             }

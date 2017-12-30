@@ -16,7 +16,6 @@
 		2208892F1FF49CBD0024E33E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2208892E1FF49CBD0024E33E /* MapKit.framework */; };
 		226D72171FBEA70900B149AA /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 226D72161FBEA70900B149AA /* Colors.xcassets */; };
 		227B1C971FF398C900374193 /* OutlinedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227B1C961FF398C900374193 /* OutlinedTextView.swift */; };
-		227B1C991FF398D600374193 /* VideoHighlightSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227B1C981FF398D600374193 /* VideoHighlightSlide.swift */; };
 		227B1C9B1FF398DE00374193 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227B1C9A1FF398DE00374193 /* RoundedButton.swift */; };
 		227B1CA31FF3992A00374193 /* Opening.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 227B1CA21FF3992A00374193 /* Opening.storyboard */; };
 		227B1CA51FF3994100374193 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 227B1CA41FF3994100374193 /* SignUp.storyboard */; };
@@ -70,7 +69,6 @@
 		2208892E1FF49CBD0024E33E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		226D72161FBEA70900B149AA /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		227B1C961FF398C900374193 /* OutlinedTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OutlinedTextView.swift; path = CustomUI/OutlinedTextView.swift; sourceTree = "<group>"; };
-		227B1C981FF398D600374193 /* VideoHighlightSlide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoHighlightSlide.swift; path = CustomUI/VideoHighlightSlide.swift; sourceTree = "<group>"; };
 		227B1C9A1FF398DE00374193 /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundedButton.swift; path = CustomUI/RoundedButton.swift; sourceTree = "<group>"; };
 		227B1CA21FF3992A00374193 /* Opening.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Opening.storyboard; sourceTree = "<group>"; };
 		227B1CA41FF3994100374193 /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
@@ -195,7 +193,6 @@
 				227B1C9A1FF398DE00374193 /* RoundedButton.swift */,
 				22E6A8601F8DFD36004DB54C /* CustomView.swift */,
 				227B1C961FF398C900374193 /* OutlinedTextView.swift */,
-				227B1C981FF398D600374193 /* VideoHighlightSlide.swift */,
 			);
 			name = CustomUI;
 			path = InterfaceBuilder;
@@ -655,7 +652,6 @@
 				228215301FE8F77C00E7BFB9 /* MediaLibraryVC.swift in Sources */,
 				22907A8C1FEE224D00FC7C06 /* VideoVC.swift in Sources */,
 				220394B91FE642A600B6195F /* UIButton+Blinking.swift in Sources */,
-				227B1C991FF398D600374193 /* VideoHighlightSlide.swift in Sources */,
 				22C4CD2C1F837F7900B155FE /* SignUpVC.swift in Sources */,
 				22907A901FEE56EA00FC7C06 /* UIVC+HidingKeyBoard.swift in Sources */,
 				22E36D051FE3C54100CC004D /* UploadVC.swift in Sources */,

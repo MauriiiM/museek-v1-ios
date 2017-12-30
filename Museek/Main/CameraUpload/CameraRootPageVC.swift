@@ -9,6 +9,9 @@
 import UIKit
 
 extension UIPageViewController {
+    /**
+     allows for disabling page turning when needed (such as when recording)
+    */
     var isPagingEnabled: Bool {
         get {
             var isEnabled: Bool = true
