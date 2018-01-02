@@ -12,7 +12,7 @@ import AVFoundation
 
 protocol ContainerMaster {
     var url: (movie: URL?, highlightClip: URL?) {get set}
-    var canUpload: Bool {get set}
+//    var canUpload: Bool {get}
 }
 
 extension VideoVC: UINavigationControllerDelegate, UIVideoEditorControllerDelegate{
@@ -23,7 +23,6 @@ extension VideoVC: UINavigationControllerDelegate, UIVideoEditorControllerDelega
     func videoEditorController(_ editor: UIVideoEditorController, didSaveEditedVideoToPath editedVideoPath: String) {
         containerMaster?.url.highlightClip = URL(fileURLWithPath: editedVideoPath)
 //        print("\n\noriginalURL=\(containerMaster?.url.movie)\nclipURL=\(containerMaster?.url.highlightClip)\n\n")
-        containerMaster?.canUpload = true
     }
     
     /**
@@ -70,10 +69,10 @@ class VideoVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        avPlayerVC.view.isUserInteractionEnabled = false
         
         movieEditor.delegate = self
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.videoWasTapped))
+        tapGesture.numberOfTapsRequired = 2
         tapGesture.delegate = self as? UIGestureRecognizerDelegate
         topClearView.addGestureRecognizer(tapGesture)
     }

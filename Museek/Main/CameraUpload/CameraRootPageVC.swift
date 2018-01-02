@@ -8,29 +8,16 @@
 
 import UIKit
 
-extension UIPageViewController {
-    /**
-     allows for disabling page turning when needed (such as when recording)
-    */
-    var isPagingEnabled: Bool {
-        get {
-            var isEnabled: Bool = true
-            for view in view.subviews {
-                if let subView = view as? UIScrollView {
-                    isEnabled = subView.isScrollEnabled
-                }
-            }
-            return isEnabled
-        }
-        set {
-            for view in view.subviews {
-                if let subView = view as? UIScrollView {
-                    subView.isScrollEnabled = newValue
-                }
-            }
-        }
-    }
-}
+//extension UIPageViewController {
+//    func goToPreviousPage(animated: Bool = true, completion: ((Bool) -> Void)? = nil) {
+//        if let currentViewController = viewControllers?[0] {
+//            if let prevPage = dataSource?.pageViewController(self, viewControllerBefore: currentViewController) {
+//                setViewControllers([prevPage], direction: .reverse, animated: animated, completion: completion)
+//            }
+//        }
+//
+//    }
+//}
 
 class CameraRootPageVC: UIPageViewController, UIPageViewControllerDataSource {
     //list of view controllers in page view controller
@@ -41,7 +28,7 @@ class CameraRootPageVC: UIPageViewController, UIPageViewControllerDataSource {
         
         return [cameraVC, mediaGalleryVC]
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dataSource = self
@@ -50,6 +37,7 @@ class CameraRootPageVC: UIPageViewController, UIPageViewControllerDataSource {
         }
         NotificationCenter.default.addObserver(self, selector: #selector(enableSwipe(notification:)), name:NSNotification.Name(rawValue: "enableSwipe"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(disableSwipe(notification:)), name:NSNotification.Name(rawValue: "disableSwipe"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(turnToPreviousPage(notification:)), name:NSNotification.Name(rawValue: "turnToPreviousPage"), object: nil)
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
@@ -57,10 +45,12 @@ class CameraRootPageVC: UIPageViewController, UIPageViewControllerDataSource {
         let prevIndex = vcIndex - 1
         guard prevIndex >= 0 else { return nil }
         guard viewControllerList.count > prevIndex else { return nil }
+        
         return viewControllerList[prevIndex]
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+
         guard let vcIndex = viewControllerList.index(of: viewController) else { return nil }
         let nextIndex = vcIndex + 1
         guard nextIndex < viewControllerList.count else { return nil }
@@ -73,5 +63,18 @@ class CameraRootPageVC: UIPageViewController, UIPageViewControllerDataSource {
     
     @objc fileprivate func enableSwipe(notification: Notification){
         self.dataSource = self
+    }
+    
+    //@TODO attempt to re show imagepicker
+    @objc fileprivate func turnToPreviousPage(notification: Notification){
+        goToPreviousPage()
+    }
+    
+    fileprivate func goToPreviousPage(animated: Bool = true, completion: ((Bool) -> Void)? = nil) {
+        if let currentViewController = viewControllers?[0] {
+            if let prevPage = dataSource?.pageViewController(self, viewControllerBefore: currentViewController) {
+                setViewControllers([prevPage], direction: .reverse, animated: animated, completion: completion)
+            }
+        }
     }
 }

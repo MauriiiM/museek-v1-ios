@@ -11,7 +11,12 @@ import FirebaseDatabase
 import FirebaseStorage
 
 class UploadVC: UIViewController, ContainerMaster {
-    fileprivate var _url: (movie: URL?, highlightClip: URL?)?
+    fileprivate var _url: (movie: URL?, highlightClip: URL?)?{
+        didSet{
+            if oldValue?.highlightClip == nil
+                && oldValue?.movie != nil { uploadButton(isActive: canUpload) }
+        }
+    }
     var url: (movie: URL?, highlightClip: URL?) {
         get {
             if let _url = _url { return _url }
@@ -19,16 +24,24 @@ class UploadVC: UIViewController, ContainerMaster {
         }
         set { _url = newValue }
     }
-    var canUpload: Bool{
-        get { return uploadButton!.isEnabled }
-        set { uploadButton?.isEnabled = newValue }
+    
+    fileprivate var canUpload: Bool{
+        get {
+            if (_url?.movie != nil
+                /*&& _url?.highlightClip != nil*/
+                && songTitleTF.text != "") {
+                return true
+            }
+            return false
+        }
     }
     
     @IBOutlet fileprivate weak var songTitleTF: UITextField!
+    @IBOutlet fileprivate weak var uploadButton: RoundedButton!
     @IBOutlet fileprivate weak var coverSongSwitch: UISwitch!
+    @IBOutlet fileprivate weak var captionTV: OutlinedTextView!
     fileprivate var videoEditVC: VideoVC!
     fileprivate var _highlight: URL?
-    fileprivate var uploadButton: UIBarButtonItem?
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is VideoVC {
@@ -44,48 +57,56 @@ class UploadVC: UIViewController, ContainerMaster {
         self.hideKeyboardWhenTappedAround()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    fileprivate func uploadButton(isActive: Bool){
+            uploadButton.isEnabled = canUpload
+            if canUpload {
+                uploadButton.backgroundColor = UIColor(named: "AppAccent")
+            } else {
+                uploadButton.backgroundColor = .lightGray
+            }
     }
     
     fileprivate func setupNavigationBar(){
         if let navCtrlr = self.navigationController {
             navCtrlr.navigationBar.isHidden = false
             navCtrlr.title = ""
-            uploadButton = setupUploadButton()
-            self.navigationItem.rightBarButtonItem = uploadButton
-            // navCtrlr.childViewControllers.last?.navigationItem.backBarButtonItem?.title = "Camera"
         }
     }
     
-    fileprivate func setupUploadButton() -> UIBarButtonItem {
-        let buttonAccent = UIColor(named: "AppAccent")!
-        let button = RoundedButton(frame: CGRect(x: 0, y: 0, width: 50, height: 5))
-        button.setTitle("Share", for: .normal)
-        button.setTitleColor(buttonAccent, for: .normal)
-        button.setTitleColor(UIColor(named: "AppMain"), for: .highlighted)
-        button.borderWidth = 1
-        button.borderColor = buttonAccent
-        button.cornerRadius = 7
-        button.addTarget(self, action: #selector(self.uploadButtonPressed(_:)), for: .touchUpInside)
-        let uploadButton = UIBarButtonItem(customView: button)
-        uploadButton.isEnabled = false //until highlight clip is made
-        return uploadButton
+    @IBAction func titleChanged(_ sender: UITextField) {
+        uploadButton(isActive: canUpload)
     }
     
-    /**
-     called when upload button in navigation bar is pressed.
-     Uploads video (and accompaning information) to Firebase.
-     */
-    @objc fileprivate func uploadButtonPressed(_ sender: UIBarButtonItem){
-        print("\n\nupload!\n\n")
-        let db = Database.database()
-        uploadVideoData(to: db)
+    @IBAction fileprivate func uploadButtonPressed(_ sender: UIButton){
+        if canUpload {
+            uploadButton.isEnabled = false//
+            let uploadUID = UUID().uuidString
+            //            let storageRef = Storage.storage().reference(forURL: FirebaseConfig.STORAGE.ROOT_URL_REF)
+            let storageRef = Storage.storage().reference().child(FirebaseConfig.posts).child(uploadUID)
+            //            let highlightRef = storageRef.child(FirebaseConfig.STORAGE.postHighlightClip)
+            
+            storageRef.putFile(from: _url!.movie!, metadata: nil, completion: {(metadata, error) in
+                if error != nil { return }
+                else {
+                    let videoStorageURL = metadata?.downloadURL()?.absoluteString
+                    let db = Database.database()
+                    self.upload(videoData: videoStorageURL!, to: db)
+                }
+            })
+        }
     }
     
-    fileprivate func uploadVideoData(to database: Database){
-        //let ref = database.reference()
-        //let userRef = ref.child("Full_Uploads")
+    fileprivate func upload(videoData url: String, to database: Database){
+        let postsRef = database.reference().child(FirebaseConfig.posts)
+        let newPostId = postsRef.childByAutoId().key
+        let newPostRef = postsRef.child(newPostId)
+        let fileArray:[String : Any?] = ["fullVideoURL" : url, "songTitle": songTitleTF.text, "caption": captionTV.text]
+        newPostRef.setValue(fileArray, withCompletionBlock: {(error, dbRef) in
+            if error != nil { print(error!); return }
+            else {
+                self.navigationController?.popToRootViewController(animated: false)
+                self.tabBarController?.selectedIndex = 0
+            }
+        })
     }
 }

@@ -52,7 +52,7 @@
                                 <state key="normal" image="switch camera"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3y2-sp-DV1">
-                                <rect key="frame" x="165.33333333333334" y="699" width="44.666666666666657" height="20"/>
+                                <rect key="frame" x="165" y="699" width="45" height="20"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -98,35 +98,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="J6M-K1-PEb">
-                                <rect key="frame" x="310" y="429" width="51" height="31"/>
+                                <rect key="frame" x="310" y="361.66666666666669" width="51" height="31"/>
                                 <color key="onTintColor" name="AppAccent"/>
                             </switch>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Song Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YTA-Cs-tOk">
-                                <rect key="frame" x="16" y="391" width="343" height="30"/>
+                                <rect key="frame" x="16" y="323" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="titleChanged:" destination="NYm-K4-Vgd" eventType="editingDidEnd" id="As9-Ll-p7o"/>
+                                </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is your song a cover?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BbJ-HJ-IUD">
-                                <rect key="frame" x="16" y="429" width="162" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is your song a cover?" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BbJ-HJ-IUD">
+                                <rect key="frame" x="16" y="361.66666666666669" width="162" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="89p-oj-x9l">
-                                <rect key="frame" x="16" y="104" width="343" height="250"/>
+                                <rect key="frame" x="16" y="103.99999999999999" width="343" height="184.66666666666663"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" name="AppAccent"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="89p-oj-x9l" secondAttribute="height" multiplier="288:155" id="PrD-3X-6cn"/>
+                                </constraints>
                                 <connections>
                                     <segue destination="73i-io-N3h" kind="embed" identifier="VideoContainerSegue" id="y9c-rh-v2t"/>
                                 </connections>
                             </containerView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I3G-zY-mQ6" customClass="OutlinedTextView" customModule="Museek" customModuleProvider="target">
-                                <rect key="frame" x="16" y="468" width="343" height="150"/>
+                                <rect key="frame" x="16" y="400.66666666666669" width="343" height="62"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" name="AppAccent"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="I3G-zY-mQ6" secondAttribute="height" multiplier="343:150" id="DBx-YO-XY9"/>
+                                    <constraint firstAttribute="height" constant="62" id="SIz-C8-FwG"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="alert" enablesReturnKeyAutomatically="YES"/>
@@ -142,20 +148,42 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Y2-k2-s2Q" customClass="RoundedButton" customModule="Museek" customModuleProvider="target">
+                                <rect key="frame" x="16" y="713" width="343" height="30"/>
+                                <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="BYk-Eo-IR2"/>
+                                </constraints>
+                                <state key="normal" title="Upload">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="uploadButtonPressed:" destination="NYm-K4-Vgd" eventType="touchUpInside" id="m3v-EN-2Wb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="YTA-Cs-tOk" firstAttribute="top" secondItem="89p-oj-x9l" secondAttribute="bottom" constant="37" id="3B5-vT-ZI4"/>
+                            <constraint firstItem="YTA-Cs-tOk" firstAttribute="top" secondItem="89p-oj-x9l" secondAttribute="bottom" constant="35" id="3B5-vT-ZI4"/>
                             <constraint firstItem="sf1-zd-hJG" firstAttribute="trailing" secondItem="I3G-zY-mQ6" secondAttribute="trailing" constant="16" id="8A2-QO-r3e"/>
                             <constraint firstItem="I3G-zY-mQ6" firstAttribute="leading" secondItem="sf1-zd-hJG" secondAttribute="leading" constant="16" id="9Xt-L1-y0x"/>
-                            <constraint firstItem="YTA-Cs-tOk" firstAttribute="centerY" secondItem="bJZ-g2-OJN" secondAttribute="centerY" id="BTa-4e-KAw"/>
                             <constraint firstItem="BbJ-HJ-IUD" firstAttribute="top" secondItem="YTA-Cs-tOk" secondAttribute="bottom" constant="8" id="E18-al-6Sa"/>
                             <constraint firstItem="YTA-Cs-tOk" firstAttribute="leading" secondItem="sf1-zd-hJG" secondAttribute="leading" constant="16" id="EZN-uL-1s7"/>
                             <constraint firstItem="89p-oj-x9l" firstAttribute="top" secondItem="sf1-zd-hJG" secondAttribute="top" constant="16" id="KNo-tD-ohn"/>
+                            <constraint firstItem="sf1-zd-hJG" firstAttribute="trailing" secondItem="8Y2-k2-s2Q" secondAttribute="trailing" constant="16" id="N2V-Ub-fGF"/>
+                            <constraint firstItem="sf1-zd-hJG" firstAttribute="bottom" secondItem="8Y2-k2-s2Q" secondAttribute="bottom" constant="35" id="PX4-MF-g90"/>
                             <constraint firstItem="sf1-zd-hJG" firstAttribute="trailing" secondItem="YTA-Cs-tOk" secondAttribute="trailing" constant="16" id="XgX-7A-2rE"/>
+                            <constraint firstItem="8Y2-k2-s2Q" firstAttribute="leading" secondItem="sf1-zd-hJG" secondAttribute="leading" constant="16" id="YDn-yZ-Y2O"/>
                             <constraint firstItem="sf1-zd-hJG" firstAttribute="trailing" secondItem="J6M-K1-PEb" secondAttribute="trailing" constant="16" id="djf-EZ-0fL"/>
                             <constraint firstItem="89p-oj-x9l" firstAttribute="leading" secondItem="sf1-zd-hJG" secondAttribute="leading" constant="16" id="drn-bP-Poc"/>
-                            <constraint firstItem="YTA-Cs-tOk" firstAttribute="centerX" secondItem="bJZ-g2-OJN" secondAttribute="centerX" id="fd7-hG-s4w"/>
                             <constraint firstItem="J6M-K1-PEb" firstAttribute="top" secondItem="YTA-Cs-tOk" secondAttribute="bottom" constant="8" id="hQx-NX-sI8"/>
                             <constraint firstItem="BbJ-HJ-IUD" firstAttribute="leading" secondItem="sf1-zd-hJG" secondAttribute="leading" constant="16" id="jDV-vG-Ghb"/>
                             <constraint firstItem="I3G-zY-mQ6" firstAttribute="top" secondItem="BbJ-HJ-IUD" secondAttribute="bottom" constant="19" id="sQe-a1-ZlG"/>
@@ -165,13 +193,15 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black"/>
                     <connections>
+                        <outlet property="captionTV" destination="I3G-zY-mQ6" id="Mji-Dd-POG"/>
                         <outlet property="coverSongSwitch" destination="J6M-K1-PEb" id="hcb-PO-TWa"/>
                         <outlet property="songTitleTF" destination="YTA-Cs-tOk" id="UyG-r5-IDS"/>
+                        <outlet property="uploadButton" destination="8Y2-k2-s2Q" id="KPl-6v-2xA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HKC-e0-Frw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1028" y="2254.4334975369461"/>
+            <point key="canvasLocation" x="-1029.375" y="2254.2253521126759"/>
         </scene>
         <!--Camera Root PageVC-->
         <scene sceneID="XMH-I5-MJO">
@@ -227,11 +257,11 @@
             <objects>
                 <viewController id="73i-io-N3h" customClass="VideoVC" customModule="Museek" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SMN-YB-2sF">
-                        <rect key="frame" x="0.0" y="0.0" width="343" height="250"/>
+                        <rect key="frame" x="0.0" y="0.0" width="343" height="184.66666666666663"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A0C-1P-U0O">
-                                <rect key="frame" x="0.0" y="0.0" width="343" height="250"/>
+                                <rect key="frame" x="0.0" y="0.0" width="343" height="184.66666666666666"/>
                                 <gestureRecognizers/>
                             </view>
                         </subviews>

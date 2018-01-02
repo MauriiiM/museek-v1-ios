@@ -93,7 +93,7 @@ class CameraVC: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         CameraVC.isPresented = false // Set this flag to NO before dismissing controller, so that correct orientation will be chosen
-        if movieOutput != nil && movieOutput!.isRecording { stopRecording() }
+        if movieOutput != nil && movieOutput!.isRecording { stopRecording(to: movieOutput!) }
         CameraVC.captureSession.stopRunning()
     }
     
@@ -152,11 +152,11 @@ class CameraVC: UIViewController {
                 sender.blink(duration: 0.75)
                 flashButton.isHidden = true
                 flashButton.isEnabled = false
-                movieURL = docDirectory.appendingPathComponent("museek_\(dateFormatter.string(from: Date())).mov")
+                movieURL = docDirectory.appendingPathComponent("museek_\(dateFormatter.string(from: Date())).mp4")
                 try? FileManager.default.removeItem(at: movieURL)
                 output.startRecording(to: movieURL, recordingDelegate: self)
             } else if output.isRecording { //stop recording
-                stopRecording()
+                stopRecording(to: output)
                 performSegue(withIdentifier: "toUploadVC", sender: self)
             } else {
                 //@TODO show turn phone animation
@@ -202,6 +202,10 @@ class CameraVC: UIViewController {
         }
     }
     
+    
+    /**
+     
+     */
     fileprivate func pageSwipe(isEnabled: Bool){
         if isEnabled { NotificationCenter.default.post(name: NSNotification.Name(rawValue: "enableSwipe"), object: nil) }
         else { NotificationCenter.default.post(name: NSNotification.Name(rawValue: "disableSwipe"), object: nil) }
@@ -249,12 +253,12 @@ class CameraVC: UIViewController {
      stops AVCaptureMovieOutput's instance from recording and returns camera
      buttons (flash, record) to original state.
      */
-    fileprivate func stopRecording(){
+    fileprivate func stopRecording(to output: AVCaptureMovieFileOutput){
         pageSwipe(isEnabled: true)
         recButton.setImage(UIImage(named: "record"), for: .normal)
         recButton.blink(enabled: false)
         flashButton.isHidden = false
         flashButton.isEnabled = true
-        movieOutput?.stopRecording()
+        output.stopRecording()
     }
 }

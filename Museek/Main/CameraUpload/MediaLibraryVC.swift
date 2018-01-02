@@ -20,7 +20,7 @@ extension MediaLibraryVC: UIImagePickerControllerDelegate, UINavigationControlle
             
             moviePicker.sourceType = .photoLibrary
             moviePicker.mediaTypes = [kUTTypeMovie as String]
-            moviePicker.modalPresentationStyle = .currentContext
+            moviePicker.modalPresentationStyle = .popover
             moviePicker.allowsEditing = false
             moviePicker.delegate = delegate
             present(moviePicker, animated: true, completion: nil)
@@ -28,26 +28,16 @@ extension MediaLibraryVC: UIImagePickerControllerDelegate, UINavigationControlle
     }
 }
 
-
 /**
  @TODO: look into https://developer.apple.com/documentation/photos
  */
 class MediaLibraryVC: UIViewController {
-    
-    var moviePicker: UIImagePickerController = UIImagePickerController()
-    var selectedMovie: URL?
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = true
-    }
+    fileprivate var moviePicker: UIImagePickerController = UIImagePickerController()
+    fileprivate var selectedMovie: URL?
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        self.checkLibraryAuthorization { status in
-            if status == .authorized { self.startMediaBrowser(usingDelegate: self) }
-            else { print("Permission to access library denied.") }
-        }
-        print("MediaLibraryVC viewDidLoad")
+        self.tabBarController?.tabBar.isHidden = true
+        presentMediaGallery()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -73,12 +63,21 @@ class MediaLibraryVC: UIViewController {
      */
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController){
         moviePicker.dismiss(animated: true, completion: nil)
+
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "turnToPreviousPage"), object: nil)
+    }
+    
+    func presentMediaGallery(){
+        self.checkLibraryAuthorization { status in
+            if status == .authorized { self.startMediaBrowser(usingDelegate: self) }
+            else { print("Permission to access library denied.") }
+        }
     }
     
     /**
      checks if user has previously authorized app to use camera
      */
-    private func checkLibraryAuthorization(_ completionHandler: @escaping ((_ status: PHAuthorizationStatus) -> Void)) {
+    fileprivate func checkLibraryAuthorization(_ completionHandler: @escaping ((_ status: PHAuthorizationStatus) -> Void)) {
         switch PHPhotoLibrary.authorizationStatus() {
         case .authorized:
             //The user has previously granted access to the camera.
