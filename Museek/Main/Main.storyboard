@@ -5,7 +5,6 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,7 +23,7 @@
                         </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
-                        <segue destination="gGJ-XM-wWh" kind="relationship" relationship="viewControllers" id="MJW-FC-cGs"/>
+                        <segue destination="Xg2-Xb-nwR" kind="relationship" relationship="viewControllers" id="MJW-FC-cGs"/>
                         <segue destination="LNF-Pe-HXA" kind="relationship" relationship="viewControllers" id="lYZ-3P-Vea"/>
                         <segue destination="ixO-iP-wjZ" kind="relationship" relationship="viewControllers" id="Vbp-8G-8xc"/>
                         <segue destination="NXL-rb-FWZ" kind="relationship" relationship="viewControllers" id="dRm-wD-osO"/>
@@ -44,59 +43,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rer-ea-6tA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1027" y="316"/>
-        </scene>
-        <!--Feed-->
-        <scene sceneID="fYv-1I-J89">
-            <objects>
-                <navigationController storyboardIdentifier="NavFeed" title="Feed" automaticallyAdjustsScrollViewInsets="NO" id="gGJ-XM-wWh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="stage" selectedImage="stage (filled)" id="EBg-ES-d2M">
-                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
-                    </tabBarItem>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="i4U-gJ-oRQ">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" name="AppAccent"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="wzq-4p-osL" kind="relationship" relationship="rootViewController" id="Sz9-0W-Ow5"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nIV-8L-2Nd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2663" y="607"/>
-        </scene>
-        <!--Table View Controller-->
-        <scene sceneID="xl1-7r-me0">
-            <objects>
-                <tableViewController id="wzq-4p-osL" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="A7f-qQ-gh2">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="wXj-du-pJW">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wXj-du-pJW" id="Tnv-9K-0S8">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="wzq-4p-osL" id="fwK-q5-Kln"/>
-                            <outlet property="delegate" destination="wzq-4p-osL" id="f1Q-el-iIj"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="A0H-Ey-7VC"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WbH-AT-B9a" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2663" y="1346"/>
         </scene>
         <!--Discover-->
         <scene sceneID="UMK-aA-qqh">
@@ -209,19 +155,24 @@
             </objects>
             <point key="canvasLocation" x="625" y="607"/>
         </scene>
+        <!--NavFeed-->
+        <scene sceneID="Arf-CB-uc9">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="NavFeed" storyboardName="HomeFeed" referencedIdentifier="NavFeed" id="Xg2-Xb-nwR" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="sRk-87-ci8"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d4W-QQ-k8l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2657" y="316"/>
+        </scene>
     </scenes>
     <resources>
         <image name="explore" width="25" height="25"/>
         <image name="explore (filled)" width="25" height="25"/>
         <image name="profile" width="25" height="25"/>
         <image name="profile (filled)" width="25" height="25"/>
-        <image name="stage" width="25" height="25"/>
-        <image name="stage (filled)" width="25" height="25"/>
         <image name="support" width="25" height="25"/>
         <image name="support (filled)" width="25" height="25"/>
-        <namedColor name="AppAccent">
-            <color red="0.92941176470588238" green="0.40392156862745099" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
     </resources>
     <color key="tintColor" name="AppAccent"/>
 </document>
