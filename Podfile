@@ -7,7 +7,8 @@ target 'Museek' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
-  pod 'Firebase/Storage' 
+  pod 'Firebase/Storage'
+  pod 'SDWebImage' 
 
   target 'MuseekTests' do
     inherit! :search_paths

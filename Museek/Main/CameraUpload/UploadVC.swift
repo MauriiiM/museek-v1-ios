@@ -11,6 +11,11 @@ import FirebaseDatabase
 import FirebaseStorage
 
 class UploadVC: UIViewController, ContainerMaster {
+    fileprivate var _thumbnail: UIImage?
+    var thumbnail: UIImage?{
+        get{ return _thumbnail }
+        set{ _thumbnail = newValue }
+    }
     fileprivate var _url: (movie: URL?, highlightClip: URL?)?{
         didSet{
             if oldValue?.highlightClip == nil
@@ -24,7 +29,6 @@ class UploadVC: UIViewController, ContainerMaster {
         }
         set { _url = newValue }
     }
-    
     fileprivate var canUpload: Bool{
         get {
             if (_url?.movie != nil
@@ -35,13 +39,12 @@ class UploadVC: UIViewController, ContainerMaster {
             return false
         }
     }
-    
+    // MARK: 
     @IBOutlet fileprivate weak var songTitleTF: UITextField!
     @IBOutlet fileprivate weak var uploadButton: RoundedButton!
     @IBOutlet fileprivate weak var coverSongSwitch: UISwitch!
     @IBOutlet fileprivate weak var captionTV: OutlinedTextView!
     fileprivate var videoEditVC: VideoVC!
-    fileprivate var _highlight: URL?
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is VideoVC {
@@ -100,7 +103,7 @@ class UploadVC: UIViewController, ContainerMaster {
         let postsRef = database.reference().child(FirebaseConfig.posts)
         let newPostId = postsRef.childByAutoId().key
         let newPostRef = postsRef.child(newPostId)
-        let fileArray:[String : Any?] = ["fullVideoURL" : url, "songTitle": songTitleTF.text, "caption": captionTV.text]
+        let fileArray:[String : Any?] = ["videoThumbnail": thumbnail, "fullVideoURL": url, "songTitle": songTitleTF.text, "caption": captionTV.text]
         newPostRef.setValue(fileArray, withCompletionBlock: {(error, dbRef) in
             if error != nil { print(error!); return }
             else {

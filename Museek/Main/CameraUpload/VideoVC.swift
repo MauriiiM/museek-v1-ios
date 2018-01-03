@@ -12,7 +12,7 @@ import AVFoundation
 
 protocol ContainerMaster {
     var url: (movie: URL?, highlightClip: URL?) {get set}
-    //    var canUpload: Bool {get}
+    var thumbnail: UIImage? {get set}
 }
 
 extension VideoVC: UINavigationControllerDelegate, UIVideoEditorControllerDelegate{
@@ -22,7 +22,7 @@ extension VideoVC: UINavigationControllerDelegate, UIVideoEditorControllerDelega
      */
     func videoEditorController(_ editor: UIVideoEditorController, didSaveEditedVideoToPath editedVideoPath: String) {
         containerMaster?.url.highlightClip = URL(fileURLWithPath: editedVideoPath)
-        //        print("\n\noriginalURL=\(containerMaster?.url.movie)\nclipURL=\(containerMaster?.url.highlightClip)\n\n")
+//        containerMaster?.thumbnail = getThumbnailFrom(path: URL(fileURLWithPath: editedVideoPath))
     }
     
     /**
@@ -57,7 +57,6 @@ class VideoVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("VIEW APPEARED")
         avPlayerVC.player?.play()
         //notification listens for video end, then resets time to 0
         NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
@@ -75,6 +74,8 @@ class VideoVC: UIViewController {
         tapGesture.numberOfTapsRequired = 2
         tapGesture.delegate = self as? UIGestureRecognizerDelegate
         topClearView.addGestureRecognizer(tapGesture)
+        
+        containerMaster?.thumbnail = getThumbnailFrom(path: containerMaster!.url.movie!)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -87,12 +88,29 @@ class VideoVC: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
+    /**
+     creates a UIImage from the first frame of given URL video
+     */
+    fileprivate func getThumbnailFrom(path url: URL) -> UIImage? {
+        var thumbnail: UIImage?
+        do {
+            let asset = AVURLAsset(url: url , options: nil)
+            let imgGenerator = AVAssetImageGenerator(asset: asset)
+            imgGenerator.appliesPreferredTrackTransform = true
+            let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(0, 1), actualTime: nil)
+            thumbnail = UIImage(cgImage: cgImage)
+        } catch let error {
+            print("*** Error generating thumbnail: \(error.localizedDescription)")
+        }
+        return thumbnail
+    }
+    
     @objc fileprivate func videoWasTapped(){
         if UIVideoEditorController.canEditVideo(atPath: containerMaster!.url.movie!.absoluteString) {
             movieEditor.videoPath = containerMaster!.url.movie!.absoluteString
             movieEditor.videoQuality = .typeHigh
             movieEditor.videoMaximumDuration = 30//seconds
             present(movieEditor, animated: true, completion: nil)
-        } else { print("\nVIDEO CAN'T BE EDITEd") }
+        } else { print("\nVIDEO CAN'T BE EDITED") }
     }
 }

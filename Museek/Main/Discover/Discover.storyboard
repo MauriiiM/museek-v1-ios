@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Discover-->
+        <scene sceneID="UMK-aA-qqh">
+            <objects>
+                <viewController id="ofw-s4-JZb" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="muf-vv-Uot">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Jse-Dd-1ah">
+                                <rect key="frame" x="0.0" y="44" width="375" height="230"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="230" id="TxD-JS-6ny"/>
+                                </constraints>
+                            </mapView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fq8-xy-h4d">
+                                <rect key="frame" x="0.0" y="274" width="375" height="455"/>
+                                <connections>
+                                    <segue destination="aZ3-vS-qri" kind="embed" id="Mi1-jc-0VQ"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Fq8-xy-h4d" firstAttribute="bottom" secondItem="UJP-K1-8OT" secondAttribute="bottom" id="3l3-tN-WN9"/>
+                            <constraint firstItem="Fq8-xy-h4d" firstAttribute="top" secondItem="Jse-Dd-1ah" secondAttribute="bottom" id="OdB-xU-P9y"/>
+                            <constraint firstItem="Jse-Dd-1ah" firstAttribute="leading" secondItem="UJP-K1-8OT" secondAttribute="leading" id="RIr-H9-x4d"/>
+                            <constraint firstItem="Fq8-xy-h4d" firstAttribute="leading" secondItem="UJP-K1-8OT" secondAttribute="leading" id="YJC-Ad-sz4"/>
+                            <constraint firstItem="Fq8-xy-h4d" firstAttribute="trailing" secondItem="UJP-K1-8OT" secondAttribute="trailing" id="Zib-5d-Y3A"/>
+                            <constraint firstItem="Jse-Dd-1ah" firstAttribute="trailing" secondItem="UJP-K1-8OT" secondAttribute="trailing" id="mXU-J4-Y9e"/>
+                            <constraint firstItem="Jse-Dd-1ah" firstAttribute="top" secondItem="UJP-K1-8OT" secondAttribute="top" id="one-c7-1Wu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="UJP-K1-8OT"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Discover" id="A9A-F4-Etl"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kXk-4u-OBy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1735.2" y="1344.0886699507389"/>
+        </scene>
+        <!--Discover-->
+        <scene sceneID="w1a-8c-jYH">
+            <objects>
+                <navigationController storyboardIdentifier="NavDiscover" title="Discover" automaticallyAdjustsScrollViewInsets="NO" hidesBarsOnSwipe="YES" id="LNF-Pe-HXA" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="explore" selectedImage="explore (filled)" id="gHq-yo-4KK">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="k2n-bN-buh">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ofw-s4-JZb" kind="relationship" relationship="rootViewController" id="8sa-Ma-SjS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AxH-p3-7w2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1735" y="607"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="MBD-Lx-heA">
+            <objects>
+                <tableViewController id="aZ3-vS-qri" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="COc-gB-Pj4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="455"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="rankingCell" id="akg-Wq-me9">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="akg-Wq-me9" id="3O5-7Y-66P">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="aZ3-vS-qri" id="Z34-b8-Lb4"/>
+                            <outlet property="delegate" destination="aZ3-vS-qri" id="FcH-rn-jGe"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vxY-jb-UwY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-926" y="1484"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="explore" width="25" height="25"/>
+        <image name="explore (filled)" width="25" height="25"/>
+    </resources>
+    <color key="tintColor" name="AppAccent"/>
+</document>

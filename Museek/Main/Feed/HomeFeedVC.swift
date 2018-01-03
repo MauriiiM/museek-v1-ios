@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import SDWebImage
 
 class HomeFeedVC: UITableViewController {
     fileprivate var retrievedPosts = [Post]()
@@ -26,10 +27,11 @@ class HomeFeedVC: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    /**
+     */
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "PostingCell", for: indexPath) as! HomeFeedCell
         let currentPost = retrievedPosts[indexPath.row]
-//        print(retrievedPosts[indexPath.row])
         cell.songTitleLabel.text = currentPost.songTitle
 //        cell.profileImage.image = UIImage(named: "profile")
         cell.captionLabel.text = currentPost.caption

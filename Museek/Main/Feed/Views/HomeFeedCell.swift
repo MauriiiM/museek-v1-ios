@@ -12,13 +12,15 @@ class HomeFeedCell: UITableViewCell {
     @IBOutlet weak var songTitleLabel: UILabel!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var videoViewRatio: NSLayoutConstraint!
     @IBOutlet weak var videoView: UIView!
+    @IBOutlet weak var videoThumbnail: UIImageView!
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var fireButton: RoundedButton!
     @IBOutlet weak var commentButton: RoundedButton!
     @IBOutlet weak var shareButton: RoundedButton!
     
+    @IBOutlet weak var videoViewRatio: NSLayoutConstraint!
+    var videoPlayerVC = VideoVC()
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -235,7 +235,9 @@
         <scene sceneID="m9m-uS-HHt">
             <objects>
                 <navigationController storyboardIdentifier="NavCamera" title="Camera" automaticallyAdjustsScrollViewInsets="NO" id="ARi-5O-7VP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="I8y-tg-hsh"/>
+                    <tabBarItem key="tabBarItem" title="" image="video" selectedImage="video (filled)" id="I8y-tg-hsh">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="5LL-2q-ZNR">
