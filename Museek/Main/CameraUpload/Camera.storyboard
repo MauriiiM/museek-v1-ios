@@ -98,11 +98,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="J6M-K1-PEb">
-                                <rect key="frame" x="310" y="361.66666666666669" width="51" height="31"/>
+                                <rect key="frame" x="310" y="370.66666666666669" width="51" height="31"/>
                                 <color key="onTintColor" name="AppAccent"/>
                             </switch>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Song Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YTA-Cs-tOk">
-                                <rect key="frame" x="16" y="323" width="343" height="30"/>
+                                <rect key="frame" x="16" y="332" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -111,24 +111,24 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is your song a cover?" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BbJ-HJ-IUD">
-                                <rect key="frame" x="16" y="361.66666666666669" width="162" height="20"/>
+                                <rect key="frame" x="16" y="370.66666666666669" width="162" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="89p-oj-x9l">
-                                <rect key="frame" x="16" y="103.99999999999999" width="343" height="184.66666666666663"/>
+                                <rect key="frame" x="16" y="104" width="343" height="193"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" name="AppAccent"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="89p-oj-x9l" secondAttribute="height" multiplier="288:155" id="PrD-3X-6cn"/>
+                                    <constraint firstAttribute="width" secondItem="89p-oj-x9l" secondAttribute="height" multiplier="343:193" id="4T7-ym-muB"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="73i-io-N3h" kind="embed" identifier="VideoContainerSegue" id="y9c-rh-v2t"/>
                                 </connections>
                             </containerView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I3G-zY-mQ6" customClass="OutlinedTextView" customModule="Museek" customModuleProvider="target">
-                                <rect key="frame" x="16" y="400.66666666666669" width="343" height="62"/>
+                                <rect key="frame" x="16" y="409.66666666666669" width="343" height="62"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" name="AppAccent"/>
                                 <constraints>
@@ -257,11 +257,11 @@
             <objects>
                 <viewController id="73i-io-N3h" customClass="VideoVC" customModule="Museek" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SMN-YB-2sF">
-                        <rect key="frame" x="0.0" y="0.0" width="343" height="184.66666666666663"/>
+                        <rect key="frame" x="0.0" y="0.0" width="343" height="193"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A0C-1P-U0O">
-                                <rect key="frame" x="0.0" y="0.0" width="343" height="184.66666666666666"/>
+                                <rect key="frame" x="0.0" y="0.0" width="343" height="193"/>
                                 <gestureRecognizers/>
                             </view>
                         </subviews>

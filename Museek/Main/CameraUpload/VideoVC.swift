@@ -12,7 +12,7 @@ import AVFoundation
 
 protocol ContainerMaster {
     var url: (movie: URL?, highlightClip: URL?) {get set}
-//    var canUpload: Bool {get}
+    //    var canUpload: Bool {get}
 }
 
 extension VideoVC: UINavigationControllerDelegate, UIVideoEditorControllerDelegate{
@@ -22,7 +22,7 @@ extension VideoVC: UINavigationControllerDelegate, UIVideoEditorControllerDelega
      */
     func videoEditorController(_ editor: UIVideoEditorController, didSaveEditedVideoToPath editedVideoPath: String) {
         containerMaster?.url.highlightClip = URL(fileURLWithPath: editedVideoPath)
-//        print("\n\noriginalURL=\(containerMaster?.url.movie)\nclipURL=\(containerMaster?.url.highlightClip)\n\n")
+        //        print("\n\noriginalURL=\(containerMaster?.url.movie)\nclipURL=\(containerMaster?.url.highlightClip)\n\n")
     }
     
     /**
@@ -39,7 +39,7 @@ class VideoVC: UIViewController {
     fileprivate var player: AVPlayer!
     fileprivate var avPlayerVC = AVPlayerViewController()
     fileprivate var movieEditor = UIVideoEditorController()
-
+    
     
     override func viewWillAppear(_ animated: Bool) {
         if let cm = containerMaster {

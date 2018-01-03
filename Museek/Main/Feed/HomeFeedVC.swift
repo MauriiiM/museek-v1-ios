@@ -15,6 +15,8 @@ class HomeFeedVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.estimatedRowHeight = 475
+        self.tableView.rowHeight = UITableViewAutomaticDimension
         let database = Database.database()
         retrievePostingData(from: database)
     }
@@ -24,15 +26,18 @@ class HomeFeedVC: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return retrievedPosts.count
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "PostingCell", for: indexPath) as! HomeFeedCell
+        let currentPost = retrievedPosts[indexPath.row]
+//        print(retrievedPosts[indexPath.row])
+        cell.songTitleLabel.text = currentPost.songTitle
+//        cell.profileImage.image = UIImage(named: "profile")
+        cell.captionLabel.text = currentPost.caption
+        return cell
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "PostingCell", for: indexPath)
-        cell.backgroundColor = UIColor(named: "AppMain")
-        cell.textLabel?.text = retrievedPosts[indexPath.row].songTitle
-        return cell
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return retrievedPosts.count
     }
     
     /**
