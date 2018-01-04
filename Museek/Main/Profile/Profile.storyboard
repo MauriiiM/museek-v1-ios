@@ -12,14 +12,20 @@
         <!--[Username]-->
         <scene sceneID="Fns-Mh-voW">
             <objects>
-                <viewController id="8g0-E8-Vab" sceneMemberID="viewController">
+                <viewController id="8g0-E8-Vab" customClass="ProfileVC" customModule="Museek" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eG6-sp-Eil">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="6n9-BV-7vw"/>
                     </view>
-                    <navigationItem key="navigationItem" title="[Username]" id="PVl-p6-vIA"/>
+                    <navigationItem key="navigationItem" title="[Username]" id="PVl-p6-vIA">
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="ncQ-5P-XCD">
+                            <connections>
+                                <action selector="logoutButtonPressed:" destination="8g0-E8-Vab" id="tpt-Ig-Esq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ply-tg-UkG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

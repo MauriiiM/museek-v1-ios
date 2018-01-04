@@ -19,8 +19,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHH-64-69R" customClass="RoundedButton" customModule="Museek" customModuleProvider="target">
-                                <rect key="frame" x="270" y="363.66666666666669" width="85" height="85"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHH-64-69R" customClass="RoundedButton" customModule="Museek" customModuleProvider="target">
+                                <rect key="frame" x="280" y="369" width="75" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="gHH-64-69R" secondAttribute="height" multiplier="1:1" id="L6w-Ls-Vr0"/>
                                 </constraints>
@@ -287,7 +287,7 @@
     </scenes>
     <resources>
         <image name="flash (off)" width="35" height="35"/>
-        <image name="record" width="84" height="85"/>
+        <image name="record" width="75" height="75"/>
         <image name="switch camera" width="35" height="35"/>
         <image name="video" width="25" height="25"/>
         <image name="video (filled)" width="25" height="25"/>

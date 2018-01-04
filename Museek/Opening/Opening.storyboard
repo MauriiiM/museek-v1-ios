@@ -18,6 +18,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="openingBackground.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Ie6-MC-kPG">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                            </imageView>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yIG-9h-1cm" customClass="RoundedButton" customModule="Museek" customModuleProvider="target">
                                 <rect key="frame" x="8" y="367" width="359" height="38"/>
                                 <color key="backgroundColor" name="AppAccent"/>
@@ -36,7 +39,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Z3-VE-EJv" customClass="RoundedButton" customModule="Museek" customModuleProvider="target">
-                                <rect key="frame" x="8" y="418" width="359" height="36.333333333333314"/>
+                                <rect key="frame" x="8" y="418" width="359" height="36"/>
+                                <color key="backgroundColor" name="AppMain"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
                                         <fragment content="Sign In">
@@ -53,7 +57,7 @@
                                         <color key="value" red="0.92941176469999998" green="0.4039215686" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="7"/>
@@ -63,22 +67,21 @@
                                     <segue destination="lv4-dq-QlK" kind="show" identifier="toSignIn" id="5RR-sF-cek"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a08-zH-uDF">
-                                <rect key="frame" x="106" y="40" width="202" height="84"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="a08-zH-uDF">
+                                <rect key="frame" x="61" y="40" width="254" height="84"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="[Lo">
+                                    <fragment content="Mu">
                                         <attributes>
-                                            <color key="NSColor" red="0.92941176470588238" green="0.40392156862745099" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="NSColor" red="0.92848032712936401" green="0.40099602937698364" blue="0.52545672655105591" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <font key="NSFont" size="72" name=".SFNSText"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
-                                    <fragment content="go]">
+                                    <fragment content="seek">
                                         <attributes>
-                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="NSColor" red="0.40784725546836853" green="0.40783786773681641" blue="0.40783971548080444" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <font key="NSFont" size="72" name=".SFNSText"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -87,20 +90,26 @@
                         </subviews>
                         <color key="backgroundColor" name="AppMain"/>
                         <constraints>
+                            <constraint firstItem="Ie6-MC-kPG" firstAttribute="height" secondItem="g9R-un-l1i" secondAttribute="height" id="6PV-xj-Xra"/>
                             <constraint firstItem="1Qo-hi-LXd" firstAttribute="trailing" secondItem="yIG-9h-1cm" secondAttribute="trailing" constant="8" id="8AJ-I1-fbd"/>
                             <constraint firstItem="7Z3-VE-EJv" firstAttribute="centerY" secondItem="1Qo-hi-LXd" secondAttribute="centerY" constant="25" id="GfL-0h-osr"/>
                             <constraint firstItem="7Z3-VE-EJv" firstAttribute="width" secondItem="yIG-9h-1cm" secondAttribute="width" id="JMV-mM-t9Z"/>
+                            <constraint firstItem="Ie6-MC-kPG" firstAttribute="centerX" secondItem="7Z3-VE-EJv" secondAttribute="centerX" id="Kb9-Jy-8B6"/>
                             <constraint firstItem="7Z3-VE-EJv" firstAttribute="centerX" secondItem="1Qo-hi-LXd" secondAttribute="centerX" id="VZo-va-e9c"/>
                             <constraint firstItem="yIG-9h-1cm" firstAttribute="centerY" secondItem="1Qo-hi-LXd" secondAttribute="centerY" constant="-25" id="eSZ-tg-D4A"/>
+                            <constraint firstItem="Ie6-MC-kPG" firstAttribute="top" secondItem="g9R-un-l1i" secondAttribute="top" id="f8z-7d-lhi"/>
+                            <constraint firstItem="a08-zH-uDF" firstAttribute="centerX" secondItem="g9R-un-l1i" secondAttribute="centerX" id="iR3-iM-yLq"/>
                             <constraint firstItem="yIG-9h-1cm" firstAttribute="centerX" secondItem="1Qo-hi-LXd" secondAttribute="centerX" id="jK3-tz-eoE"/>
+                            <constraint firstItem="Ie6-MC-kPG" firstAttribute="width" secondItem="g9R-un-l1i" secondAttribute="width" id="lh6-eW-JHY"/>
                             <constraint firstItem="yIG-9h-1cm" firstAttribute="leading" secondItem="1Qo-hi-LXd" secondAttribute="leading" constant="8" id="oTW-li-LhD"/>
+                            <constraint firstItem="a08-zH-uDF" firstAttribute="top" secondItem="g9R-un-l1i" secondAttribute="top" constant="40" id="t8c-3v-gZl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1Qo-hi-LXd"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LUI-5a-vws" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="25" y="-873"/>
+            <point key="canvasLocation" x="24.800000000000001" y="-873.39901477832518"/>
         </scene>
         <!--SignUp-->
         <scene sceneID="c6z-mS-ewW">
@@ -120,8 +129,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="openingBackground.jpg" width="1280" height="800"/>
         <namedColor name="AppAccent">
             <color red="0.92941176470588238" green="0.40392156862745099" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="AppMain">
+            <color red="0.40799999237060547" green="0.40799999237060547" blue="0.40799999237060547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="AppMain">
             <color red="0.40799999237060547" green="0.40799999237060547" blue="0.40799999237060547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

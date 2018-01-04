@@ -150,7 +150,7 @@ class UploadVC: UIViewController, ContainerMaster {
     fileprivate func upload(videoData videoUrl: String, withThumbnail thumbnailURL: String, to database: Database){
         let userPostsRef = database.reference().child("\(Auth.auth().currentUser!.uid)/\(FirebaseConfig.posts)")
         let newPostRef = userPostsRef.childByAutoId()
-        let fileArray:[String : Any?] = ["thumbnailURL": thumbnailURL, "fullVideoURL": videoUrl, "songTitle": songTitleTF.text, "caption": captionTV.text, "latitude": locValue?.latitude, "longitude" : locValue?.longitude]
+        let fileArray:[String : Any?] = ["thumbnailURL": thumbnailURL, "fullVideoURL": videoUrl, "songTitle": songTitleTF.text, "caption": captionTV.text, "latitude": locValue?.latitude, "longitude" : locValue?.longitude, "uid": Auth.auth().currentUser!.uid]
         newPostRef.setValue(fileArray, withCompletionBlock: {(error, dbRef) in
             if error != nil { print(error!); return }
             else {
