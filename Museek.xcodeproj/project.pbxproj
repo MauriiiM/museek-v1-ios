@@ -214,15 +214,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		227B1CAA1FF39E3400374193 /* InterfaceBuilder */ = {
-			isa = PBXGroup;
-			children = (
-				227B1CA61FF3994E00374193 /* Login.storyboard */,
-				227B1CA41FF3994100374193 /* SignUp.storyboard */,
-			);
-			path = InterfaceBuilder;
-			sourceTree = "<group>";
-		};
 		22936E2A1F94617600256C75 /* CustomUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -303,7 +294,8 @@
 			isa = PBXGroup;
 			children = (
 				227B1CA21FF3992A00374193 /* Opening.storyboard */,
-				227B1CAA1FF39E3400374193 /* InterfaceBuilder */,
+				227B1CA61FF3994E00374193 /* Login.storyboard */,
+				227B1CA41FF3994100374193 /* SignUp.storyboard */,
 				22C4CD271F821E8F00B155FE /* LoginVC.swift */,
 				22C4CD341F86CDF800B155FE /* OpeningVC.swift */,
 				22C4CD2B1F837F7900B155FE /* SignUpVC.swift */,

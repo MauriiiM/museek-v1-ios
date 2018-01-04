@@ -116,17 +116,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="89p-oj-x9l">
-                                <rect key="frame" x="16" y="104" width="343" height="193"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" name="AppAccent"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="89p-oj-x9l" secondAttribute="height" multiplier="343:193" id="4T7-ym-muB"/>
-                                </constraints>
-                                <connections>
-                                    <segue destination="73i-io-N3h" kind="embed" identifier="VideoContainerSegue" id="y9c-rh-v2t"/>
-                                </connections>
-                            </containerView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I3G-zY-mQ6" customClass="OutlinedTextView" customModule="Museek" customModuleProvider="target">
                                 <rect key="frame" x="16" y="409.66666666666669" width="343" height="62"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -169,6 +158,17 @@
                                     <action selector="uploadButtonPressed:" destination="NYm-K4-Vgd" eventType="touchUpInside" id="m3v-EN-2Wb"/>
                                 </connections>
                             </button>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="89p-oj-x9l">
+                                <rect key="frame" x="16" y="104" width="343" height="193"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="AppAccent"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="89p-oj-x9l" secondAttribute="height" multiplier="343:193" id="4T7-ym-muB"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="73i-io-N3h" kind="embed" identifier="VideoContainerSegue" id="y9c-rh-v2t"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -277,7 +277,7 @@
                         <viewLayoutGuide key="safeArea" id="sAc-dK-L3Y"/>
                     </view>
                     <connections>
-                        <outlet property="topClearView" destination="A0C-1P-U0O" id="ap8-2A-070"/>
+                        <outlet property="gestureRecognizerView" destination="A0C-1P-U0O" id="ap8-2A-070"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UD9-5a-dpo" userLabel="First Responder" sceneMemberID="firstResponder"/>

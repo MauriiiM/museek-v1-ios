@@ -192,13 +192,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="632.33333333333337"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Can we access your location?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gZD-EJ-bsL">
-                                        <rect key="frame" x="8" y="161.33333333333334" width="359" height="28"/>
+                                        <rect key="frame" x="8" y="141" width="359" height="28"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your location is needed to get local artists' ranking in your area." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y6F-zP-drB">
-                                        <rect key="frame" x="8" y="197.33333333333331" width="359" height="40.666666666666657"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We only use the current city you're in. This is needed to get local users' song ranking in your area." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y6F-zP-drB">
+                                        <rect key="frame" x="10" y="177" width="355" height="61"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -244,7 +244,7 @@
                                 </subviews>
                                 <color key="backgroundColor" name="AppMain"/>
                                 <constraints>
-                                    <constraint firstItem="y6F-zP-drB" firstAttribute="leading" secondItem="aq2-Cd-LCf" secondAttribute="leading" constant="8" id="05e-uL-R9N"/>
+                                    <constraint firstItem="y6F-zP-drB" firstAttribute="leading" secondItem="aq2-Cd-LCf" secondAttribute="leading" constant="10" id="05e-uL-R9N"/>
                                     <constraint firstItem="aq2-Cd-LCf" firstAttribute="trailing" secondItem="w1O-qx-I1y" secondAttribute="trailing" constant="8" id="D5y-iF-Jxc"/>
                                     <constraint firstItem="gZD-EJ-bsL" firstAttribute="leading" secondItem="aq2-Cd-LCf" secondAttribute="leading" constant="8" id="HDt-cH-xYr"/>
                                     <constraint firstItem="tTO-EZ-XZy" firstAttribute="centerX" secondItem="KCk-3P-J3X" secondAttribute="centerX" id="J3H-ZE-Kf0"/>
@@ -252,7 +252,7 @@
                                     <constraint firstItem="tTO-EZ-XZy" firstAttribute="leading" secondItem="aq2-Cd-LCf" secondAttribute="leading" constant="8" id="OTl-Ps-Ldh"/>
                                     <constraint firstItem="w1O-qx-I1y" firstAttribute="leading" secondItem="aq2-Cd-LCf" secondAttribute="leading" constant="8" id="T4r-8z-PWW"/>
                                     <constraint firstItem="tTO-EZ-XZy" firstAttribute="top" secondItem="w1O-qx-I1y" secondAttribute="bottom" constant="20" id="Ubt-TR-Kqa"/>
-                                    <constraint firstItem="aq2-Cd-LCf" firstAttribute="trailing" secondItem="y6F-zP-drB" secondAttribute="trailing" constant="8" id="ava-UF-ApQ"/>
+                                    <constraint firstItem="aq2-Cd-LCf" firstAttribute="trailing" secondItem="y6F-zP-drB" secondAttribute="trailing" constant="10" id="ava-UF-ApQ"/>
                                     <constraint firstItem="w1O-qx-I1y" firstAttribute="centerY" secondItem="KCk-3P-J3X" secondAttribute="centerY" id="iaI-BZ-kYm"/>
                                     <constraint firstItem="aq2-Cd-LCf" firstAttribute="trailing" secondItem="tTO-EZ-XZy" secondAttribute="trailing" constant="8" id="mFH-qo-R0O"/>
                                     <constraint firstItem="w1O-qx-I1y" firstAttribute="top" secondItem="y6F-zP-drB" secondAttribute="bottom" constant="60" id="rXQ-EE-O40"/>
@@ -407,17 +407,8 @@
         <namedColor name="AppAccent">
             <color red="0.92941176469999998" green="0.4039215686" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
-        <namedColor name="AppAccent">
-            <color red="0.92941176469999998" green="0.4039215686" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
         <namedColor name="AppMain">
             <color red="0.40799999240000001" green="0.40799999240000001" blue="0.40799999240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="AppMain">
-            <color red="0.40799999240000001" green="0.40799999240000001" blue="0.40799999240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="AppMain">
-            <color red="0.40799999237060547" green="0.40799999237060547" blue="0.40799999237060547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>

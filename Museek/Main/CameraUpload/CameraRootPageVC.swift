@@ -35,9 +35,9 @@ class CameraRootPageVC: UIPageViewController, UIPageViewControllerDataSource {
         if let firstVC = viewControllerList.first {
             self.setViewControllers([firstVC], direction: .forward, animated: false, completion: nil)
         }
-        NotificationCenter.default.addObserver(self, selector: #selector(enableSwipe(notification:)), name:NSNotification.Name(rawValue: "enableSwipe"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(disableSwipe(notification:)), name:NSNotification.Name(rawValue: "disableSwipe"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(turnToPreviousPage(notification:)), name:NSNotification.Name(rawValue: "turnToPreviousPage"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(enableSwipe), name: Notification.Name(rawValue: "enableSwipe"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(disableSwipe), name: Notification.Name(rawValue: "disableSwipe"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(turnToPreviousPage(notification:)), name: Notification.Name(rawValue: "turnToPreviousPage"), object: nil)
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
@@ -57,11 +57,11 @@ class CameraRootPageVC: UIPageViewController, UIPageViewControllerDataSource {
         return viewControllerList[nextIndex]
     }
     
-    @objc fileprivate func disableSwipe(notification: Notification){
+    @objc fileprivate func disableSwipe(){
         self.dataSource = nil
     }
     
-    @objc fileprivate func enableSwipe(notification: Notification){
+    @objc fileprivate func enableSwipe(){
         self.dataSource = self
     }
     

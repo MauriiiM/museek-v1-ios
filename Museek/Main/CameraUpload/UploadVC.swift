@@ -9,13 +9,11 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseStorage
+import FirebaseAuth
+import CoreLocation
 
 class UploadVC: UIViewController, ContainerMaster {
-    fileprivate var _thumbnail: UIImage?
-    var thumbnail: UIImage?{
-        get{ return _thumbnail }
-        set{ _thumbnail = newValue }
-    }
+    fileprivate var thumbnail: UIImage?
     fileprivate var _url: (movie: URL?, highlightClip: URL?)?{
         didSet{
             if oldValue?.highlightClip == nil
@@ -44,29 +42,55 @@ class UploadVC: UIViewController, ContainerMaster {
     @IBOutlet fileprivate weak var uploadButton: RoundedButton!
     @IBOutlet fileprivate weak var coverSongSwitch: UISwitch!
     @IBOutlet fileprivate weak var captionTV: OutlinedTextView!
-    fileprivate var videoEditVC: VideoVC!
+    fileprivate var videoPlayerVC: VideoVC!
+    fileprivate var movieEditor = UIVideoEditorController()
+    fileprivate var locationManager: CLLocationManager!
+    fileprivate var locValue: CLLocationCoordinate2D?
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is VideoVC {
-            videoEditVC = segue.destination as! VideoVC
-            videoEditVC.containerMaster = self
+            videoPlayerVC = segue.destination as! VideoVC
+            videoPlayerVC.containerMaster = self
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupNavigationBar()
+        setupNavigationBar()
+        setupLocationManager()
         self.tabBarController?.tabBar.isHidden = true
-        self.hideKeyboardWhenTappedAround()
+        hideKeyboardWhenTappedAround()
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(giveContainerGestureRecognizer),
+                                               name: Notification.Name(rawValue: "videoVCLoaded"),
+                                               object: nil)
+    }
+    
+    @objc  func giveContainerGestureRecognizer(){
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.presentVideoEditVC))
+        tapGesture.numberOfTapsRequired = 2
+        tapGesture.delegate = self as? UIGestureRecognizerDelegate
+        videoPlayerVC.gestureRecognizerView.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc fileprivate func presentVideoEditVC(){
+        if UIVideoEditorController.canEditVideo(atPath: url.movie!.absoluteString) {
+            movieEditor.delegate = self
+            movieEditor.videoPath = url.movie!.absoluteString
+            movieEditor.videoQuality = .typeHigh
+            movieEditor.videoMaximumDuration = 30//seconds
+            present(movieEditor, animated: true, completion: nil)
+        } else { print("\nVIDEO CAN'T BE EDITED") }
     }
     
     fileprivate func uploadButton(isActive: Bool){
-            uploadButton.isEnabled = canUpload
-            if canUpload {
-                uploadButton.backgroundColor = UIColor(named: "AppAccent")
-            } else {
-                uploadButton.backgroundColor = .lightGray
-            }
+        uploadButton.isEnabled = canUpload
+        if canUpload {
+            uploadButton.backgroundColor = UIColor(named: "AppAccent")
+        } else {
+            uploadButton.backgroundColor = .lightGray
+        }
     }
     
     fileprivate func setupNavigationBar(){
@@ -82,34 +106,91 @@ class UploadVC: UIViewController, ContainerMaster {
     
     @IBAction fileprivate func uploadButtonPressed(_ sender: UIButton){
         if canUpload {
-            uploadButton.isEnabled = false//
-            let uploadUID = UUID().uuidString
-            //            let storageRef = Storage.storage().reference(forURL: FirebaseConfig.STORAGE.ROOT_URL_REF)
-            let storageRef = Storage.storage().reference().child(FirebaseConfig.posts).child(uploadUID)
-            //            let highlightRef = storageRef.child(FirebaseConfig.STORAGE.postHighlightClip)
-            
-            storageRef.putFile(from: _url!.movie!, metadata: nil, completion: {(metadata, error) in
-                if error != nil { return }
-                else {
-                    let videoStorageURL = metadata?.downloadURL()?.absoluteString
-                    let db = Database.database()
-                    self.upload(videoData: videoStorageURL!, to: db)
-                }
-            })
+            uploadButton.isEnabled = false
+            let storageRef = Storage.storage().reference().child(FirebaseConfig.posts)
+            upload(video: url.movie!.absoluteURL, to: storageRef)
+            self.navigationController?.popToRootViewController(animated: false)
+            self.tabBarController?.selectedIndex = 0
         }
     }
     
-    fileprivate func upload(videoData url: String, to database: Database){
-        let postsRef = database.reference().child(FirebaseConfig.posts)
-        let newPostId = postsRef.childByAutoId().key
-        let newPostRef = postsRef.child(newPostId)
-        let fileArray:[String : Any?] = ["videoThumbnail": thumbnail, "fullVideoURL": url, "songTitle": songTitleTF.text, "caption": captionTV.text]
+    fileprivate func upload(thumbnail: UIImage, to storageRef: StorageReference, onSuccess: @escaping (_ thumbnailURL: String) -> Void){
+        let postUID = storageRef.child("thumbnails/\(UUID().uuidString)")
+        let thumbnailData = UIImageJPEGRepresentation(thumbnail, 0.8)
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpg"
+        postUID.putData(thumbnailData!, metadata: metaData) {(metadata, error) in
+            if error != nil { return }
+            onSuccess(metadata!.downloadURL()!.absoluteString)
+        }
+    }
+    
+    /**
+     logic in this method uploads data to FirebaseStorage, the calls upload() to
+     upload the stored data to the realtime database
+     */
+    fileprivate func upload(video url: URL, to storageRef: StorageReference){
+        let postUID = storageRef.child("\(UUID().uuidString)")
+        postUID.putFile(from: url, metadata: nil, completion: {(metadata, error) in
+            if error != nil { return }
+            else {
+                self.upload(thumbnail: self.videoPlayerVC.getVideoThumbnail()!, to: storageRef){ thumbnailURL in
+                    
+                    let videoStorageURL = metadata?.downloadURL()?.absoluteString
+                    let db = Database.database()
+                    self.upload(videoData: videoStorageURL!, withThumbnail: thumbnailURL, to: db)
+                }
+            }
+        })
+    }
+    
+    /**
+     uploads to given database
+     */
+    fileprivate func upload(videoData videoUrl: String, withThumbnail thumbnailURL: String, to database: Database){
+        let userPostsRef = database.reference().child("\(Auth.auth().currentUser!.uid)/\(FirebaseConfig.posts)")
+        let newPostRef = userPostsRef.childByAutoId()
+        let fileArray:[String : Any?] = ["thumbnailURL": thumbnailURL, "fullVideoURL": videoUrl, "songTitle": songTitleTF.text, "caption": captionTV.text, "latitude": locValue?.latitude, "longitude" : locValue?.longitude]
         newPostRef.setValue(fileArray, withCompletionBlock: {(error, dbRef) in
             if error != nil { print(error!); return }
             else {
-                self.navigationController?.popToRootViewController(animated: false)
-                self.tabBarController?.selectedIndex = 0
+                
             }
         })
+    }
+}
+
+
+extension UploadVC: UINavigationControllerDelegate, UIVideoEditorControllerDelegate{
+    
+    /**
+     called if UIVideoEditor succesfully saved new 30 second video
+     */
+    func videoEditorController(_ editor: UIVideoEditorController, didSaveEditedVideoToPath editedVideoPath: String) {
+        url.highlightClip = URL(fileURLWithPath: editedVideoPath)
+        //        containerMaster?.thumbnail = getThumbnailFrom(path: URL(fileURLWithPath: editedVideoPath))
+    }
+    
+    /**
+     called if UIVideoEditor couldn't save new clip
+     */
+    func videoEditorController(_ editor: UIVideoEditorController, didFailWithError error: Error) {
+        print("\n\nSOMETHING WENT WRONG\n\n")
+    }
+}
+
+extension UploadVC: CLLocationManagerDelegate{
+    fileprivate func setupLocationManager(){
+        locationManager = CLLocationManager()
+        locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        if CLLocationManager.authorizationStatus() == .notDetermined {
+            locationManager.requestAlwaysAuthorization()
+        }
+        locationManager.startUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        locValue = manager.location!.coordinate
     }
 }

@@ -12,34 +12,14 @@ import AVFoundation
 
 protocol ContainerMaster {
     var url: (movie: URL?, highlightClip: URL?) {get set}
-    var thumbnail: UIImage? {get set}
 }
 
-extension VideoVC: UINavigationControllerDelegate, UIVideoEditorControllerDelegate{
-    
-    /**
-     called if UIVideoEditor succesfully saved new 30 second video
-     */
-    func videoEditorController(_ editor: UIVideoEditorController, didSaveEditedVideoToPath editedVideoPath: String) {
-        containerMaster?.url.highlightClip = URL(fileURLWithPath: editedVideoPath)
-//        containerMaster?.thumbnail = getThumbnailFrom(path: URL(fileURLWithPath: editedVideoPath))
-    }
-    
-    /**
-     called if UIVideoEditor couldn't save new clip
-     */
-    func videoEditorController(_ editor: UIVideoEditorController, didFailWithError error: Error) {
-        print("\n\nSOMETHING WENT WRONG\n\n")
-    }
-}
 
 class VideoVC: UIViewController {
     var containerMaster: ContainerMaster?//is set when segued from camVC
-    @IBOutlet weak fileprivate var topClearView: UIView!
+    @IBOutlet weak var gestureRecognizerView: UIView!
     fileprivate var player: AVPlayer!
     fileprivate var avPlayerVC = AVPlayerViewController()
-    fileprivate var movieEditor = UIVideoEditorController()
-    
     
     override func viewWillAppear(_ animated: Bool) {
         if let cm = containerMaster {
@@ -51,7 +31,7 @@ class VideoVC: UIViewController {
                 avPlayerVC.view.frame = self.view.frame
                 self.addChildViewController(avPlayerVC)
                 self.view.addSubview(avPlayerVC.view)//allows for video to play outside of fullscreen
-                self.view.addSubview(topClearView)
+                self.view.addSubview(gestureRecognizerView)
             } else { player.play() }
         }
     }
@@ -66,20 +46,12 @@ class VideoVC: UIViewController {
                                                 self.player?.play() }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        movieEditor.delegate = self
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.videoWasTapped))
-        tapGesture.numberOfTapsRequired = 2
-        tapGesture.delegate = self as? UIGestureRecognizerDelegate
-        topClearView.addGestureRecognizer(tapGesture)
-        
-        containerMaster?.thumbnail = getThumbnailFrom(path: containerMaster!.url.movie!)
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         player.pause()
+    }
+    
+    override func viewDidLoad() {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "videoVCLoaded"), object: nil)
     }
     
     deinit {
@@ -91,10 +63,10 @@ class VideoVC: UIViewController {
     /**
      creates a UIImage from the first frame of given URL video
      */
-    fileprivate func getThumbnailFrom(path url: URL) -> UIImage? {
+    func getVideoThumbnail() -> UIImage? {
         var thumbnail: UIImage?
         do {
-            let asset = AVURLAsset(url: url , options: nil)
+            let asset = AVURLAsset(url: containerMaster!.url.movie! , options: nil)
             let imgGenerator = AVAssetImageGenerator(asset: asset)
             imgGenerator.appliesPreferredTrackTransform = true
             let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(0, 1), actualTime: nil)
@@ -103,14 +75,5 @@ class VideoVC: UIViewController {
             print("*** Error generating thumbnail: \(error.localizedDescription)")
         }
         return thumbnail
-    }
-    
-    @objc fileprivate func videoWasTapped(){
-        if UIVideoEditorController.canEditVideo(atPath: containerMaster!.url.movie!.absoluteString) {
-            movieEditor.videoPath = containerMaster!.url.movie!.absoluteString
-            movieEditor.videoQuality = .typeHigh
-            movieEditor.videoMaximumDuration = 30//seconds
-            present(movieEditor, animated: true, completion: nil)
-        } else { print("\nVIDEO CAN'T BE EDITED") }
     }
 }

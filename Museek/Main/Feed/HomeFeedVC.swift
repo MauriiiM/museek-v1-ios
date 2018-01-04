@@ -35,7 +35,14 @@ class HomeFeedVC: UITableViewController {
         cell.songTitleLabel.text = currentPost.songTitle
 //        cell.profileImage.image = UIImage(named: "profile")
         cell.captionLabel.text = currentPost.caption
+//        cell.videoThumbnail.image = currentPost.
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        if cell is VideoVC {
+//            (cell as! HomeFeedCell).videoPlayerVC.removeFromParentViewController()
+//        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
