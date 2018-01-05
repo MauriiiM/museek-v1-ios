@@ -25,9 +25,10 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="i4U-gJ-oRQ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="i4U-gJ-oRQ">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="AppMain"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" name="AppAccent"/>
                         </textAttributes>
@@ -46,12 +47,12 @@
             <objects>
                 <tableViewController id="wzq-4p-osL" customClass="HomeFeedVC" customModule="Museek" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="A7f-qQ-gh2">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="separatorColor" name="AppAccent"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostingCell" rowHeight="450" id="wXj-du-pJW" customClass="HomeFeedCell" customModule="Museek" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostingCell" rowHeight="450" id="wXj-du-pJW" customClass="HomeFeedCell" customModule="Museek" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="450"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wXj-du-pJW" id="Tnv-9K-0S8">
@@ -86,6 +87,9 @@
                                                     <real key="value" value="7"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="likeButtonTapped" destination="wXj-du-pJW" eventType="touchUpInside" id="ldT-ae-3y2"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WGW-GR-LVn" customClass="RoundedButton" customModule="Museek" customModuleProvider="target">
                                             <rect key="frame" x="334" y="310.66666666666669" width="25" height="25"/>
@@ -99,6 +103,9 @@
                                                     <real key="value" value="7"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="commentButtonTapped" destination="wXj-du-pJW" eventType="touchUpInside" id="C4I-vf-5X6"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="STr-ZE-eot" customClass="RoundedButton" customModule="Museek" customModuleProvider="target">
                                             <rect key="frame" x="334" y="350.66666666666669" width="25" height="22"/>
@@ -109,11 +116,26 @@
                                                     <real key="value" value="7"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="shareButtonTapped" destination="wXj-du-pJW" eventType="touchUpInside" id="E02-Jo-ayY"/>
+                                            </connections>
                                         </button>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="2fA-fo-PzO">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default user photo" translatesAutoresizingMaskIntoConstraints="NO" id="2fA-fo-PzO" customClass="RoundedImageView" customModule="Museek" customModuleProvider="target">
                                             <rect key="frame" x="326" y="10" width="40" height="40"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="view." value="YES"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="20"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                    <real key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" name="AppMain"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Greatest Song Title for a Song There Can Be" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eX4-uA-gtN">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eX4-uA-gtN">
                                             <rect key="frame" x="4" y="10" width="318" height="18"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
                                             <nil key="textColor"/>
@@ -122,40 +144,34 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mZd-Fe-MWf">
                                             <rect key="frame" x="4" y="32" width="318" height="18"/>
                                             <attributedString key="attributedText">
-                                                <fragment content="cover by ">
-                                                    <attributes>
-                                                        <font key="NSFont" size="15" name="HelveticaNeue"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                                <fragment content="User McUsername Goes Here">
+                                                <fragment content=" ">
                                                     <attributes>
                                                         <font key="NSFont" size="15" name="HelveticaNeue-Medium"/>
-                                                        <font key="NSOriginalFont" size="15" name="HelveticaNeue-Medium"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
                                             </attributedString>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I've been practicing these notes. Thoughts?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1cw-rk-oSn">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1cw-rk-oSn">
                                             <rect key="frame" x="4" y="310.66666666666669" width="326" height="67.333333333333314"/>
-                                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                            <string key="text">I've been practicing these notes. Thoughts? I've been practicing these notes. Thoughts? I've been practicing these notes. Thoughts?</string>
+                                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oOU-4m-HTy">
-                                            <rect key="frame" x="4" y="273.66666666666669" width="210" height="22"/>
+                                            <rect key="frame" x="4" y="273.66666666666669" width="220" height="22"/>
                                             <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INFO" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ODx-CR-8HT">
-                                            <rect key="frame" x="229" y="273.66666666666669" width="90" height="22"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ODx-CR-8HT">
+                                            <rect key="frame" x="239" y="273.66666666666669" width="90" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="90" id="Kox-bY-RbZ"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -171,7 +187,7 @@
                                         <constraint firstItem="ODx-CR-8HT" firstAttribute="top" secondItem="KyR-oj-vWf" secondAttribute="bottom" constant="4" id="BT8-gm-jcF"/>
                                         <constraint firstItem="WGW-GR-LVn" firstAttribute="top" secondItem="qis-gS-y2W" secondAttribute="bottom" constant="15" id="D4r-E5-Q8q"/>
                                         <constraint firstItem="ODx-CR-8HT" firstAttribute="bottom" secondItem="qis-gS-y2W" secondAttribute="bottom" id="Exp-9D-bsk"/>
-                                        <constraint firstItem="qis-gS-y2W" firstAttribute="leading" secondItem="ODx-CR-8HT" secondAttribute="trailing" constant="15" id="IQf-vI-aDG"/>
+                                        <constraint firstItem="qis-gS-y2W" firstAttribute="leading" secondItem="ODx-CR-8HT" secondAttribute="trailing" constant="5" id="IQf-vI-aDG"/>
                                         <constraint firstItem="1cw-rk-oSn" firstAttribute="top" secondItem="WGW-GR-LVn" secondAttribute="top" id="MNA-Mo-Qkj"/>
                                         <constraint firstItem="mZd-Fe-MWf" firstAttribute="bottom" secondItem="2fA-fo-PzO" secondAttribute="bottom" id="S2A-YR-2s5"/>
                                         <constraint firstItem="oOU-4m-HTy" firstAttribute="leading" secondItem="1cw-rk-oSn" secondAttribute="leading" id="Szf-0h-tWK"/>
@@ -232,18 +248,24 @@
                 </avPlayerViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mAM-ty-nve" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1890" y="1344"/>
+            <point key="canvasLocation" x="-2017" y="1249"/>
         </scene>
     </scenes>
     <resources>
         <image name="comment" width="22" height="22"/>
+        <image name="default user photo" width="40" height="40"/>
         <image name="fire" width="22" height="22"/>
-        <image name="profile" width="25" height="25"/>
         <image name="share" width="16" height="16"/>
         <image name="stage" width="25" height="25"/>
         <image name="stage (filled)" width="25" height="25"/>
         <namedColor name="AppAccent">
             <color red="0.92941176470588238" green="0.40392156862745099" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="AppMain">
+            <color red="0.40799999237060547" green="0.40799999237060547" blue="0.40799999237060547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AppMain">
+            <color red="0.40799999240000001" green="0.40799999240000001" blue="0.40799999240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="AppMain">
             <color red="0.40799999237060547" green="0.40799999237060547" blue="0.40799999237060547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
