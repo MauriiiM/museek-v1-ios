@@ -30,7 +30,7 @@
             </objects>
             <point key="canvasLocation" x="-383" y="607"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Notifications-->
         <scene sceneID="ANB-GR-g6e">
             <objects>
                 <tableViewController id="rvQ-V2-ZrZ" sceneMemberID="viewController">
@@ -53,7 +53,7 @@
                             <outlet property="delegate" destination="rvQ-V2-ZrZ" id="b13-HT-bB1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="xnC-9T-qny"/>
+                    <navigationItem key="navigationItem" title="Notifications" id="xnC-9T-qny"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BNI-u6-Jng" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

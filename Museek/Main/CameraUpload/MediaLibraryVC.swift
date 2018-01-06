@@ -10,24 +10,6 @@ import UIKit
 import MobileCoreServices
 import Photos
 
-// MARK: - UIImagePickerControllerDelegate
-extension MediaLibraryVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    /**
-     sets up UIImagePicker and presents the library view
-     */
-    private func startMediaBrowser(usingDelegate delegate: UINavigationControllerDelegate & UIImagePickerControllerDelegate){
-        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) { //source is available
-            
-            moviePicker.sourceType = .photoLibrary
-            moviePicker.mediaTypes = [kUTTypeMovie as String]
-            moviePicker.modalPresentationStyle = .popover
-            moviePicker.allowsEditing = false
-            moviePicker.delegate = delegate
-            present(moviePicker, animated: true, completion: nil)
-        }
-    }
-}
-
 /**
  @TODO: look into https://developer.apple.com/documentation/photos
  */
@@ -44,6 +26,7 @@ class MediaLibraryVC: UIViewController {
         let uploadVC = segue.destination as! UploadVC
         if let movie = selectedMovie {
             uploadVC.url.movie = movie
+            print(movie.absoluteString)
         }
         moviePicker.dismiss(animated: true, completion: nil)
     }
@@ -52,8 +35,9 @@ class MediaLibraryVC: UIViewController {
      is called when a video is selected
      */
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
-        if let selectedURL = info.first {            
-            selectedMovie = URL(fileURLWithPath: String(describing: selectedURL.value))
+        
+        if let selectedURL = info["UIImagePickerControllerMediaURL"] as? URL {
+            selectedMovie = selectedURL
             performSegue(withIdentifier: "toUploadVC", sender: self)
         }
     }
@@ -93,6 +77,24 @@ class MediaLibraryVC: UIViewController {
         case .restricted:
             // The user doesn't have the authority to request access e.g. parental restriction.
             completionHandler(.restricted)
+        }
+    }
+}
+
+// MARK: - UIImagePickerControllerDelegate
+extension MediaLibraryVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    /**
+     sets up UIImagePicker and presents the library view
+     */
+    private func startMediaBrowser(usingDelegate delegate: UINavigationControllerDelegate & UIImagePickerControllerDelegate){
+        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) { //source is available
+            
+            moviePicker.sourceType = .savedPhotosAlbum
+            moviePicker.mediaTypes = [kUTTypeMovie as String]
+            moviePicker.modalPresentationStyle = .popover
+            moviePicker.allowsEditing = false
+            moviePicker.delegate = delegate
+            present(moviePicker, animated: true, completion: nil)
         }
     }
 }

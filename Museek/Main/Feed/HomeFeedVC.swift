@@ -12,6 +12,7 @@ import FirebaseDatabase
 import SDWebImage
 
 class HomeFeedVC: UITableViewController {
+//    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     fileprivate var retrievedPosts = [Post]()
     fileprivate var retrievedUsers = [User]()
     fileprivate var currentlyPlayingIndexPath : IndexPath?
@@ -63,6 +64,8 @@ class HomeFeedVC: UITableViewController {
      retrieves posts from database and creates post objects with database info
      */
     fileprivate func retrievePostingData(from database: Database){
+//        activityIndicator.color = UIColor(named: "AppAccent")
+//        activityIndicator.startAnimating()
         database.reference().child(FirebaseConfig.posts).observe(.childAdded)
         { dataSnapshot in
             if let postSnapDict = dataSnapshot.value as? [String: Any]{

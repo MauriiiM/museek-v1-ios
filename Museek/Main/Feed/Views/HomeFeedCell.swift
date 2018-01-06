@@ -30,14 +30,17 @@ class HomeFeedCell: UITableViewCell {
     @IBOutlet fileprivate weak var fireButton: RoundedButton!
     @IBOutlet fileprivate weak var commentButton: RoundedButton!
     @IBOutlet fileprivate weak var shareButton: RoundedButton!
-    @IBOutlet fileprivate weak var videoViewRatio: NSLayoutConstraint!
     @IBOutlet  weak var videoView: UIView!
-    fileprivate var videoViewHeight: CGFloat?
-    lazy var avPlayerVC = AVPlayerViewController()
-    
+    fileprivate var avLayer: AVPlayerLayer?
+    lazy var avPlayer = AVPlayer()
     
     override func awakeFromNib() {
         super.awakeFromNib()
+//        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
+//                                               object: self.avPlayer.currentItem,
+//                                               queue: .main) { _ in
+//                                                self.avPlayer.seek(to: kCMTimeZero)
+//                                                self.avPlayer.play() }
 //        avPlayerVC.view.frame = videoView.frame
 //        videoView = avPlayerVC.view
     }
@@ -45,7 +48,8 @@ class HomeFeedCell: UITableViewCell {
     override func prepareForReuse() {
         profileImage.image = profileImagePlaceholder
         videoThumbnail.image = videoThumbnailPlaceholder
-//        avPlayerVC.player?.pause()
+        avLayer?.removeFromSuperlayer()
+        avPlayer.pause()
 //        avPlayerVC.player = nil
     }
     
@@ -83,16 +87,22 @@ class HomeFeedCell: UITableViewCell {
             captionLabel.text = post.caption
             download(from: post.thumbnailURL, set: videoThumbnail, withPlaceholder: videoThumbnailPlaceholder)
             if let movieURLString = post.movieURL{
-                let _ = URL(fileURLWithPath: movieURLString)
-//                avPlayerVC.player = AVPlayer(url: movieURL)
-//                avPlayerVC.player?.play()
+                let movieURL = URL(string: movieURLString)
+                avPlayer = AVPlayer(url: movieURL!)
+                avLayer = AVPlayerLayer(player: avPlayer)
+                avLayer!.frame = videoThumbnail.frame
+                avLayer?.frame.size.width = UIScreen.main.bounds.width
+//                self.contentView.layer.addSublayer(avLayer!)
+                videoView.layer.addSublayer(avLayer!)
+                videoThumbnail.image = nil
+                avPlayer.play()
             }
         }
     }
     
     fileprivate func updateCellTop(){
         let formattedString = NSMutableAttributedString()
-        formattedString.attributed("by ", font: "HelveticaNeue", size: 15).attributed(user!.username!, font: "HelveticaNeue-Medium", size: 15)
+        formattedString.attributed("\(post!.isCover!)by ", font: "HelveticaNeue", size: 15).attributed(user!.username!, font: "HelveticaNeue-Medium", size: 15)
         userName.attributedText = formattedString
         download(from: user!.profileImageURL, set: self.profileImage, withPlaceholder: self.profileImagePlaceholder)
     }

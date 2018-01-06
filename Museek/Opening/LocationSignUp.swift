@@ -32,27 +32,4 @@ class LocationSignUp: UIViewController {
             locManager.requestWhenInUseAuthorization()
         }
     }
-    
-    /**
-     checks if user has previously authorized app to use location
-     */
-    //    private func checkLibraryAuthorization(_ completionHandler: @escaping ((_ status: CLAuthorizationStatus) -> Void)) {
-    //        switch CLLocationManager.authorizationStatus() {
-    //        case .authorized:
-    //            //The user has previously granted access to the camera.
-    //            completionHandler(.authorized)
-    //        case .notDetermined:
-    //            // The user has not yet been presented with the option to grant video access so request access.
-    //            CLLocationManager.requestAlwaysAuthorization(        case .denied:
-    //            // The user has previously denied access.
-    //            completionHandler(.denied)
-    //        case .restricted:
-    //            // The user doesn't have the authority to request access e.g. parental restriction.
-    //            completionHandler(.restricted)
-    //        case .authorizedAlways:
-    //            <#code#>
-    //        case .authorizedWhenInUse:
-    //            <#code#>
-    //        }
-    //    }
 }
