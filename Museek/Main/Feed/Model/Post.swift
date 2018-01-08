@@ -17,7 +17,11 @@ class Post {
     var cordinates: (String?, String?)?
     var uid: String?
 }
+<<<<<<< HEAD
+
+=======
     
+>>>>>>> 7ceae968385e8b68dee6c27118e9552d27c10d48
 extension Post{
     class func transformPost(from dictionary: [String: Any])->Post{
         let post = Post()
@@ -31,3 +35,7 @@ extension Post{
         return post
     }
 }
+<<<<<<< HEAD
+
+=======
+>>>>>>> 7ceae968385e8b68dee6c27118e9552d27c10d48

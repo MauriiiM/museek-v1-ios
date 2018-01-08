@@ -86,17 +86,17 @@ class HomeFeedCell: UITableViewCell {
             songTitleLabel.text = post.songTitle
             captionLabel.text = post.caption
             download(from: post.thumbnailURL, set: videoThumbnail, withPlaceholder: videoThumbnailPlaceholder)
-            if let movieURLString = post.movieURL{
-                let movieURL = URL(string: movieURLString)
-                avPlayer = AVPlayer(url: movieURL!)
-                avLayer = AVPlayerLayer(player: avPlayer)
-                avLayer!.frame = videoThumbnail.frame
-                avLayer?.frame.size.width = UIScreen.main.bounds.width
-//                self.contentView.layer.addSublayer(avLayer!)
-                videoView.layer.addSublayer(avLayer!)
-                videoThumbnail.image = nil
-                avPlayer.play()
-            }
+//            if let movieURLString = post.movieURL{
+//                let movieURL = URL(string: movieURLString)
+//                avPlayer = AVPlayer(url: movieURL!)
+//                avLayer = AVPlayerLayer(player: avPlayer)
+//                avLayer!.frame = videoThumbnail.frame
+//                avLayer?.frame.size.width = UIScreen.main.bounds.width
+////                self.contentView.layer.addSublayer(avLayer!)
+//                videoView.layer.addSublayer(avLayer!)
+//                videoThumbnail.image = nil
+//                avPlayer.play()
+//            }
         }
     }
     

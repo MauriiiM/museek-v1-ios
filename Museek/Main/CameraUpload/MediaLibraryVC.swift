@@ -35,9 +35,8 @@ class MediaLibraryVC: UIViewController {
      is called when a video is selected
      */
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
-        
-        if let selectedURL = info["UIImagePickerControllerMediaURL"] as? URL {
-            selectedMovie = selectedURL
+        if let pickedMovie = info["UIImagePickerControllerMediaURL"] as? URL {
+            selectedMovie = pickedMovie
             performSegue(withIdentifier: "toUploadVC", sender: self)
         }
     }

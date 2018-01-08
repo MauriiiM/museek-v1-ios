@@ -12,6 +12,7 @@ import AVFoundation
 
 protocol ContainerMaster {
     var url: (movie: URL?, highlightClip: URL?) {get set}
+    var videoViewLoaded: Bool? {get set}
 }
 
 
@@ -51,7 +52,7 @@ class VideoVC: UIViewController {
     }
     
     override func viewDidLoad() {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "videoVCLoaded"), object: nil)
+        if containerMaster != nil { containerMaster!.videoViewLoaded = true }
     }
     
     deinit {

@@ -13,6 +13,16 @@ import FirebaseAuth
 import CoreLocation
 
 class UploadVC: UIViewController, ContainerMaster {
+    fileprivate var _videoViewLoaded: Bool?{
+        didSet{
+            giveContainerGestureRecognizer()
+        }
+    }
+    var videoViewLoaded: Bool?{
+        get{ return _videoViewLoaded }
+        set{ _videoViewLoaded = newValue }
+    }
+    
     fileprivate var thumbnail: UIImage?
     fileprivate var _url: (movie: URL?, highlightClip: URL?)?{
         didSet{
@@ -60,11 +70,6 @@ class UploadVC: UIViewController, ContainerMaster {
         setupLocationManager()
         self.tabBarController?.tabBar.isHidden = true
         hideKeyboardWhenTappedAround()
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(giveContainerGestureRecognizer),
-                                               name: Notification.Name(rawValue: "videoVCLoaded"),
-                                               object: nil)
     }
     
     @objc  func giveContainerGestureRecognizer(){
@@ -77,6 +82,7 @@ class UploadVC: UIViewController, ContainerMaster {
     @objc fileprivate func presentVideoEditVC(){
         if UIVideoEditorController.canEditVideo(atPath: url.movie!.absoluteString) {
             movieEditor.delegate = self
+            print("\n\n\n\(url.movie!.absoluteString)\n\n\n")
             movieEditor.videoPath = url.movie!.absoluteString
             movieEditor.videoQuality = .typeHigh
             movieEditor.videoMaximumDuration = 30//seconds
@@ -86,11 +92,8 @@ class UploadVC: UIViewController, ContainerMaster {
     
     fileprivate func uploadButton(isActive: Bool){
         uploadButton.isEnabled = canUpload
-        if canUpload {
-            uploadButton.backgroundColor = UIColor(named: "AppAccent")
-        } else {
-            uploadButton.backgroundColor = .lightGray
-        }
+        if canUpload { uploadButton.backgroundColor = UIColor(named: "AppAccent") }
+        else { uploadButton.backgroundColor = .lightGray }
     }
     
     fileprivate func setupNavigationBar(){
@@ -184,6 +187,7 @@ extension UploadVC: UINavigationControllerDelegate, UIVideoEditorControllerDeleg
         print("\n\nSOMETHING WENT WRONG\n\n")
     }
 }
+
 
 extension UploadVC: CLLocationManagerDelegate{
     fileprivate func setupLocationManager(){
