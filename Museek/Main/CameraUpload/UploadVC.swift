@@ -40,7 +40,7 @@ class UploadVC: UIViewController, ContainerMaster {
     fileprivate var canUpload: Bool{
         get {
             if (_url?.movie != nil
-                /*&& _url?.highlightClip != nil*/
+                && _url?.highlightClip != nil
                 && songTitleTF.text != "") {
                 return true
             }
@@ -53,7 +53,7 @@ class UploadVC: UIViewController, ContainerMaster {
     @IBOutlet fileprivate weak var coverSongSwitch: UISwitch!
     @IBOutlet fileprivate weak var captionTV: OutlinedTextView!
     fileprivate var videoPlayerVC: VideoVC!
-    fileprivate var movieEditor = UIVideoEditorController()
+    fileprivate lazy var movieEditor = UIVideoEditorController()
     fileprivate var locationManager: CLLocationManager!
     fileprivate var locValue: CLLocationCoordinate2D?
     
@@ -82,8 +82,9 @@ class UploadVC: UIViewController, ContainerMaster {
     @objc fileprivate func presentVideoEditVC(){
         if UIVideoEditorController.canEditVideo(atPath: url.movie!.absoluteString) {
             movieEditor.delegate = self
-            print("\n\n\n\(url.movie!.absoluteString)\n\n\n")
-            movieEditor.videoPath = url.movie!.absoluteString
+            let correctedURLString = (url.movie!.absoluteString).dropFirst("file:///".count)//needed or else NSURL=file:///file:/
+            
+            movieEditor.videoPath = String(correctedURLString)
             movieEditor.videoQuality = .typeHigh
             movieEditor.videoMaximumDuration = 30//seconds
             present(movieEditor, animated: true, completion: nil)
@@ -171,13 +172,12 @@ class UploadVC: UIViewController, ContainerMaster {
 
 
 extension UploadVC: UINavigationControllerDelegate, UIVideoEditorControllerDelegate{
-    
     /**
      called if UIVideoEditor succesfully saved new 30 second video
      */
     func videoEditorController(_ editor: UIVideoEditorController, didSaveEditedVideoToPath editedVideoPath: String) {
         url.highlightClip = URL(fileURLWithPath: editedVideoPath)
-        //        containerMaster?.thumbnail = getThumbnailFrom(path: URL(fileURLWithPath: editedVideoPath))
+        dismiss(animated: true)
     }
     
     /**

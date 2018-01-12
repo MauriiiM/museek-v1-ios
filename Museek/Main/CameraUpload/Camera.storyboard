@@ -201,7 +201,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HKC-e0-Frw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1029.375" y="2254.2253521126759"/>
+            <point key="canvasLocation" x="-1029.5999999999999" y="2253.6945812807885"/>
         </scene>
         <!--Camera Root PageVC-->
         <scene sceneID="XMH-I5-MJO">
