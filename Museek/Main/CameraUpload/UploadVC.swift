@@ -72,7 +72,7 @@ class UploadVC: UIViewController, ContainerMaster {
         hideKeyboardWhenTappedAround()
     }
     
-    @objc  func giveContainerGestureRecognizer(){
+    @objc fileprivate func giveContainerGestureRecognizer(){
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.presentVideoEditVC))
         tapGesture.numberOfTapsRequired = 2
         tapGesture.delegate = self as? UIGestureRecognizerDelegate
@@ -91,12 +91,6 @@ class UploadVC: UIViewController, ContainerMaster {
         } else { print("\nVIDEO CAN'T BE EDITED") }
     }
     
-    fileprivate func uploadButton(isActive: Bool){
-        uploadButton.isEnabled = canUpload
-        if canUpload { uploadButton.backgroundColor = UIColor(named: "AppAccent") }
-        else { uploadButton.backgroundColor = .lightGray }
-    }
-    
     fileprivate func setupNavigationBar(){
         if let navCtrlr = self.navigationController {
             navCtrlr.navigationBar.isHidden = false
@@ -108,68 +102,78 @@ class UploadVC: UIViewController, ContainerMaster {
         uploadButton(isActive: canUpload)
     }
     
+    fileprivate func uploadButton(isActive: Bool){
+        uploadButton.isEnabled = canUpload
+        if canUpload { uploadButton.backgroundColor = UIColor(named: "AppAccent") }
+        else { uploadButton.backgroundColor = .lightGray }
+    }
+    
     @IBAction fileprivate func uploadButtonPressed(_ sender: UIButton){
         if canUpload {
             uploadButton.isEnabled = false
             let storageRef = Storage.storage().reference().child(FirebaseConfig.posts)
-            upload(video: url.movie!.absoluteURL, to: storageRef)
+            
+            upload(video: url.movie!.absoluteURL, to: storageRef.child("fullVideo\(UUID().uuidString)")){ fullVidStorageURL in
+                self.upload(video: self.url.highlightClip!.absoluteURL, to: storageRef.child("highlightVideo/\(UUID().uuidString)")){ highlightVidStorageURL in
+                    self.upload(thumbnail: self.videoPlayerVC.getVideoThumbnail()!, to: storageRef.child("thumbnails/\(UUID().uuidString)")){ thumbnailURL in
+                        
+                        let db = Database.database()
+                        self.upload(videoURL: fullVidStorageURL, withHiglightVideoURL: highlightVidStorageURL, withThumbnail: thumbnailURL, to: db){
+//                            self.navigationController?.popToRootViewController(animated: false)
+//                            self.tabBarController?.selectedIndex = 0
+                        }
+                    }
+                }
+            }
             self.navigationController?.popToRootViewController(animated: false)
             self.tabBarController?.selectedIndex = 0
         }
     }
     
+    /**
+     upload given URL to given online storage
+     */
     fileprivate func upload(thumbnail: UIImage, to storageRef: StorageReference, onSuccess: @escaping (_ thumbnailURL: String) -> Void){
-        let postUID = storageRef.child("thumbnails/\(UUID().uuidString)")
         let thumbnailData = UIImageJPEGRepresentation(thumbnail, 0.8)
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
-        postUID.putData(thumbnailData!, metadata: metaData) {(metadata, error) in
+        storageRef.putData(thumbnailData!, metadata: metaData) {(metadata, error) in
             if error != nil { return }
             onSuccess(metadata!.downloadURL()!.absoluteString)
         }
     }
     
+    
     /**
-     logic in this method uploads data to FirebaseStorage, the calls upload() to
-     upload the stored data to the realtime database
+     uploads given URL to given online storage reference (put exact path!)
      */
-    fileprivate func upload(video url: URL, to storageRef: StorageReference){
-        let postUID = storageRef.child("\(UUID().uuidString)")
-        postUID.putFile(from: url, metadata: nil, completion: {(metadata, error) in
-            if error != nil { return }
-            else {
-                self.upload(thumbnail: self.videoPlayerVC.getVideoThumbnail()!, to: storageRef){ thumbnailURL in
-                    
-                    let videoStorageURL = metadata?.downloadURL()?.absoluteString
-                    let db = Database.database()
-                    self.upload(videoData: videoStorageURL!, withThumbnail: thumbnailURL, to: db)
-                }
-            }
-        })
+    fileprivate func upload(video url: URL, to storageRef: StorageReference, onSuccess: @escaping (_ storageURL: String) -> Void){
+        storageRef.putFile(from: url, metadata: nil){ (metadata, error) in
+            if error == nil { onSuccess(metadata!.downloadURL()!.absoluteString) }
+            else { return } //@todo possibly present an allert
+        }
     }
     
     /**
      uploads to given database
      */
-    fileprivate func upload(videoData videoUrl: String, withThumbnail thumbnailURL: String, to database: Database){
+    fileprivate func upload(videoURL: String, withHiglightVideoURL highlightURL: String, withThumbnail thumbnailURL: String, to database: Database, onSuccess: @escaping () -> Void){
         guard let user = Auth.auth().currentUser?.uid else { return }
         var isCover = " "
         if coverSongSwitch.isOn { isCover = "cover " }
         let userPostsRef = database.reference().child(FirebaseConfig.posts)
         let newPostRef = userPostsRef.childByAutoId()
-        let fileArray:[String : Any?] = ["thumbnailURL": thumbnailURL, "fullVideoURL": videoUrl,
-                                         "songTitle": songTitleTF.text, "caption": captionTV.text,
-                                         "latitude": locValue?.latitude, "longitude" : locValue?.longitude,
-                                         "uid": user, "rankingPoints": 0, "likes": 0, "isCover": isCover]
+        let fileArray:[String : Any?] = ["thumbnailURL": thumbnailURL, "fullVideoURL": videoURL,
+                                         "highlightClipURL": highlightURL, "songTitle": songTitleTF.text,
+                                         "caption": captionTV.text, "latitude": locValue?.latitude,
+                                         "longitude" : locValue?.longitude, "uid": user,
+                                         "rankingPoints": 0, "likes": 0, "isCover": isCover]
         newPostRef.setValue(fileArray, withCompletionBlock: {(error, dbRef) in
-            if error != nil { print(error!); return }
-            else {
-                
-            }
+            if error == nil { onSuccess() }
+            else { print(error!); return }
         })
     }
 }
-
 
 extension UploadVC: UINavigationControllerDelegate, UIVideoEditorControllerDelegate{
     /**
