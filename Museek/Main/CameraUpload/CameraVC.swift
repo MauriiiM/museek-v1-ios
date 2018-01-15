@@ -74,8 +74,12 @@ class CameraVC: UIViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let uploadVC = segue.destination as! UploadVC
-        uploadVC.url.movie = movieURL
+        
+        if  segue.destination is UploadVC {
+            let uploadVC = segue.destination as! UploadVC
+            uploadVC.url.movie = movieURL
+            uploadVC.vidCoordinates = LocationServices.currentCoordinates
+        }
     }
  
     override func viewWillAppear(_ animated: Bool) {

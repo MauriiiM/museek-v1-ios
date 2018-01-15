@@ -31,6 +31,7 @@ class VideoVC: UIViewController {
             if player == nil {
                 player = AVPlayer(url: cm.url.movie!)
                 avPlayerVC = AVPlayerViewController()
+                avPlayerVC.showsPlaybackControls = false
                 avPlayerVC.player = self.player
                 avPlayerVC.view.frame = self.view.frame
                 self.addChildViewController(avPlayerVC)

@@ -33,9 +33,15 @@ class HomeFeedCell: UITableViewCell {
     @IBOutlet  weak var videoView: UIView!
     fileprivate var avLayer: AVPlayerLayer?
     lazy var avPlayer = AVPlayer()
+    var isPlaying = false {
+        didSet{
+            if !isPlaying { avPlayer.pause() }
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
 //        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
 //                                               object: self.avPlayer.currentItem,
 //                                               queue: .main) { _ in
@@ -49,14 +55,16 @@ class HomeFeedCell: UITableViewCell {
         profileImage.image = profileImagePlaceholder
         videoThumbnail.image = videoThumbnailPlaceholder
         avLayer?.removeFromSuperlayer()
-        avPlayer.pause()
-//        avPlayerVC.player = nil
+        if isPlaying { avPlayer.pause() }
     }
     
+    /**
+     starts playing video when a cell is selected (user touches cell)
+     */
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
+        //hide play icon which will be on top z layer
+        avPlayer.play()
     }
     
     @IBAction fileprivate func likeButtonTapped(){
@@ -71,10 +79,27 @@ class HomeFeedCell: UITableViewCell {
         print("SHARING")
     }
     
+    /**
+     downloads and sets an image asynchronously
+     */
     fileprivate func download(from urlString: String?, set image: UIImageView, withPlaceholder placeholder: UIImage){
         if let urlString = urlString{
             let url = URL(string: urlString)
             image.sd_setImage(with: url, placeholderImage: placeholder)
+        }
+    }
+    
+    /**
+     loads and displays video, but doesn't start playing
+     */
+    fileprivate func loadHighlightVideo(){
+        if let highlightURLString = post!.movieURL{
+            let highlightURL = URL(string: highlightURLString)
+            avPlayer = AVPlayer(url: highlightURL!)
+            avLayer = AVPlayerLayer(player: avPlayer)
+            avLayer!.frame = videoView.bounds
+            videoView.layer.addSublayer(avLayer!)
+//            videoThumbnail.image = nil
         }
     }
     
@@ -86,17 +111,7 @@ class HomeFeedCell: UITableViewCell {
             songTitleLabel.text = post.songTitle
             captionLabel.text = post.caption
             download(from: post.thumbnailURL, set: videoThumbnail, withPlaceholder: videoThumbnailPlaceholder)
-//            if let movieURLString = post.movieURL{
-//                let movieURL = URL(string: movieURLString)
-//                avPlayer = AVPlayer(url: movieURL!)
-//                avLayer = AVPlayerLayer(player: avPlayer)
-//                avLayer!.frame = videoThumbnail.frame
-//                avLayer?.frame.size.width = UIScreen.main.bounds.width
-////                self.contentView.layer.addSublayer(avLayer!)
-//                videoView.layer.addSublayer(avLayer!)
-//                videoThumbnail.image = nil
-//                avPlayer.play()
-//            }
+            loadHighlightVideo()
         }
     }
     

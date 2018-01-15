@@ -13,6 +13,7 @@
 		2208892B1FF46B1E0024E33E /* LocationSignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2208892A1FF46B1E0024E33E /* LocationSignUp.swift */; };
 		2208892D1FF49CA70024E33E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2208892C1FF49CA70024E33E /* CoreLocation.framework */; };
 		2208892F1FF49CBD0024E33E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2208892E1FF49CBD0024E33E /* MapKit.framework */; };
+		2229AB8C200AC32F00B4C5D2 /* LocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2229AB8B200AC32F00B4C5D2 /* LocationServices.swift */; };
 		226494411FFC785600870861 /* HomeFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226494401FFC785600870861 /* HomeFeedCell.swift */; };
 		226D72171FBEA70900B149AA /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 226D72161FBEA70900B149AA /* Colors.xcassets */; };
 		22789AC2200076A200E8BA5A /* ProfileHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22789AC1200076A200E8BA5A /* ProfileHeaderCollectionReusableView.swift */; };
@@ -82,6 +83,7 @@
 		2208892A1FF46B1E0024E33E /* LocationSignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSignUp.swift; sourceTree = "<group>"; };
 		2208892C1FF49CA70024E33E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2208892E1FF49CBD0024E33E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		2229AB8B200AC32F00B4C5D2 /* LocationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServices.swift; sourceTree = "<group>"; };
 		226494401FFC785600870861 /* HomeFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedCell.swift; sourceTree = "<group>"; };
 		226D72161FBEA70900B149AA /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		22789AC1200076A200E8BA5A /* ProfileHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -193,6 +195,17 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		2229AB8A2009DC7A00B4C5D2 /* AppClasses */ = {
+			isa = PBXGroup;
+			children = (
+				22EDD70F1FF890D5008559EC /* FirebaseConfig.swift */,
+				22789AC320007C0D00E8BA5A /* UsersAPI.swift */,
+				22789AC520007DC400E8BA5A /* API.swift */,
+				2229AB8B200AC32F00B4C5D2 /* LocationServices.swift */,
+			);
+			path = AppClasses;
+			sourceTree = "<group>";
+		};
 		226494381FFB5C4C00870861 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,6 +278,7 @@
 		229D07B01F80CC8A00FD24CC /* Museek */ = {
 			isa = PBXGroup;
 			children = (
+				2229AB8A2009DC7A00B4C5D2 /* AppClasses */,
 				22928BAC200385C9001B50E8 /* Extensions */,
 				22928BA02003852E001B50E8 /* CustomUI */,
 				22C4CD291F821EA900B155FE /* Opening */,
@@ -274,9 +288,6 @@
 				220889251FF3A1290024E33E /* LaunchScreen.storyboard */,
 				229D07DF1F80CD3000FD24CC /* GoogleService-Info.plist */,
 				229D07BD1F80CC8A00FD24CC /* Info.plist */,
-				22EDD70F1FF890D5008559EC /* FirebaseConfig.swift */,
-				22789AC320007C0D00E8BA5A /* UsersAPI.swift */,
-				22789AC520007DC400E8BA5A /* API.swift */,
 			);
 			path = Museek;
 			sourceTree = "<group>";
@@ -705,6 +716,7 @@
 				22789AC620007DC400E8BA5A /* API.swift in Sources */,
 				22E36D051FE3C54100CC004D /* UploadVC.swift in Sources */,
 				22928B9F2003851D001B50E8 /* RoundedImageView.swift in Sources */,
+				2229AB8C200AC32F00B4C5D2 /* LocationServices.swift in Sources */,
 				22EDD7101FF890D5008559EC /* FirebaseConfig.swift in Sources */,
 				22928BB1200385CA001B50E8 /* UIVC+HidingKeyBoard.swift in Sources */,
 				22928BB3200385CA001B50E8 /* NSMutableAttributesString+AttributeString.swift in Sources */,

@@ -13,6 +13,7 @@ class Post {
     var isCover: String?
     var thumbnailURL: String?
     var movieURL: String?
+    var highlightURL: String?
     var caption: String?
     var cordinates: (String?, String?)?
     var uid: String?
@@ -23,6 +24,7 @@ extension Post{
         post.caption = dictionary["caption"] as? String
         post.thumbnailURL = dictionary["thumbnailURL"] as? String
         post.movieURL = dictionary["fullVideoURL"] as? String
+        post.highlightURL = dictionary["highlightVideoURL"] as? String
         post.songTitle = dictionary["songTitle"] as? String
         post.isCover = dictionary["isCover"] as? String
         post.cordinates = (dictionary["latitude"], dictionary["longitude"]) as? (String?, String?)

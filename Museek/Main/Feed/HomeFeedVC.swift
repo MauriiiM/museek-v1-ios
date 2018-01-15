@@ -15,7 +15,15 @@ class HomeFeedVC: UITableViewController {
 //    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     fileprivate var retrievedPosts = [Post]()
     fileprivate var retrievedUsers = [User]()
-    fileprivate var currentlyPlayingIndexPath : IndexPath?
+    fileprivate var currentlyPlayingIndexPath : IndexPath?{
+        didSet{
+            if let lastIndexPath = oldValue{
+                let lastCell = tableView.cellForRow(at: lastIndexPath) as! HomeFeedCell
+                print("\n\nselected -> \(lastCell.post!.songTitle!)\n\n")
+                lastCell.isPlaying = false
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,12 +50,22 @@ class HomeFeedVC: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    /**
+     called when user touches a cell.
+     Used to auto-center cell on screen and play highlight video
+     */
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
+        currentlyPlayingIndexPath = indexPath
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        refreshControl?.endRefreshing()
         return retrievedPosts.count
-        refreshControl?.endRefreshing()
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let postCell = cell as! HomeFeedCell
     }
     
     fileprivate func fetchUser(uid: String, completed: @escaping () -> Void){

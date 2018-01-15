@@ -123,7 +123,6 @@
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default user photo" translatesAutoresizingMaskIntoConstraints="NO" id="2fA-fo-PzO" customClass="RoundedImageView" customModule="Museek" customModuleProvider="target">
                                             <rect key="frame" x="326" y="10" width="40" height="40"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="view." value="YES"/>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                     <real key="value" value="20"/>
                                                 </userDefinedRuntimeAttribute>

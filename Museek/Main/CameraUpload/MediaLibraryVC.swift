@@ -26,17 +26,25 @@ class MediaLibraryVC: UIViewController {
         let uploadVC = segue.destination as! UploadVC
         if let movie = selectedMovie {
             uploadVC.url.movie = movie
+            uploadVC.vidCoordinates = LocationServices.currentCoordinates
             print(movie.absoluteString)
         }
+//        uploadVC.vidCoordinates =
         moviePicker.dismiss(animated: true, completion: nil)
     }
     
     /**
      is called when a video is selected
+     @todo get location of picked image
      */
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
         if let pickedMovie = info["UIImagePickerControllerMediaURL"] as? URL {
             selectedMovie = pickedMovie
+//            let opts = PHFetchOptions()
+//            opts.fetchLimit = 1
+//            let assets = PHAsset.fetchAssets(withLocalIdentifiers: info[UIImagePickerControllerPHAsset], options: opts)
+//            let asset = assets[0]
+//            print(info)
             performSegue(withIdentifier: "toUploadVC", sender: self)
         }
     }

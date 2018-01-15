@@ -13,6 +13,7 @@ import FirebaseAuth
 import CoreLocation
 
 class UploadVC: UIViewController, ContainerMaster {
+    var vidCoordinates: CLLocationCoordinate2D?
     fileprivate var _videoViewLoaded: Bool?{
         didSet{
             giveContainerGestureRecognizer()
@@ -54,8 +55,7 @@ class UploadVC: UIViewController, ContainerMaster {
     @IBOutlet fileprivate weak var captionTV: OutlinedTextView!
     fileprivate var videoPlayerVC: VideoVC!
     fileprivate lazy var movieEditor = UIVideoEditorController()
-    fileprivate var locationManager: CLLocationManager!
-    fileprivate var locValue: CLLocationCoordinate2D?
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is VideoVC {
@@ -67,7 +67,6 @@ class UploadVC: UIViewController, ContainerMaster {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
-        setupLocationManager()
         self.tabBarController?.tabBar.isHidden = true
         hideKeyboardWhenTappedAround()
     }
@@ -113,7 +112,7 @@ class UploadVC: UIViewController, ContainerMaster {
             uploadButton.isEnabled = false
             let storageRef = Storage.storage().reference().child(FirebaseConfig.posts)
             
-            upload(video: url.movie!.absoluteURL, to: storageRef.child("fullVideo\(UUID().uuidString)")){ fullVidStorageURL in
+            upload(video: url.movie!.absoluteURL, to: storageRef.child("fullVideo/\(UUID().uuidString)")){ fullVidStorageURL in
                 self.upload(video: self.url.highlightClip!.absoluteURL, to: storageRef.child("highlightVideo/\(UUID().uuidString)")){ highlightVidStorageURL in
                     self.upload(thumbnail: self.videoPlayerVC.getVideoThumbnail()!, to: storageRef.child("thumbnails/\(UUID().uuidString)")){ thumbnailURL in
                         
@@ -164,10 +163,10 @@ class UploadVC: UIViewController, ContainerMaster {
         let userPostsRef = database.reference().child(FirebaseConfig.posts)
         let newPostRef = userPostsRef.childByAutoId()
         let fileArray:[String : Any?] = ["thumbnailURL": thumbnailURL, "fullVideoURL": videoURL,
-                                         "highlightClipURL": highlightURL, "songTitle": songTitleTF.text,
-                                         "caption": captionTV.text, "latitude": locValue?.latitude,
-                                         "longitude" : locValue?.longitude, "uid": user,
-                                         "rankingPoints": 0, "likes": 0, "isCover": isCover]
+                                         "highlightVideoURL": highlightURL, "songTitle": songTitleTF.text,
+                                         "caption": captionTV.text, "uid": user, "rankingPoints": 0,
+                                         "likes": 0, "latitude": vidCoordinates!.latitude,
+                                         "longitude" : vidCoordinates!.longitude, "isCover": isCover]
         newPostRef.setValue(fileArray, withCompletionBlock: {(error, dbRef) in
             if error == nil { onSuccess() }
             else { print(error!); return }
@@ -178,6 +177,7 @@ class UploadVC: UIViewController, ContainerMaster {
 extension UploadVC: UINavigationControllerDelegate, UIVideoEditorControllerDelegate{
     /**
      called if UIVideoEditor succesfully saved new 30 second video
+     @TODO this saves in as .mov file, convert to .mp4!!!
      */
     func videoEditorController(_ editor: UIVideoEditorController, didSaveEditedVideoToPath editedVideoPath: String) {
         url.highlightClip = URL(fileURLWithPath: editedVideoPath)
@@ -189,22 +189,5 @@ extension UploadVC: UINavigationControllerDelegate, UIVideoEditorControllerDeleg
      */
     func videoEditorController(_ editor: UIVideoEditorController, didFailWithError error: Error) {
         print("\n\nSOMETHING WENT WRONG\n\n")
-    }
-}
-
-
-extension UploadVC: CLLocationManagerDelegate{
-    fileprivate func setupLocationManager(){
-        locationManager = CLLocationManager()
-        locationManager.delegate = self;
-        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        if CLLocationManager.authorizationStatus() == .notDetermined {
-            locationManager.requestAlwaysAuthorization()
-        }
-        locationManager.startUpdatingLocation()
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        locValue = manager.location!.coordinate
     }
 }
