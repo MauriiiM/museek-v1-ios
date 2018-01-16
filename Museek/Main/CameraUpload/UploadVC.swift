@@ -110,7 +110,7 @@ class UploadVC: UIViewController, ContainerMaster {
     @IBAction fileprivate func uploadButtonPressed(_ sender: UIButton){
         if canUpload {
             uploadButton.isEnabled = false
-            let storageRef = Storage.storage().reference().child(FirebaseConfig.posts)
+            let storageRef = Storage.storage().reference().child(DatabaseConfig.posts)
             
             upload(video: url.movie!.absoluteURL, to: storageRef.child("fullVideo/\(UUID().uuidString)")){ fullVidStorageURL in
                 self.upload(video: self.url.highlightClip!.absoluteURL, to: storageRef.child("highlightVideo/\(UUID().uuidString)")){ highlightVidStorageURL in
@@ -160,13 +160,13 @@ class UploadVC: UIViewController, ContainerMaster {
         guard let user = Auth.auth().currentUser?.uid else { return }
         var isCover = " "
         if coverSongSwitch.isOn { isCover = "cover " }
-        let userPostsRef = database.reference().child(FirebaseConfig.posts)
+        let userPostsRef = database.reference().child(DatabaseConfig.posts)
         let newPostRef = userPostsRef.childByAutoId()
         let fileArray:[String : Any?] = ["thumbnailURL": thumbnailURL, "fullVideoURL": videoURL,
                                          "highlightVideoURL": highlightURL, "songTitle": songTitleTF.text,
-                                         "caption": captionTV.text, "uid": user, "rankingPoints": 0,
-                                         "likes": 0, "latitude": vidCoordinates!.latitude,
-                                         "longitude" : vidCoordinates!.longitude, "isCover": isCover]
+                                         "caption": captionTV.text, "uid": user, "isCover": isCover,
+                                         "latitude": vidCoordinates!.latitude,
+                                         "longitude" : vidCoordinates!.longitude]
         newPostRef.setValue(fileArray, withCompletionBlock: {(error, dbRef) in
             if error == nil { onSuccess() }
             else { print(error!); return }

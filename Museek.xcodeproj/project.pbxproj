@@ -15,10 +15,11 @@
 		2208892F1FF49CBD0024E33E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2208892E1FF49CBD0024E33E /* MapKit.framework */; };
 		2229AB8C200AC32F00B4C5D2 /* LocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2229AB8B200AC32F00B4C5D2 /* LocationServices.swift */; };
 		226494411FFC785600870861 /* HomeFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226494401FFC785600870861 /* HomeFeedCell.swift */; };
+		226B09D8200DDA4A004E23BA /* PostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B09D7200DDA4A004E23BA /* PostAPI.swift */; };
 		226D72171FBEA70900B149AA /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 226D72161FBEA70900B149AA /* Colors.xcassets */; };
 		22789AC2200076A200E8BA5A /* ProfileHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22789AC1200076A200E8BA5A /* ProfileHeaderCollectionReusableView.swift */; };
 		22789AC420007C0D00E8BA5A /* UsersAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22789AC320007C0D00E8BA5A /* UsersAPI.swift */; };
-		22789AC620007DC400E8BA5A /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22789AC520007DC400E8BA5A /* API.swift */; };
+		22789AC620007DC400E8BA5A /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22789AC520007DC400E8BA5A /* Api.swift */; };
 		22789AC82000834C00E8BA5A /* DiscoverVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22789AC72000834C00E8BA5A /* DiscoverVC.swift */; };
 		227B1CA31FF3992A00374193 /* Opening.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 227B1CA21FF3992A00374193 /* Opening.storyboard */; };
 		227B1CA51FF3994100374193 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 227B1CA41FF3994100374193 /* SignUp.storyboard */; };
@@ -51,7 +52,7 @@
 		22E288491FABA5FD00F2D706 /* CameraVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E288481FABA5FD00F2D706 /* CameraVC.swift */; };
 		22E35E0C2003768100EE15FC /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E35E0B2003768100EE15FC /* Post.swift */; };
 		22E36D051FE3C54100CC004D /* UploadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E36D041FE3C54100CC004D /* UploadVC.swift */; };
-		22EDD7101FF890D5008559EC /* FirebaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EDD70F1FF890D5008559EC /* FirebaseConfig.swift */; };
+		22EDD7101FF890D5008559EC /* DatabaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EDD70F1FF890D5008559EC /* DatabaseConfig.swift */; };
 		22EDD7121FFAF9ED008559EC /* HomeFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EDD7111FFAF9ED008559EC /* HomeFeedVC.swift */; };
 		22EDD7141FFB0FFA008559EC /* HomeFeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22EDD7131FFB0FFA008559EC /* HomeFeed.storyboard */; };
 		B5C6E451A7FF6140C9A2A9C6 /* Pods_Museek.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4333D572041915F1AFD10A5F /* Pods_Museek.framework */; };
@@ -85,10 +86,11 @@
 		2208892E1FF49CBD0024E33E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		2229AB8B200AC32F00B4C5D2 /* LocationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServices.swift; sourceTree = "<group>"; };
 		226494401FFC785600870861 /* HomeFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedCell.swift; sourceTree = "<group>"; };
+		226B09D7200DDA4A004E23BA /* PostAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAPI.swift; sourceTree = "<group>"; };
 		226D72161FBEA70900B149AA /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		22789AC1200076A200E8BA5A /* ProfileHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		22789AC320007C0D00E8BA5A /* UsersAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersAPI.swift; sourceTree = "<group>"; };
-		22789AC520007DC400E8BA5A /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		22789AC520007DC400E8BA5A /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		22789AC72000834C00E8BA5A /* DiscoverVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverVC.swift; sourceTree = "<group>"; };
 		227B1CA21FF3992A00374193 /* Opening.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Opening.storyboard; sourceTree = "<group>"; };
 		227B1CA41FF3994100374193 /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
@@ -127,7 +129,7 @@
 		22E288481FABA5FD00F2D706 /* CameraVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVC.swift; sourceTree = "<group>"; };
 		22E35E0B2003768100EE15FC /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		22E36D041FE3C54100CC004D /* UploadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadVC.swift; sourceTree = "<group>"; };
-		22EDD70F1FF890D5008559EC /* FirebaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConfig.swift; sourceTree = "<group>"; };
+		22EDD70F1FF890D5008559EC /* DatabaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseConfig.swift; sourceTree = "<group>"; };
 		22EDD7111FFAF9ED008559EC /* HomeFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedVC.swift; sourceTree = "<group>"; };
 		22EDD7131FFB0FFA008559EC /* HomeFeed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeFeed.storyboard; sourceTree = "<group>"; };
 		4333D572041915F1AFD10A5F /* Pods_Museek.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Museek.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -198,10 +200,11 @@
 		2229AB8A2009DC7A00B4C5D2 /* AppClasses */ = {
 			isa = PBXGroup;
 			children = (
-				22EDD70F1FF890D5008559EC /* FirebaseConfig.swift */,
+				22EDD70F1FF890D5008559EC /* DatabaseConfig.swift */,
 				22789AC320007C0D00E8BA5A /* UsersAPI.swift */,
-				22789AC520007DC400E8BA5A /* API.swift */,
+				22789AC520007DC400E8BA5A /* Api.swift */,
 				2229AB8B200AC32F00B4C5D2 /* LocationServices.swift */,
+				226B09D7200DDA4A004E23BA /* PostAPI.swift */,
 			);
 			path = AppClasses;
 			sourceTree = "<group>";
@@ -713,11 +716,11 @@
 				22EDD7121FFAF9ED008559EC /* HomeFeedVC.swift in Sources */,
 				22C4CD2C1F837F7900B155FE /* SignUpVC.swift in Sources */,
 				22928B9E2003851D001B50E8 /* RoundedButton.swift in Sources */,
-				22789AC620007DC400E8BA5A /* API.swift in Sources */,
+				22789AC620007DC400E8BA5A /* Api.swift in Sources */,
 				22E36D051FE3C54100CC004D /* UploadVC.swift in Sources */,
 				22928B9F2003851D001B50E8 /* RoundedImageView.swift in Sources */,
 				2229AB8C200AC32F00B4C5D2 /* LocationServices.swift in Sources */,
-				22EDD7101FF890D5008559EC /* FirebaseConfig.swift in Sources */,
+				22EDD7101FF890D5008559EC /* DatabaseConfig.swift in Sources */,
 				22928BB1200385CA001B50E8 /* UIVC+HidingKeyBoard.swift in Sources */,
 				22928BB3200385CA001B50E8 /* NSMutableAttributesString+AttributeString.swift in Sources */,
 				22C4CD281F821E8F00B155FE /* LoginVC.swift in Sources */,
@@ -732,6 +735,7 @@
 				220889271FF3A1F00024E33E /* User.swift in Sources */,
 				22928B9D2003851D001B50E8 /* OutlinedTextView.swift in Sources */,
 				22E288491FABA5FD00F2D706 /* CameraVC.swift in Sources */,
+				226B09D8200DDA4A004E23BA /* PostAPI.swift in Sources */,
 				226494411FFC785600870861 /* HomeFeedCell.swift in Sources */,
 				2208892B1FF46B1E0024E33E /* LocationSignUp.swift in Sources */,
 				22C4CD351F86CDF800B155FE /* OpeningVC.swift in Sources */,

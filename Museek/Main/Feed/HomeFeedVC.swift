@@ -17,9 +17,8 @@ class HomeFeedVC: UITableViewController {
     fileprivate var retrievedUsers = [User]()
     fileprivate var currentlyPlayingIndexPath : IndexPath?{
         didSet{
-            if let lastIndexPath = oldValue{
+            if let lastIndexPath = oldValue, lastIndexPath != currentlyPlayingIndexPath{
                 let lastCell = tableView.cellForRow(at: lastIndexPath) as! HomeFeedCell
-                print("\n\nselected -> \(lastCell.post!.songTitle!)\n\n")
                 lastCell.isPlaying = false
             }
         }
@@ -29,8 +28,7 @@ class HomeFeedVC: UITableViewController {
         super.viewDidLoad()
         self.tableView.estimatedRowHeight = 475
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        let database = Database.database()
-        retrievePostingData(from: database)
+        retrievePostData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -64,38 +62,29 @@ class HomeFeedVC: UITableViewController {
         return retrievedPosts.count
     }
     
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let postCell = cell as! HomeFeedCell
+    /**
+     pauses video so it won't play in the background
+     */
+    override func viewWillDisappear(_ animated: Bool) {
+        //@TODO add code to pause playing video
     }
     
-    fileprivate func fetchUser(uid: String, completed: @escaping () -> Void){
-        Database.database().reference().child("users/\(uid)").observeSingleEvent(of: .value, with: {
-            dataSnapshot in
-            let dictionary = dataSnapshot.value as? [String: Any]
-            let user = User.transformUser(with: dictionary!)
+    fileprivate func fetchUser(withUID uid: String, completed: @escaping () -> Void){
+        Api.User.observeUser(withUID: uid){ user in
             self.retrievedUsers.insert(user, at: 0)
             completed()
-        })
+        }
     }
     
     /**
      retrieves posts from database and creates post objects with database info
      */
-    fileprivate func retrievePostingData(from database: Database){
-//        activityIndicator.color = UIColor(named: "AppAccent")
-//        activityIndicator.startAnimating()
-        database.reference().child(FirebaseConfig.posts).observe(.childAdded)
-        { dataSnapshot in
-            if let postSnapDict = dataSnapshot.value as? [String: Any]{
-                let post = Post.transformPost(from: postSnapDict)
-                self.fetchUser(uid: post.uid!){
-                    self.retrievedPosts.insert(post, at: 0)
-                    self.tableView.reloadData()
-                }
-                
-//                if self.refreshControl!.isRefreshing {
-//                    self.refreshControl?.endRefreshing()
-//                }
+    fileprivate func retrievePostData(){
+        Api.Post.observePost(){ post in
+            self.fetchUser(withUID: post.uid!){
+                self.retrievedPosts.insert(post, at: 0)
+                self.tableView.reloadData()
+                //self.activityIndicator.stopAnimating()
             }
         }
     }

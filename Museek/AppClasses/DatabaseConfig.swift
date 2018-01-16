@@ -8,14 +8,16 @@
 
 import Foundation
 
-class FirebaseConfig {
+class DatabaseConfig {
     static let posts = "posts"
+    static let users = "users"
+    static let fullVideo = "fullVideo"
     static let postHighlightClip = "highlightClip"
     struct DATABASE{
         static let ROOT_URL_REF = "https://museek-fb1d.firebaseio.com/"
     }
     
-    struct STORAGE{
-        static let ROOT_URL_REF = "gs://museek-fb1d.appspot.com/"
-    }
+//    struct STORAGE{
+//        static let ROOT_URL_REF = "gs://museek-fb1d.appspot.com/"
+//    }
 }

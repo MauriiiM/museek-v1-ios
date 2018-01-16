@@ -98,8 +98,9 @@ class HomeFeedCell: UITableViewCell {
             avPlayer = AVPlayer(url: highlightURL!)
             avLayer = AVPlayerLayer(player: avPlayer)
             avLayer!.frame = videoView.bounds
+            avPlayer.externalPlaybackVideoGravity = .resizeAspectFill
+//            avPlayer.
             videoView.layer.addSublayer(avLayer!)
-//            videoThumbnail.image = nil
         }
     }
     
