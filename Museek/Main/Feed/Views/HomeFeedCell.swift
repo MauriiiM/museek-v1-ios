@@ -8,8 +8,24 @@
 
 import UIKit
 import AVKit
+import FirebaseDatabase
 
 class HomeFeedCell: UITableViewCell {
+    fileprivate let videoThumbnailPlaceholder = UIImage(named: "video placeholder")!
+    fileprivate let profileImagePlaceholder = UIImage(named: "default user photo")!
+//    fileprivate var postRef: DatabaseR
+    //MARK: IB vars
+    @IBOutlet fileprivate weak var songTitleLabel: UILabel!
+    @IBOutlet fileprivate weak var userName: UILabel!
+    @IBOutlet fileprivate weak var profileImage: UIImageView!
+    @IBOutlet fileprivate weak var videoThumbnail: UIImageView!
+    @IBOutlet fileprivate weak var captionLabel: UILabel!
+    @IBOutlet fileprivate weak var genreLabel: UILabel!
+    @IBOutlet fileprivate weak var fireCountButton: UIButton!
+    @IBOutlet fileprivate weak var fireButton: RoundedButton!
+    @IBOutlet fileprivate weak var commentButton: RoundedButton!
+    @IBOutlet fileprivate weak var shareButton: RoundedButton!
+    //MARK: Model vars
     var post: Post? {
         didSet{
             updateCell()
@@ -17,19 +33,10 @@ class HomeFeedCell: UITableViewCell {
     }
     var user: User? {
         didSet{
-           updateCellTop()
+            updateCellTop()
         }
     }
-    fileprivate let videoThumbnailPlaceholder = UIImage(named: "video placeholder")!
-    fileprivate let profileImagePlaceholder = UIImage(named: "default user photo")!
-    @IBOutlet fileprivate weak var songTitleLabel: UILabel!
-    @IBOutlet fileprivate weak var userName: UILabel!
-    @IBOutlet fileprivate weak var profileImage: UIImageView!
-    @IBOutlet fileprivate weak var videoThumbnail: UIImageView!
-    @IBOutlet fileprivate weak var captionLabel: UILabel!
-    @IBOutlet fileprivate weak var fireButton: RoundedButton!
-    @IBOutlet fileprivate weak var commentButton: RoundedButton!
-    @IBOutlet fileprivate weak var shareButton: RoundedButton!
+    //MARK: avplayer vars
     @IBOutlet  weak var videoView: UIView!
     fileprivate var avLayer: AVPlayerLayer?
     lazy var avPlayer = AVPlayer()
@@ -41,7 +48,6 @@ class HomeFeedCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
 //        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
 //                                               object: self.avPlayer.currentItem,
 //                                               queue: .main) { _ in
@@ -68,7 +74,7 @@ class HomeFeedCell: UITableViewCell {
     }
     
     @IBAction fileprivate func likeButtonTapped(){
-        print("LIKED")
+        incrementFireCount()
     }
     
     @IBAction fileprivate func commentButtonTapped(){
@@ -86,6 +92,35 @@ class HomeFeedCell: UITableViewCell {
         if let urlString = urlString{
             let url = URL(string: urlString)
             image.sd_setImage(with: url, placeholderImage: placeholder)
+        }
+    }
+    
+    fileprivate func incrementFireCount(){
+        Api.Post.REF_POST.child(post!.id!).runTransactionBlock({ data in
+            if var post = data.value as? [String: AnyObject], let uid = Api.User.CURRENT_USER?.uid{
+                var fires: Dictionary<String, Bool>
+                fires = post["fires"] as? [String: Bool] ?? [:]
+                var fireCount = post["fireCount"] as? Int ?? 0
+                if let _ = fires[uid]{
+                    fireCount -= 1
+                    fires.removeValue(forKey: uid)
+                } else {
+                    fireCount += 1
+                    fires[uid] = true
+                }
+                post["fires"] = fires as AnyObject?
+                post["fireCount"] = fireCount as AnyObject?
+                data.value = post
+                // return TransactionResult.success(withValue: data)
+            }
+            return TransactionResult.success(withValue: data)
+        }){ (error, committed, snapshot) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let dict = snapshot?.value as? [String: Any]{
+                let post = Post.transformPost(from: dict, key: snapshot!.key)
+                self.updateFire(post)
+            }
         }
     }
     
@@ -113,7 +148,21 @@ class HomeFeedCell: UITableViewCell {
             captionLabel.text = post.caption
             download(from: post.thumbnailURL, set: videoThumbnail, withPlaceholder: videoThumbnailPlaceholder)
             loadHighlightVideo()
+            updateFire(post)
+            Api.Post.REF_POST.child(post.id!).observe(.childChanged){ snapshot in
+                if let count = snapshot.value as? Int{
+                    self.fireCountButton.setTitle("\(count)", for: .normal)
+                }
+            }
         }
+    }
+    
+    fileprivate func updateFire(_ post: Post){
+        let fireImage = post.isFire == nil || !post.isFire! ? "fire" : "fire (filled)"
+        fireButton.imageView?.image = UIImage(named: fireImage)
+        
+        let fireCount = post.fireCount == nil || post.fireCount! == 0 ? " " : "\(post.fireCount!)"
+        fireCountButton.setTitle(fireCount, for: .normal)
     }
     
     fileprivate func updateCellTop(){

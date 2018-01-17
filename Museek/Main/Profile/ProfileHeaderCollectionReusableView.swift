@@ -15,7 +15,7 @@ class ProfileHeaderCollectionReusableView: UICollectionReusableView {
     
     
     
-    func updateView(){
+    func updateView(){        
         Api.User.REF_CURRENT_USER?.observeSingleEvent(of: .value) {
             snapshot in
             if let dictionary = snapshot.value as? [String: Any]{

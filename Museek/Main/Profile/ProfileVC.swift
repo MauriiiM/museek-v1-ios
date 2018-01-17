@@ -72,11 +72,6 @@ extension ProfileVC: UICollectionViewDataSource {
 
 
 
-
-
-
-
-
 extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     private func startMediaBrowser(usingDelegate delegate: UINavigationControllerDelegate & UIImagePickerControllerDelegate){
         if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) { //source is available
@@ -91,31 +86,9 @@ extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDele
     
     //@TODO bottom 2 functions are used in mediaGallery, so clean to use once
     func presentMediaGallery(){
-        self.checkLibraryAuthorization { status in
+        Permissions.checkLibraryAuthorization { status in
             if status == .authorized { self.startMediaBrowser(usingDelegate: self) }
             else { print("Permission to access library denied.") }
-        }
-    }
-    
-    /**
-     checks if user has previously authorized app to use camera
-     */
-    fileprivate func checkLibraryAuthorization(_ completionHandler: @escaping ((_ status: PHAuthorizationStatus) -> Void)) {
-        switch PHPhotoLibrary.authorizationStatus() {
-        case .authorized:
-            //The user has previously granted access to the camera.
-            completionHandler(.authorized)
-        case .notDetermined:
-            // The user has not yet been presented with the option to grant camera access so request access.
-            PHPhotoLibrary.requestAuthorization({ permission in
-                completionHandler(permission)
-            })
-        case .denied:
-            // The user has previously denied access.
-            completionHandler(.denied)
-        case .restricted:
-            // The user doesn't have the authority to request access e.g. parental restriction.
-            completionHandler(.restricted)
         }
     }
 }

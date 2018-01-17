@@ -11,11 +11,12 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class UsersAPI{
-    fileprivate let REF_USERS = Database.database().reference().child(DatabaseConfig.users)
+    let REF_USERS = Database.database().reference().child(DatabaseConfig.users)
+    var CURRENT_USER = Auth.auth().currentUser
     
     var REF_CURRENT_USER: DatabaseReference?{
-        guard let currentUSer = Auth.auth().currentUser else { return nil }
-        return REF_USERS.child(currentUSer.uid)
+        guard let currentUser = Auth.auth().currentUser else { return nil }
+        return REF_USERS.child(currentUser.uid)
     }
     
     func observeUser(withUID uid: String, completionHandler: @escaping (User) -> Void){
