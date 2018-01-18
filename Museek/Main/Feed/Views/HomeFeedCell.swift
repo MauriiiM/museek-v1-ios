@@ -13,7 +13,9 @@ import FirebaseDatabase
 class HomeFeedCell: UITableViewCell {
     fileprivate let videoThumbnailPlaceholder = UIImage(named: "video placeholder")!
     fileprivate let profileImagePlaceholder = UIImage(named: "default user photo")!
-//    fileprivate var postRef: DatabaseR
+    fileprivate var postRef: DatabaseReference?
+    fileprivate var fireRefHandler: UInt!
+    //    fileprivate var postRef: DatabaseR
     //MARK: IB vars
     @IBOutlet fileprivate weak var songTitleLabel: UILabel!
     @IBOutlet fileprivate weak var userName: UILabel!
@@ -48,20 +50,23 @@ class HomeFeedCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-//        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
-//                                               object: self.avPlayer.currentItem,
-//                                               queue: .main) { _ in
-//                                                self.avPlayer.seek(to: kCMTimeZero)
-//                                                self.avPlayer.play() }
-//        avPlayerVC.view.frame = videoView.frame
-//        videoView = avPlayerVC.view
+        //        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
+        //                                               object: self.avPlayer.currentItem,
+        //                                               queue: .main) { _ in
+        //                                                self.avPlayer.seek(to: kCMTimeZero)
+        //                                                self.avPlayer.play() }
+        //        avPlayerVC.view.frame = videoView.frame
+        //        videoView = avPlayerVC.view
     }
     
     override func prepareForReuse() {
+        super.prepareForReuse()
         profileImage.image = profileImagePlaceholder
         videoThumbnail.image = videoThumbnailPlaceholder
         avLayer?.removeFromSuperlayer()
         if isPlaying { avPlayer.pause() }
+        Api.Post.REF_POST.child(post!.id!).removeObserver(withHandle: fireRefHandler)
+        
     }
     
     /**
@@ -74,7 +79,8 @@ class HomeFeedCell: UITableViewCell {
     }
     
     @IBAction fileprivate func likeButtonTapped(){
-        incrementFireCount()
+        postRef = Api.Post.REF_POST.child(post!.id!)
+        incrementFireCount(forReference: postRef!)
     }
     
     @IBAction fileprivate func commentButtonTapped(){
@@ -95,8 +101,8 @@ class HomeFeedCell: UITableViewCell {
         }
     }
     
-    fileprivate func incrementFireCount(){
-        Api.Post.REF_POST.child(post!.id!).runTransactionBlock({ data in
+    fileprivate func incrementFireCount(forReference ref: DatabaseReference){
+        ref.runTransactionBlock({ data in
             if var post = data.value as? [String: AnyObject], let uid = Api.User.CURRENT_USER?.uid{
                 var fires: Dictionary<String, Bool>
                 fires = post["fires"] as? [String: Bool] ?? [:]
@@ -134,7 +140,7 @@ class HomeFeedCell: UITableViewCell {
             avLayer = AVPlayerLayer(player: avPlayer)
             avLayer!.frame = videoView.bounds
             avPlayer.externalPlaybackVideoGravity = .resizeAspectFill
-//            avPlayer.
+            //            avPlayer.
             videoView.layer.addSublayer(avLayer!)
         }
     }
@@ -147,11 +153,19 @@ class HomeFeedCell: UITableViewCell {
             songTitleLabel.text = post.songTitle
             captionLabel.text = post.caption
             download(from: post.thumbnailURL, set: videoThumbnail, withPlaceholder: videoThumbnailPlaceholder)
-            loadHighlightVideo()
-            updateFire(post)
-            Api.Post.REF_POST.child(post.id!).observe(.childChanged){ snapshot in
+            //            loadHighlightVideo()
+            
+            Api.Post.REF_POST.child(post.id!).observeSingleEvent(of: .value){ snapshot in//needed for cell reuse
+                if let dict = snapshot.value as? [String: Any]{
+                    let post = Post.transformPost(from: dict, key: snapshot.key)
+                    self.updateFire(post)
+                }
+            }
+            fireRefHandler = Api.Post.REF_POST.child(post.id!).observe(.childChanged){ snapshot in
                 if let count = snapshot.value as? Int{
                     self.fireCountButton.setTitle("\(count)", for: .normal)
+                    print("\n\n\(post.songTitle)")
+
                 }
             }
         }
@@ -160,7 +174,7 @@ class HomeFeedCell: UITableViewCell {
     fileprivate func updateFire(_ post: Post){
         let fireImage = post.isFire == nil || !post.isFire! ? "fire" : "fire (filled)"
         fireButton.imageView?.image = UIImage(named: fireImage)
-        
+       
         let fireCount = post.fireCount == nil || post.fireCount! == 0 ? " " : "\(post.fireCount!)"
         fireCountButton.setTitle(fireCount, for: .normal)
     }

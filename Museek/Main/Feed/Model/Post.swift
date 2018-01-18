@@ -16,7 +16,7 @@ class Post {
     var highlightURL: String?
     var caption: String?
     var cordinates: (String?, String?)?
-    var uid: String? //user id
+    var uid: String? //user who posted id
     var id: String?// post id
     var fireCount: Int?
     var fires: Dictionary<String, Any>?

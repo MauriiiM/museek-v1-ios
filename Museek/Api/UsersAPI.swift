@@ -6,7 +6,10 @@
 //  Copyright © 2018 Museek. All rights reserved.
 //
 
+import UIKit
+
 import Foundation
+import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
@@ -26,5 +29,19 @@ class UsersAPI{
                 completionHandler(user)
             }
         }
+    }
+    
+    /**
+     will create a new Firebase-authenticated user and add them to the database
+     */
+    func create(user: User, withPassword pswrd: String, onSuccess: @escaping (Firebase.User?, Error?) -> Void){
+        Auth.auth().createUser(withEmail: user.email, password: pswrd, completion: {
+            (newUser, error) in
+            if error == nil {
+                let userRef = Database.database().reference().child("users/\(newUser!.uid)")
+                userRef.setValue(["username": user.username, "email": user.email])
+            }
+                onSuccess(newUser, error)
+            })
     }
 }

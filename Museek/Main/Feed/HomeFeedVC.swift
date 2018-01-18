@@ -31,10 +31,26 @@ class HomeFeedVC: UITableViewController {
         retrievePostData()
     }
     
+//    override func viewDidAppear(_ animated: Bool) {
+//        let currentlyPlayingIndexPath = IndexPath(row: 0, section: 0)
+//        tableView.selectRow(at: currentlyPlayingIndexPath, animated: true, scrollPosition: .none)
+//    }
+    
+    /**
+     pauses video so it won't play in the background
+     */
+    override func viewWillDisappear(_ animated: Bool) {
+        if let currentIndex = currentlyPlayingIndexPath{
+            (tableView.cellForRow(at: currentIndex) as! HomeFeedCell).isPlaying = false
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         print("\nmemory warning in homeFeedVc\n")
     }
+    
+// if indexPath!.row == 0 { print("\n\nFFDDDDD\n\n"); currentlyPlayingIndexPath = indexPath }
     
     /**
      */
@@ -44,7 +60,6 @@ class HomeFeedVC: UITableViewController {
         let currentUser = retrievedUsers[indexPath.row]
         cell.post = currentPost
         cell.user = currentUser
-        
         return cell
     }
     
@@ -60,13 +75,6 @@ class HomeFeedVC: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        refreshControl?.endRefreshing()
         return retrievedPosts.count
-    }
-    
-    /**
-     pauses video so it won't play in the background
-     */
-    override func viewWillDisappear(_ animated: Bool) {
-        //@TODO add code to pause playing video
     }
     
     fileprivate func fetchUser(withUID uid: String, completed: @escaping () -> Void){

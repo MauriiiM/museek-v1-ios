@@ -10,6 +10,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--ProfileVC-->
         <scene sceneID="Fns-Mh-voW">
@@ -119,32 +124,40 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YU1-of-aqU">
-                                            <rect key="frame" x="138.66666666666666" y="152" width="98.333333333333343" height="22.666666666666657"/>
-                                            <attributedString key="attributedText">
-                                                <fragment content="[username]">
-                                                    <attributes>
-                                                        <font key="NSFont" size="19" name="HelveticaNeue-Medium"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GIE-Nn-P96" customClass="RoundedButton" customModule="Museek" customModuleProvider="target">
+                                            <rect key="frame" x="142" y="157" width="90" height="32"/>
+                                            <color key="backgroundColor" name="AppAccent"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                            <state key="normal" title="Support">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="7"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                    <real key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" name="AppAccent"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="vRT-N3-PQf" firstAttribute="leading" secondItem="Kuv-Uo-s4b" secondAttribute="trailing" constant="25" id="4N8-Ov-REv"/>
                                         <constraint firstItem="iG8-nA-0QG" firstAttribute="centerY" secondItem="Kuv-Uo-s4b" secondAttribute="centerY" id="Atb-EH-Slq"/>
                                         <constraint firstItem="Kuv-Uo-s4b" firstAttribute="leading" secondItem="iG8-nA-0QG" secondAttribute="trailing" constant="25" id="OzV-L0-DTg"/>
+                                        <constraint firstItem="GIE-Nn-P96" firstAttribute="top" secondItem="Kuv-Uo-s4b" secondAttribute="bottom" constant="15" id="TQr-pG-ndW"/>
                                         <constraint firstItem="Kuv-Uo-s4b" firstAttribute="top" secondItem="72A-Kq-f7J" secondAttribute="topMargin" id="UG7-rM-3AE"/>
-                                        <constraint firstItem="YU1-of-aqU" firstAttribute="top" secondItem="Kuv-Uo-s4b" secondAttribute="bottom" constant="10" id="YNf-zc-IeR"/>
                                         <constraint firstItem="vRT-N3-PQf" firstAttribute="centerY" secondItem="Kuv-Uo-s4b" secondAttribute="centerY" id="ZAZ-db-ZNo"/>
+                                        <constraint firstItem="GIE-Nn-P96" firstAttribute="centerX" secondItem="Kuv-Uo-s4b" secondAttribute="centerX" id="cpl-4Z-DaM"/>
+                                        <constraint firstItem="GIE-Nn-P96" firstAttribute="width" secondItem="Kuv-Uo-s4b" secondAttribute="width" id="ifT-8c-5SL"/>
                                         <constraint firstItem="Kuv-Uo-s4b" firstAttribute="centerX" secondItem="72A-Kq-f7J" secondAttribute="centerX" id="ptP-8l-ZRj"/>
-                                        <constraint firstItem="YU1-of-aqU" firstAttribute="centerX" secondItem="Kuv-Uo-s4b" secondAttribute="centerX" id="spq-mX-PuV"/>
                                     </constraints>
                                     <connections>
                                         <outlet property="profileImage" destination="Kuv-Uo-s4b" id="ezg-os-A9O"/>
-                                        <outlet property="username" destination="YU1-of-aqU" id="qiR-QB-R0w"/>
+                                        <outlet property="supportButton" destination="GIE-Nn-P96" id="TsD-uu-gJI"/>
                                     </connections>
                                 </collectionReusableView>
                             </collectionView>
@@ -201,6 +214,9 @@
         <image name="default user photo" width="40" height="40"/>
         <image name="profile" width="25" height="25"/>
         <image name="profile (filled)" width="25" height="25"/>
+        <namedColor name="AppAccent">
+            <color red="0.92941176470588238" green="0.40392156862745099" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <namedColor name="AppMain">
             <color red="0.40799999240000001" green="0.40799999240000001" blue="0.40799999240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

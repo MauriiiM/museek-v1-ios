@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseDatabase
 
 class SignUpVC: UIViewController{
     @IBOutlet fileprivate weak var password: UITextField!
@@ -32,22 +30,18 @@ class SignUpVC: UIViewController{
     
     @IBAction fileprivate func createAccountButtonPressed(sender: UIButton) {
         if let pswrd = password.text {
-            Auth.auth().createUser(withEmail: user.email, password: pswrd, completion: {
-                (newUser, error) in
+            
+            Api.User.create(user: user, withPassword: pswrd){ (newUser, error) in
                 if error == nil {
-                    //                    let profileChange = u.createProfileChangeRequest()
-                    //                    profileChange.displayName = self.user.username
-                    //                    profileChange.commitChanges()
-                    let userRef = Database.database().reference().child("users/\(newUser!.uid)")
-                    userRef.setValue(["username": self.user.username, "email": self.user.email ])
+                    Api.User.CURRENT_USER = newUser
                     self.performSegue(withIdentifier: "toMainSb", sender: self)
                 } else {
-                    //Sign up error, present alert
                     let errorMsg = error?.localizedDescription
                     let alert = UIAlertController(title: error?.localizedDescription, message: errorMsg, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
-                }})
+                }
+            }
         }
     }
 }

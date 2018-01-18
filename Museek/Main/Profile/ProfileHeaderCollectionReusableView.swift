@@ -11,7 +11,8 @@ import SDWebImage
 
 class ProfileHeaderCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var profileImage: RoundedImageView!
-    @IBOutlet weak var username: UILabel!
+    @IBOutlet fileprivate weak var supportButton: RoundedButton!
+    @IBOutlet fileprivate weak var username: UILabel!
     
     
     
