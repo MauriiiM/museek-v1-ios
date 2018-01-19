@@ -78,6 +78,7 @@ class HomeFeedVC: UITableViewController {
     }
     
     fileprivate func fetchUser(withUID uid: String, completed: @escaping () -> Void){
+        print("\n\n\(uid)\n\n")
         Api.User.observeUser(withUID: uid){ user in
             self.retrievedUsers.insert(user, at: 0)
             completed()

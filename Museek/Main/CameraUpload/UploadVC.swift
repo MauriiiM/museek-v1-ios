@@ -142,7 +142,6 @@ class UploadVC: UIViewController, ContainerMaster {
         }
     }
     
-    
     /**
      uploads given URL to given online storage reference (put exact path!)
      */

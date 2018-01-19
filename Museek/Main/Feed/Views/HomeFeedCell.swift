@@ -164,8 +164,6 @@ class HomeFeedCell: UITableViewCell {
             fireRefHandler = Api.Post.REF_POST.child(post.id!).observe(.childChanged){ snapshot in
                 if let count = snapshot.value as? Int{
                     self.fireCountButton.setTitle("\(count)", for: .normal)
-                    print("\n\n\(post.songTitle)")
-
                 }
             }
         }

@@ -125,9 +125,10 @@
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GIE-Nn-P96" customClass="RoundedButton" customModule="Museek" customModuleProvider="target">
-                                            <rect key="frame" x="142" y="157" width="90" height="32"/>
+                                            <rect key="frame" x="137.66666666666666" y="157" width="99" height="32"/>
                                             <color key="backgroundColor" name="AppAccent"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                            <color key="tintColor" name="AppMain"/>
                                             <state key="normal" title="Support">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
@@ -142,22 +143,37 @@
                                                     <color key="value" name="AppAccent"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="supportButtonPressed:" destination="72A-Kq-f7J" eventType="touchUpInside" id="0Io-me-Zvj"/>
+                                            </connections>
                                         </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[username]" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QRL-X2-RWT">
+                                            <rect key="frame" x="137.66666666666666" y="194" width="99" height="23.333333333333343"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                            <color key="textColor" name="AppAccent"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="QRL-X2-RWT" firstAttribute="width" secondItem="GIE-Nn-P96" secondAttribute="width" id="1V4-Hi-x04"/>
                                         <constraint firstItem="vRT-N3-PQf" firstAttribute="leading" secondItem="Kuv-Uo-s4b" secondAttribute="trailing" constant="25" id="4N8-Ov-REv"/>
                                         <constraint firstItem="iG8-nA-0QG" firstAttribute="centerY" secondItem="Kuv-Uo-s4b" secondAttribute="centerY" id="Atb-EH-Slq"/>
+                                        <constraint firstItem="QRL-X2-RWT" firstAttribute="top" secondItem="GIE-Nn-P96" secondAttribute="bottom" constant="5" id="HQU-AQ-IgJ"/>
                                         <constraint firstItem="Kuv-Uo-s4b" firstAttribute="leading" secondItem="iG8-nA-0QG" secondAttribute="trailing" constant="25" id="OzV-L0-DTg"/>
                                         <constraint firstItem="GIE-Nn-P96" firstAttribute="top" secondItem="Kuv-Uo-s4b" secondAttribute="bottom" constant="15" id="TQr-pG-ndW"/>
                                         <constraint firstItem="Kuv-Uo-s4b" firstAttribute="top" secondItem="72A-Kq-f7J" secondAttribute="topMargin" id="UG7-rM-3AE"/>
                                         <constraint firstItem="vRT-N3-PQf" firstAttribute="centerY" secondItem="Kuv-Uo-s4b" secondAttribute="centerY" id="ZAZ-db-ZNo"/>
+                                        <constraint firstItem="QRL-X2-RWT" firstAttribute="centerX" secondItem="GIE-Nn-P96" secondAttribute="centerX" id="bVc-1j-xbC"/>
                                         <constraint firstItem="GIE-Nn-P96" firstAttribute="centerX" secondItem="Kuv-Uo-s4b" secondAttribute="centerX" id="cpl-4Z-DaM"/>
-                                        <constraint firstItem="GIE-Nn-P96" firstAttribute="width" secondItem="Kuv-Uo-s4b" secondAttribute="width" id="ifT-8c-5SL"/>
+                                        <constraint firstItem="GIE-Nn-P96" firstAttribute="width" relation="greaterThanOrEqual" secondItem="Kuv-Uo-s4b" secondAttribute="width" priority="750" id="ifT-8c-5SL"/>
                                         <constraint firstItem="Kuv-Uo-s4b" firstAttribute="centerX" secondItem="72A-Kq-f7J" secondAttribute="centerX" id="ptP-8l-ZRj"/>
                                     </constraints>
                                     <connections>
                                         <outlet property="profileImage" destination="Kuv-Uo-s4b" id="ezg-os-A9O"/>
-                                        <outlet property="supportButton" destination="GIE-Nn-P96" id="TsD-uu-gJI"/>
+                                        <outlet property="supportButton" destination="GIE-Nn-P96" id="mox-Yu-OeP"/>
+                                        <outlet property="supportersCountLabel" destination="PS1-v5-kg2" id="RF9-rB-aU1"/>
+                                        <outlet property="supportingCountLabel" destination="fId-pl-NEa" id="vBm-wu-ZWI"/>
+                                        <outlet property="username" destination="QRL-X2-RWT" id="dDz-Gv-mq3"/>
                                     </connections>
                                 </collectionReusableView>
                             </collectionView>
@@ -219,6 +235,9 @@
         </namedColor>
         <namedColor name="AppMain">
             <color red="0.40799999240000001" green="0.40799999240000001" blue="0.40799999240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AppMain">
+            <color red="0.40799999237060547" green="0.40799999237060547" blue="0.40799999237060547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
     <color key="tintColor" name="AppAccent"/>

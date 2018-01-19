@@ -13,6 +13,8 @@ class User {
     var coordinates: (String, String)?
     var username: String?
     var profileImageURL: String?
+    var id: String? //database id
+    var isSupporting: Bool?
     
     /**
      Initializes a new user with given email. Function is needed and used in signup process.
@@ -27,10 +29,11 @@ class User {
 }
 
 extension User{
-    static func transformUser(with dict: [String: Any]) -> User{
+    static func transformUser(with dict: [String: Any], key: String) -> User{
         let user = User(withEmail: dict["email"] as! String)
         user.username = dict["username"] as? String
         user.profileImageURL = dict["profileImageURL"] as? String
+        user.id = key
         return user
     }
 }

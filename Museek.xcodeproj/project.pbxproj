@@ -56,6 +56,7 @@
 		22EDD7101FF890D5008559EC /* DatabaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EDD70F1FF890D5008559EC /* DatabaseConfig.swift */; };
 		22EDD7121FFAF9ED008559EC /* HomeFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EDD7111FFAF9ED008559EC /* HomeFeedVC.swift */; };
 		22EDD7141FFB0FFA008559EC /* HomeFeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22EDD7131FFB0FFA008559EC /* HomeFeed.storyboard */; };
+		22F834C820108B6C00D6891D /* SupportAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F834C720108B6C00D6891D /* SupportAPI.swift */; };
 		B5C6E451A7FF6140C9A2A9C6 /* Pods_Museek.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4333D572041915F1AFD10A5F /* Pods_Museek.framework */; };
 		C8284229BAF31A125D876BFA /* Pods_MuseekUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0270A0173A41D0492E066054 /* Pods_MuseekUITests.framework */; };
 /* End PBXBuildFile section */
@@ -134,6 +135,7 @@
 		22EDD70F1FF890D5008559EC /* DatabaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseConfig.swift; sourceTree = "<group>"; };
 		22EDD7111FFAF9ED008559EC /* HomeFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedVC.swift; sourceTree = "<group>"; };
 		22EDD7131FFB0FFA008559EC /* HomeFeed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeFeed.storyboard; sourceTree = "<group>"; };
+		22F834C720108B6C00D6891D /* SupportAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportAPI.swift; sourceTree = "<group>"; };
 		4333D572041915F1AFD10A5F /* Pods_Museek.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Museek.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D371E01FAC4C731E285A59F /* Pods_MuseekTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MuseekTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D8B42F642EB77C5313B8F2B /* Pods-MuseekTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuseekTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MuseekTests/Pods-MuseekTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				22789AC320007C0D00E8BA5A /* UsersAPI.swift */,
 				22789AC520007DC400E8BA5A /* Api.swift */,
 				226B09D7200DDA4A004E23BA /* PostAPI.swift */,
+				22F834C720108B6C00D6891D /* SupportAPI.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 		229D07B01F80CC8A00FD24CC /* Museek */ = {
 			isa = PBXGroup;
 			children = (
+				220889261FF3A1F00024E33E /* User.swift */,
 				223798E6200EB73700503E53 /* Api */,
 				2229AB8A2009DC7A00B4C5D2 /* AppClasses */,
 				22928BAC200385C9001B50E8 /* Extensions */,
@@ -341,7 +345,6 @@
 				22C4CD271F821E8F00B155FE /* LoginVC.swift */,
 				22C4CD341F86CDF800B155FE /* OpeningVC.swift */,
 				22C4CD2B1F837F7900B155FE /* SignUpVC.swift */,
-				220889261FF3A1F00024E33E /* User.swift */,
 				220889281FF4655C0024E33E /* EmailSignup.swift */,
 				2208892A1FF46B1E0024E33E /* LocationSignUp.swift */,
 			);
@@ -743,6 +746,7 @@
 				22789AC420007C0D00E8BA5A /* UsersAPI.swift in Sources */,
 				220889291FF4655C0024E33E /* EmailSignup.swift in Sources */,
 				229D07B21F80CC8A00FD24CC /* AppDelegate.swift in Sources */,
+				22F834C820108B6C00D6891D /* SupportAPI.swift in Sources */,
 				22E35E0C2003768100EE15FC /* Post.swift in Sources */,
 				220889271FF3A1F00024E33E /* User.swift in Sources */,
 				22928B9D2003851D001B50E8 /* OutlinedTextView.swift in Sources */,

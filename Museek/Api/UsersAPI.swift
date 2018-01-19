@@ -22,10 +22,20 @@ class UsersAPI{
         return REF_USERS.child(currentUser.uid)
     }
     
+    func observeCurrentUser(completionHandler: @escaping (User) -> Void){
+        guard let currentUser = CURRENT_USER else { return }
+        REF_USERS.child(currentUser.uid).observeSingleEvent(of: .value){ snapshot in
+            if let dict = snapshot.value as? [String: Any] {
+                let user = User.transformUser(with: dict, key: snapshot.key)
+                completionHandler(user)
+            }
+        }
+    }
+    
     func observeUser(withUID uid: String, completionHandler: @escaping (User) -> Void){
         REF_USERS.child(uid).observeSingleEvent(of: .value){ snapshot in
             if let dict = snapshot.value as? [String: Any] {
-                let user = User.transformUser(with: dict)
+                let user = User.transformUser(with: dict, key: snapshot.key)
                 completionHandler(user)
             }
         }

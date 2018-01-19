@@ -11,5 +11,6 @@ import Foundation
  class Api{
     static let User = UsersAPI()
     static let Post = PostAPI()
+    static let Support = SupportAPI()
     //static let Comment = CommentAPI()
 }

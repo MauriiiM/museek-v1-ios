@@ -332,7 +332,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" textContentType="username"/>
+                                        <textInputTraits key="textInputTraits" textContentType="name"/>
                                         <connections>
                                             <action selector="finishedTypingUsername:" destination="jiW-nm-1hW" eventType="editingDidEnd" id="fnl-rY-aIL"/>
                                         </connections>
