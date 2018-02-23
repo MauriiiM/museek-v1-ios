@@ -7,13 +7,10 @@
 //
 
 import UIKit
-import FirebaseDatabase
-import FirebaseStorage
-import FirebaseAuth
 import CoreLocation
 
 class UploadVC: UIViewController, ContainerMaster {
-    var vidCoordinates: CLLocationCoordinate2D?
+    //MARK: Container MAster protocol vars
     fileprivate var _videoViewLoaded: Bool?{
         didSet{
             giveContainerGestureRecognizer()
@@ -55,6 +52,7 @@ class UploadVC: UIViewController, ContainerMaster {
     @IBOutlet fileprivate weak var captionTV: OutlinedTextView!
     fileprivate var videoPlayerVC: VideoVC!
     fileprivate lazy var movieEditor = UIVideoEditorController()
+    var vidCoordinates: CLLocationCoordinate2D?
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -69,6 +67,19 @@ class UploadVC: UIViewController, ContainerMaster {
         setupNavigationBar()
         self.tabBarController?.tabBar.isHidden = true
         hideKeyboardWhenTappedAround()
+    }
+    
+    fileprivate func createUploadDict(fullURL: String, highlightURL: String, thumbnailURL: String) -> [String: Any?]{
+        let user = Api.User.CURRENT_USER?.uid
+        var isCover = " "
+        if coverSongSwitch.isOn { isCover = "cover " }
+        let uploadDictonary: [String : Any?] =
+            ["fullVideoURL": fullURL, "highlightVideoURL": highlightURL,
+             "thumbnailURL": thumbnailURL, "songTitle": self.songTitleTF.text,
+             "caption": self.captionTV.text, "uid": user, "isCover": isCover,
+             "latitude": self.vidCoordinates!.latitude,
+             "longitude": self.vidCoordinates!.longitude]
+        return uploadDictonary
     }
     
     @objc fileprivate func giveContainerGestureRecognizer(){
@@ -97,7 +108,7 @@ class UploadVC: UIViewController, ContainerMaster {
         }
     }
     
-    @IBAction func titleChanged(_ sender: UITextField) {
+    @IBAction fileprivate func titleChanged(_ sender: UITextField) {
         uploadButton(isActive: canUpload)
     }
     
@@ -109,67 +120,42 @@ class UploadVC: UIViewController, ContainerMaster {
     
     @IBAction fileprivate func uploadButtonPressed(_ sender: UIButton){
         if canUpload {
-            uploadButton.isEnabled = false
-            let storageRef = Storage.storage().reference().child(DatabaseConfig.posts)
+            uploadMedia{ error in
+                if error == nil {
+                    self.navigationController?.popToRootViewController(animated: false)
+                    self.tabBarController?.selectedIndex = 0
+                }
+            }
+        }
+    }
+    
+    /**
+     Uploads everything collected from user regarding their video to storage and database. First uploads
+     full video to storage, then highlight video to sotrage, then highlight thumbnail to storage, and
+     finally, uploads all 3 + text field inputs to database.
+     */
+    fileprivate func uploadMedia(completion: @escaping (Error?) -> Void){
+        uploadButton.isEnabled = false
+        let storageRef = UploadService.REF_STO_POSTS.child(DatabaseConfig.posts)
+        
+        UploadService.upload(video: url.movie!.absoluteURL, with: nil, to: storageRef.child("fullVideo/\(UUID().uuidString)"))
+        { fullVidStorageURL in
             
-            upload(video: url.movie!.absoluteURL, to: storageRef.child("fullVideo/\(UUID().uuidString)")){ fullVidStorageURL in
-                self.upload(video: self.url.highlightClip!.absoluteURL, to: storageRef.child("highlightVideo/\(UUID().uuidString)")){ highlightVidStorageURL in
-                    self.upload(thumbnail: self.videoPlayerVC.getVideoThumbnail()!, to: storageRef.child("thumbnails/\(UUID().uuidString)")){ thumbnailURL in
-                        
-                        let db = Database.database()
-                        self.upload(videoURL: fullVidStorageURL, withHiglightVideoURL: highlightVidStorageURL, withThumbnail: thumbnailURL, to: db){
-//                            self.navigationController?.popToRootViewController(animated: false)
-//                            self.tabBarController?.selectedIndex = 0
-                        }
+            UploadService.upload(video: self.url.highlightClip!.absoluteURL, with: nil, to: storageRef.child("highlightVideo/\(UUID().uuidString)"))
+            { highlightVidStorageURL in
+                
+                guard let thumbnailData = UIImageJPEGRepresentation(self.videoPlayerVC.getVideoThumbnail()!, 0.75) else { return }
+                
+                UploadService.upload(image: thumbnailData, to: storageRef.child("thumbnails/\(UUID().uuidString)"))
+                { thumbnailStorageURL in
+                    let uploadData = self.createUploadDict(fullURL: fullVidStorageURL,
+                                                           highlightURL: highlightVidStorageURL, thumbnailURL: thumbnailStorageURL)
+                    Api.Post.upload(data: uploadData){
+                        completion(nil)//@todo correct to be 2 args succes
                     }
                 }
             }
-            self.navigationController?.popToRootViewController(animated: false)
-            self.tabBarController?.selectedIndex = 0
         }
-    }
-    
-    /**
-     upload given URL to given online storage
-     */
-    fileprivate func upload(thumbnail: UIImage, to storageRef: StorageReference, onSuccess: @escaping (_ thumbnailURL: String) -> Void){
-        let thumbnailData = UIImageJPEGRepresentation(thumbnail, 0.8)
-        let metaData = StorageMetadata()
-        metaData.contentType = "image/jpg"
-        storageRef.putData(thumbnailData!, metadata: metaData) {(metadata, error) in
-            if error != nil { return }
-            onSuccess(metadata!.downloadURL()!.absoluteString)
-        }
-    }
-    
-    /**
-     uploads given URL to given online storage reference (put exact path!)
-     */
-    fileprivate func upload(video url: URL, to storageRef: StorageReference, onSuccess: @escaping (_ storageURL: String) -> Void){
-        storageRef.putFile(from: url, metadata: nil){ (metadata, error) in
-            if error == nil { onSuccess(metadata!.downloadURL()!.absoluteString) }
-            else { return } //@todo possibly present an allert
-        }
-    }
-    
-    /**
-     uploads to given database
-     */
-    fileprivate func upload(videoURL: String, withHiglightVideoURL highlightURL: String, withThumbnail thumbnailURL: String, to database: Database, onSuccess: @escaping () -> Void){
-        guard let user = Auth.auth().currentUser?.uid else { return }
-        var isCover = " "
-        if coverSongSwitch.isOn { isCover = "cover " }
-        let userPostsRef = database.reference().child(DatabaseConfig.posts)
-        let newPostRef = userPostsRef.childByAutoId()
-        let fileArray:[String : Any?] = ["thumbnailURL": thumbnailURL, "fullVideoURL": videoURL,
-                                         "highlightVideoURL": highlightURL, "songTitle": songTitleTF.text,
-                                         "caption": captionTV.text, "uid": user, "isCover": isCover,
-                                         "latitude": vidCoordinates!.latitude,
-                                         "longitude" : vidCoordinates!.longitude]
-        newPostRef.setValue(fileArray, withCompletionBlock: {(error, dbRef) in
-            if error == nil { onSuccess() }
-            else { print(error!); return }
-        })
     }
 }
 

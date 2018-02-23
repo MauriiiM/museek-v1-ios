@@ -46,7 +46,7 @@
         <scene sceneID="xl1-7r-me0">
             <objects>
                 <tableViewController id="wzq-4p-osL" customClass="HomeFeedVC" customModule="Museek" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="A7f-qQ-gh2">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="A7f-qQ-gh2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -56,27 +56,27 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="450"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wXj-du-pJW" id="Tnv-9K-0S8">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="449.66666666666669"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="450"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KyR-oj-vWf">
-                                            <rect key="frame" x="0.0" y="59.999999999999986" width="375" height="209.66666666666663"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KyR-oj-vWf" customClass="HomeFeedPlayerView" customModule="Museek" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="60" width="375" height="212"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="anS-35-NLk">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="209.66666666666666"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="212"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" secondItem="KyR-oj-vWf" secondAttribute="height" multiplier="25:14" id="NHl-Vc-kgy"/>
                                                 <constraint firstAttribute="trailing" secondItem="anS-35-NLk" secondAttribute="trailing" id="SLT-Ys-71F"/>
                                                 <constraint firstAttribute="bottom" secondItem="anS-35-NLk" secondAttribute="bottom" id="hxS-eS-qIV"/>
                                                 <constraint firstItem="anS-35-NLk" firstAttribute="leading" secondItem="KyR-oj-vWf" secondAttribute="leading" id="koc-0J-Fu6"/>
                                                 <constraint firstItem="anS-35-NLk" firstAttribute="top" secondItem="KyR-oj-vWf" secondAttribute="top" id="lfn-5Z-nKG"/>
+                                                <constraint firstAttribute="width" secondItem="KyR-oj-vWf" secondAttribute="height" multiplier="23:13" id="yh9-vO-mee"/>
                                             </constraints>
                                         </view>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qis-gS-y2W" customClass="RoundedButton" customModule="Museek" customModuleProvider="target">
-                                            <rect key="frame" x="334" y="273.66666666666669" width="25" height="25"/>
+                                            <rect key="frame" x="334" y="276" width="25" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="25" id="20m-9C-ZY8"/>
                                                 <constraint firstAttribute="height" constant="25" id="OCh-oF-mkN"/>
@@ -93,7 +93,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WGW-GR-LVn" customClass="RoundedButton" customModule="Museek" customModuleProvider="target">
-                                            <rect key="frame" x="334" y="313.66666666666669" width="25" height="25"/>
+                                            <rect key="frame" x="334" y="316" width="25" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="puV-87-n2M"/>
                                             </constraints>
@@ -109,7 +109,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="STr-ZE-eot" customClass="RoundedButton" customModule="Museek" customModuleProvider="target">
-                                            <rect key="frame" x="334" y="353.66666666666669" width="25" height="22"/>
+                                            <rect key="frame" x="334" y="356" width="25" height="22"/>
                                             <color key="tintColor" name="AppMain"/>
                                             <state key="normal" image="share"/>
                                             <userDefinedRuntimeAttributes>
@@ -158,14 +158,14 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1cw-rk-oSn">
-                                            <rect key="frame" x="4" y="313.66666666666669" width="326" height="64.333333333333314"/>
+                                            <rect key="frame" x="4" y="316" width="326" height="62"/>
                                             <string key="text">I've been practicing these notes. Thoughts? I've been practicing these notes. Thoughts? I've been practicing these notes. Thoughts?</string>
                                             <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oOU-4m-HTy">
-                                            <rect key="frame" x="4" y="273.66666666666669" width="207" height="24"/>
+                                            <rect key="frame" x="4" y="276" width="207" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="207" id="fmB-fT-CNL"/>
                                             </constraints>
@@ -174,7 +174,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ykp-4Q-dhd" userLabel="like count" customClass="RoundedButton" customModule="Museek" customModuleProvider="target">
-                                            <rect key="frame" x="221" y="269.33333333333331" width="109" height="33"/>
+                                            <rect key="frame" x="221" y="272" width="109" height="33"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                             <color key="tintColor" name="AppMain"/>
                                             <state key="normal" title=" ">
@@ -183,7 +183,6 @@
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="2fA-fo-PzO" firstAttribute="centerX" secondItem="qis-gS-y2W" secondAttribute="centerX" id="3JJ-bV-raz"/>
                                         <constraint firstItem="qis-gS-y2W" firstAttribute="trailing" secondItem="WGW-GR-LVn" secondAttribute="trailing" id="4TD-nx-hI5"/>
                                         <constraint firstItem="WGW-GR-LVn" firstAttribute="leading" secondItem="1cw-rk-oSn" secondAttribute="trailing" constant="4" id="4qv-Lr-GUv"/>
                                         <constraint firstItem="KyR-oj-vWf" firstAttribute="top" secondItem="mZd-Fe-MWf" secondAttribute="bottom" constant="10" id="7dk-I9-Qef"/>
@@ -204,15 +203,15 @@
                                         <constraint firstItem="ykp-4Q-dhd" firstAttribute="leading" secondItem="oOU-4m-HTy" secondAttribute="trailing" constant="10" id="ayW-nq-HZO"/>
                                         <constraint firstItem="STr-ZE-eot" firstAttribute="top" secondItem="WGW-GR-LVn" secondAttribute="bottom" constant="15" id="eYq-et-rjr"/>
                                         <constraint firstItem="oOU-4m-HTy" firstAttribute="leading" secondItem="mZd-Fe-MWf" secondAttribute="leading" id="g0K-Pc-jX5"/>
+                                        <constraint firstItem="KyR-oj-vWf" firstAttribute="width" secondItem="Tnv-9K-0S8" secondAttribute="width" id="g9Z-nS-oT5"/>
                                         <constraint firstItem="eX4-uA-gtN" firstAttribute="leading" secondItem="mZd-Fe-MWf" secondAttribute="leading" id="h1J-uH-EbF"/>
                                         <constraint firstItem="oOU-4m-HTy" firstAttribute="top" secondItem="qis-gS-y2W" secondAttribute="top" id="hAD-c4-wdy"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="2fA-fo-PzO" secondAttribute="trailing" constant="-7" id="hO1-ft-hIS"/>
                                         <constraint firstItem="eX4-uA-gtN" firstAttribute="trailing" secondItem="mZd-Fe-MWf" secondAttribute="trailing" id="sfH-hc-mps"/>
                                         <constraint firstItem="eX4-uA-gtN" firstAttribute="top" secondItem="Tnv-9K-0S8" secondAttribute="topMargin" constant="-1" id="u90-fj-n90"/>
                                         <constraint firstItem="qis-gS-y2W" firstAttribute="leading" secondItem="WGW-GR-LVn" secondAttribute="leading" id="umi-UW-CAe"/>
-                                        <constraint firstAttribute="trailing" secondItem="KyR-oj-vWf" secondAttribute="trailing" id="whD-NL-bVv"/>
+                                        <constraint firstItem="KyR-oj-vWf" firstAttribute="centerX" secondItem="Tnv-9K-0S8" secondAttribute="centerX" id="w6b-XI-Tis"/>
                                         <constraint firstItem="WGW-GR-LVn" firstAttribute="leading" secondItem="STr-ZE-eot" secondAttribute="leading" id="wpR-lM-Sq3"/>
-                                        <constraint firstItem="KyR-oj-vWf" firstAttribute="leading" secondItem="Tnv-9K-0S8" secondAttribute="leading" id="x8E-GT-lsp"/>
                                         <constraint firstItem="eX4-uA-gtN" firstAttribute="leading" secondItem="Tnv-9K-0S8" secondAttribute="leadingMargin" constant="-12" id="zEL-Bj-pHY"/>
                                     </constraints>
                                 </tableViewCellContentView>

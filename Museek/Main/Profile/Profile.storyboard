@@ -129,7 +129,7 @@
                                             <color key="backgroundColor" name="AppAccent"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                             <color key="tintColor" name="AppMain"/>
-                                            <state key="normal" title="Support">
+                                            <state key="normal" title="Edit Profile">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <userDefinedRuntimeAttributes>

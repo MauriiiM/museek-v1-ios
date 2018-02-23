@@ -39,9 +39,9 @@ class HomeFeedCell: UITableViewCell {
         }
     }
     //MARK: avplayer vars
-    @IBOutlet  weak var videoView: UIView!
-    fileprivate var avLayer: AVPlayerLayer?
-    lazy var avPlayer = AVPlayer()
+    @IBOutlet  weak var videoView: HomeFeedPlayerView!
+//    fileprivate var avLayer: AVPlayerLayer?
+    fileprivate lazy var avPlayer = AVPlayer()
     var isPlaying = false {
         didSet{
             if !isPlaying { avPlayer.pause() }
@@ -63,7 +63,7 @@ class HomeFeedCell: UITableViewCell {
         super.prepareForReuse()
         profileImage.image = profileImagePlaceholder
         videoThumbnail.image = videoThumbnailPlaceholder
-        avLayer?.removeFromSuperlayer()
+//        avLayer?.removeFromSuperlayer()
         if isPlaying { avPlayer.pause() }
         Api.Post.REF_POST.child(post!.id!).removeObserver(withHandle: fireRefHandler)
         
@@ -101,6 +101,9 @@ class HomeFeedCell: UITableViewCell {
         }
     }
     
+    /**
+     
+     */
     fileprivate func incrementFireCount(forReference ref: DatabaseReference){
         ref.runTransactionBlock({ data in
             if var post = data.value as? [String: AnyObject], let uid = Api.User.CURRENT_USER?.uid{
@@ -134,14 +137,12 @@ class HomeFeedCell: UITableViewCell {
      loads and displays video, but doesn't start playing
      */
     fileprivate func loadHighlightVideo(){
-        if let highlightURLString = post!.movieURL{
+        if let highlightURLString = post!.highlightURL{
             let highlightURL = URL(string: highlightURLString)
             avPlayer = AVPlayer(url: highlightURL!)
-            avLayer = AVPlayerLayer(player: avPlayer)
-            avLayer!.frame = videoView.bounds
-            avPlayer.externalPlaybackVideoGravity = .resizeAspectFill
-            //            avPlayer.
-            videoView.layer.addSublayer(avLayer!)
+            avPlayer.externalPlaybackVideoGravity = .resizeAspect
+            videoView.player = avPlayer
+            videoThumbnail.isHidden = true
         }
     }
     
@@ -153,9 +154,10 @@ class HomeFeedCell: UITableViewCell {
             songTitleLabel.text = post.songTitle
             captionLabel.text = post.caption
             download(from: post.thumbnailURL, set: videoThumbnail, withPlaceholder: videoThumbnailPlaceholder)
-            //            loadHighlightVideo()
+            loadHighlightVideo()
             
-            Api.Post.REF_POST.child(post.id!).observeSingleEvent(of: .value){ snapshot in//needed for cell reuse
+            //needed for cell reuse
+            Api.Post.REF_POST.child(post.id!).observeSingleEvent(of: .value){ snapshot in
                 if let dict = snapshot.value as? [String: Any]{
                     let post = Post.transformPost(from: dict, key: snapshot.key)
                     self.updateFire(post)

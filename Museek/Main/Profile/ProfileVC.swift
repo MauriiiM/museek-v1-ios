@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FirebaseAuth
 import FirebaseStorage
 import Photos
 
@@ -30,14 +29,13 @@ class ProfileVC: UIViewController {
     }
     
     @IBAction fileprivate func logoutButtonPressed(_ sender: Any) {
-        do{
-            try Auth.auth().signOut()
+        AuthService.signOut(onSuccess: {
             let sb = UIStoryboard(name: "Opening", bundle: nil)
             let vc = sb.instantiateInitialViewController()
             self.present(vc!, animated: true, completion: nil)
-        } catch let logoutError {
-            print(logoutError)
-        }
+        }, onError:{ error in
+            //@TODO present error
+        })
     }
     
     @objc fileprivate func imageTapped(){
@@ -83,6 +81,18 @@ extension ProfileVC: UICollectionViewDataSource {
             self.collectionView.reloadData()
         }
     }
+    
+    fileprivate func uploadProfile(image: UIImage, onSuccess: @escaping () -> Void){
+        let imageData = UIImageJPEGRepresentation(image, 0.8)
+        let storRef = Storage.storage().reference().child("profileImages").child(UUID().uuidString)
+        
+        UploadService.upload(image: imageData!, to: storRef)
+        { imageURL in
+            Api.User.update(image: imageURL){
+                onSuccess()
+            }
+        }
+    }
 }
 
 
@@ -110,28 +120,9 @@ extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDele
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage{
             headerCell?.profileImage.image = image
-            upload(image: image){ imageURL in
-                self.upload(imageURL: imageURL)
+            uploadProfile(image: image){
                 self.dismiss(animated: true)
             }
         }
-    }
-    
-    /**
-     upload given URL to given online storage
-     */
-    fileprivate func upload(image: UIImage, onSuccess: @escaping (_ imageURL: String) -> Void){
-        let thumbnailData = UIImageJPEGRepresentation(image, 0.75)
-        let metaData = StorageMetadata()
-        metaData.contentType = "image/jpg"
-        Storage.storage().reference().child("profileImages").child(UUID().uuidString).putData(thumbnailData!, metadata: metaData) {(metadata, error) in
-            if error != nil { return }
-            onSuccess(metadata!.downloadURL()!.absoluteString)
-        }
-    }
-    
-    fileprivate func upload(imageURL: String){
-        let newPostRef = Api.User.REF_CURRENT_USER!
-        newPostRef.child("profileImageURL").setValue(imageURL)
     }
 }

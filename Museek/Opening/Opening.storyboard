@@ -68,16 +68,16 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="a08-zH-uDF">
-                                <rect key="frame" x="61" y="40" width="254" height="84"/>
+                                <rect key="frame" x="43.666666666666657" y="40" width="288" height="84"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="Mu">
+                                    <fragment content="[Un">
                                         <attributes>
                                             <color key="NSColor" red="0.92848032712936401" green="0.40099602937698364" blue="0.52545672655105591" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <font key="NSFont" size="72" name=".SFNSText"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
-                                    <fragment content="seek">
+                                    <fragment content="titled]">
                                         <attributes>
                                             <color key="NSColor" red="0.40784725546836853" green="0.40783786773681641" blue="0.40783971548080444" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <font key="NSFont" size="72" name=".SFNSText"/>
@@ -125,16 +125,13 @@
                 <viewControllerPlaceholder storyboardIdentifier="LoginVC" storyboardName="Login" id="lv4-dq-QlK" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o3i-ro-3Op" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="560" y="-426"/>
+            <point key="canvasLocation" x="401" y="-432"/>
         </scene>
     </scenes>
     <resources>
         <image name="openingBackground.jpg" width="1280" height="800"/>
         <namedColor name="AppAccent">
             <color red="0.92941176470588238" green="0.40392156862745099" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
-        <namedColor name="AppMain">
-            <color red="0.40799999237060547" green="0.40799999237060547" blue="0.40799999237060547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="AppMain">
             <color red="0.40799999237060547" green="0.40799999237060547" blue="0.40799999237060547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

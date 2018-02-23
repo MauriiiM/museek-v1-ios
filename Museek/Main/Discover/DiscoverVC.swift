@@ -12,7 +12,7 @@ import CoreLocation
 
 class DiscoverVC: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
-    fileprivate let coordinate = LocationServices.currentCoordinates!
+    fileprivate let coordinate = LocationServices.currentCoordinates!//@TODO this line crashes app on first startup sometimes
     
     
     override func viewDidLoad() {
@@ -42,10 +42,10 @@ class DiscoverVC: UIViewController {
         annotationView.animatesDrop = true
         
         let center = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.08, longitudeDelta: 0.08))
         locationPin.coordinate = LocationServices.currentCoordinates!
         map.setRegion(region, animated: true)
-        map.addAnnotation(locationPin)
+//        map.addAnnotation(locationPin)
     }
     
     @objc fileprivate func longPressOnMap(_ sender: Any) {

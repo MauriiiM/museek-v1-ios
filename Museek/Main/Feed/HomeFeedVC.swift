@@ -49,9 +49,7 @@ class HomeFeedVC: UITableViewController {
         super.didReceiveMemoryWarning()
         print("\nmemory warning in homeFeedVc\n")
     }
-    
-// if indexPath!.row == 0 { print("\n\nFFDDDDD\n\n"); currentlyPlayingIndexPath = indexPath }
-    
+        
     /**
      */
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -78,7 +76,6 @@ class HomeFeedVC: UITableViewController {
     }
     
     fileprivate func fetchUser(withUID uid: String, completed: @escaping () -> Void){
-        print("\n\n\(uid)\n\n")
         Api.User.observeUser(withUID: uid){ user in
             self.retrievedUsers.insert(user, at: 0)
             completed()

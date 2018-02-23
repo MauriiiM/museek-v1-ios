@@ -96,7 +96,7 @@ extension MediaLibraryVC: UIImagePickerControllerDelegate, UINavigationControlle
     private func startMediaBrowser(usingDelegate delegate: UINavigationControllerDelegate & UIImagePickerControllerDelegate){
         if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) { //source is available
             
-            moviePicker.sourceType = .savedPhotosAlbum
+            moviePicker.sourceType = .photoLibrary
             moviePicker.mediaTypes = [kUTTypeMovie as String]
             moviePicker.modalPresentationStyle = .popover
             moviePicker.allowsEditing = false

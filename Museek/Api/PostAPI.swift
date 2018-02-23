@@ -19,4 +19,15 @@ class PostAPI{
             }
         }
     }
+    
+    /**
+     Uploads a list in [Key: Value] format as children to given database location
+     */
+    func upload(data list: [String: Any?], onSuccess: @escaping () -> Void){
+        let databaseRef = REF_POST.childByAutoId()
+        databaseRef.setValue(list, withCompletionBlock: {(error, dbRef) in
+            if error == nil { onSuccess() }
+            else { print(error!); return }
+        })
+    }
 }

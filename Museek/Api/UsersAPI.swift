@@ -6,11 +6,7 @@
 //  Copyright © 2018 Museek. All rights reserved.
 //
 
-import UIKit
-
-import Foundation
 import Firebase
-import FirebaseAuth
 import FirebaseDatabase
 
 class UsersAPI{
@@ -22,6 +18,9 @@ class UsersAPI{
         return REF_USERS.child(currentUser.uid)
     }
     
+    /**
+     will observe any changes to specified current user
+     */
     func observeCurrentUser(completionHandler: @escaping (User) -> Void){
         guard let currentUser = CURRENT_USER else { return }
         REF_USERS.child(currentUser.uid).observeSingleEvent(of: .value){ snapshot in
@@ -32,6 +31,9 @@ class UsersAPI{
         }
     }
     
+    /**
+     will observe any changes to specified user's (by given id) path (eg.
+     */
     func observeUser(withUID uid: String, completionHandler: @escaping (User) -> Void){
         REF_USERS.child(uid).observeSingleEvent(of: .value){ snapshot in
             if let dict = snapshot.value as? [String: Any] {
@@ -42,16 +44,13 @@ class UsersAPI{
     }
     
     /**
-     will create a new Firebase-authenticated user and add them to the database
+     Uploads given online storage url as current user's profile image.
      */
-    func create(user: User, withPassword pswrd: String, onSuccess: @escaping (Firebase.User?, Error?) -> Void){
-        Auth.auth().createUser(withEmail: user.email, password: pswrd, completion: {
-            (newUser, error) in
-            if error == nil {
-                let userRef = Database.database().reference().child("users/\(newUser!.uid)")
-                userRef.setValue(["username": user.username, "email": user.email])
-            }
-                onSuccess(newUser, error)
-            })
+    func update(image url: String, onSuccess: @escaping () -> Void){
+        let databaseRef = REF_CURRENT_USER!.child("profileImageURL")
+        databaseRef.setValue(url, withCompletionBlock: {(error, dbRef) in
+            if error == nil { onSuccess() }
+            else { print(error!); return }
+        })
     }
 }

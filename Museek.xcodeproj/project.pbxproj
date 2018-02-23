@@ -15,6 +15,8 @@
 		2208892F1FF49CBD0024E33E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2208892E1FF49CBD0024E33E /* MapKit.framework */; };
 		2229AB8C200AC32F00B4C5D2 /* LocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2229AB8B200AC32F00B4C5D2 /* LocationServices.swift */; };
 		223798E5200EAF7700503E53 /* Permissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223798E4200EAF7700503E53 /* Permissions.swift */; };
+		225672792019AED700D9C492 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225672782019AED700D9C492 /* AuthService.swift */; };
+		2256727B2019B4CA00D9C492 /* UploadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2256727A2019B4CA00D9C492 /* UploadService.swift */; };
 		226494411FFC785600870861 /* HomeFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226494401FFC785600870861 /* HomeFeedCell.swift */; };
 		226B09D8200DDA4A004E23BA /* PostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B09D7200DDA4A004E23BA /* PostAPI.swift */; };
 		226D72171FBEA70900B149AA /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 226D72161FBEA70900B149AA /* Colors.xcassets */; };
@@ -56,6 +58,7 @@
 		22EDD7101FF890D5008559EC /* DatabaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EDD70F1FF890D5008559EC /* DatabaseConfig.swift */; };
 		22EDD7121FFAF9ED008559EC /* HomeFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EDD7111FFAF9ED008559EC /* HomeFeedVC.swift */; };
 		22EDD7141FFB0FFA008559EC /* HomeFeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22EDD7131FFB0FFA008559EC /* HomeFeed.storyboard */; };
+		22F675E1203F84BB002CC411 /* HomeFeedPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F675E0203F84BB002CC411 /* HomeFeedPlayerView.swift */; };
 		22F834C820108B6C00D6891D /* SupportAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F834C720108B6C00D6891D /* SupportAPI.swift */; };
 		B5C6E451A7FF6140C9A2A9C6 /* Pods_Museek.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4333D572041915F1AFD10A5F /* Pods_Museek.framework */; };
 		C8284229BAF31A125D876BFA /* Pods_MuseekUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0270A0173A41D0492E066054 /* Pods_MuseekUITests.framework */; };
@@ -88,6 +91,8 @@
 		2208892E1FF49CBD0024E33E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		2229AB8B200AC32F00B4C5D2 /* LocationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServices.swift; sourceTree = "<group>"; };
 		223798E4200EAF7700503E53 /* Permissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Permissions.swift; sourceTree = "<group>"; };
+		225672782019AED700D9C492 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		2256727A2019B4CA00D9C492 /* UploadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadService.swift; sourceTree = "<group>"; };
 		226494401FFC785600870861 /* HomeFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedCell.swift; sourceTree = "<group>"; };
 		226B09D7200DDA4A004E23BA /* PostAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAPI.swift; sourceTree = "<group>"; };
 		226D72161FBEA70900B149AA /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -135,6 +140,7 @@
 		22EDD70F1FF890D5008559EC /* DatabaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseConfig.swift; sourceTree = "<group>"; };
 		22EDD7111FFAF9ED008559EC /* HomeFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedVC.swift; sourceTree = "<group>"; };
 		22EDD7131FFB0FFA008559EC /* HomeFeed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeFeed.storyboard; sourceTree = "<group>"; };
+		22F675E0203F84BB002CC411 /* HomeFeedPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedPlayerView.swift; sourceTree = "<group>"; };
 		22F834C720108B6C00D6891D /* SupportAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportAPI.swift; sourceTree = "<group>"; };
 		4333D572041915F1AFD10A5F /* Pods_Museek.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Museek.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D371E01FAC4C731E285A59F /* Pods_MuseekTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MuseekTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,6 +224,8 @@
 				22789AC520007DC400E8BA5A /* Api.swift */,
 				226B09D7200DDA4A004E23BA /* PostAPI.swift */,
 				22F834C720108B6C00D6891D /* SupportAPI.swift */,
+				225672782019AED700D9C492 /* AuthService.swift */,
+				2256727A2019B4CA00D9C492 /* UploadService.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -234,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				226494401FFC785600870861 /* HomeFeedCell.swift */,
+				22F675E0203F84BB002CC411 /* HomeFeedPlayerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -723,6 +732,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2256727B2019B4CA00D9C492 /* UploadService.swift in Sources */,
 				228215301FE8F77C00E7BFB9 /* MediaLibraryVC.swift in Sources */,
 				22928BB4200385CA001B50E8 /* UIButton+Blinking.swift in Sources */,
 				22A84EE81FFEBF580080BDE7 /* ProfileVC.swift in Sources */,
@@ -750,8 +760,10 @@
 				22E35E0C2003768100EE15FC /* Post.swift in Sources */,
 				220889271FF3A1F00024E33E /* User.swift in Sources */,
 				22928B9D2003851D001B50E8 /* OutlinedTextView.swift in Sources */,
+				225672792019AED700D9C492 /* AuthService.swift in Sources */,
 				22E288491FABA5FD00F2D706 /* CameraVC.swift in Sources */,
 				226B09D8200DDA4A004E23BA /* PostAPI.swift in Sources */,
+				22F675E1203F84BB002CC411 /* HomeFeedPlayerView.swift in Sources */,
 				226494411FFC785600870861 /* HomeFeedCell.swift in Sources */,
 				2208892B1FF46B1E0024E33E /* LocationSignUp.swift in Sources */,
 				22C4CD351F86CDF800B155FE /* OpeningVC.swift in Sources */,
