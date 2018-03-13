@@ -136,13 +136,14 @@ class HomeFeedCell: UITableViewCell {
     /**
      loads and displays video, but doesn't start playing
      */
-    fileprivate func loadHighlightVideo(){
+    func loadHighlightVideo(){
         if let highlightURLString = post!.highlightURL{
             let highlightURL = URL(string: highlightURLString)
             avPlayer = AVPlayer(url: highlightURL!)
             avPlayer.externalPlaybackVideoGravity = .resizeAspect
             videoView.player = avPlayer
             videoThumbnail.isHidden = true
+            avPlayer.play()
         }
     }
     
@@ -154,7 +155,7 @@ class HomeFeedCell: UITableViewCell {
             songTitleLabel.text = post.songTitle
             captionLabel.text = post.caption
             download(from: post.thumbnailURL, set: videoThumbnail, withPlaceholder: videoThumbnailPlaceholder)
-            loadHighlightVideo()
+//            loadHighlightVideo()
             
             //needed for cell reuse
             Api.Post.REF_POST.child(post.id!).observeSingleEvent(of: .value){ snapshot in

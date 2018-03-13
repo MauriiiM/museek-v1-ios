@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseDatabase
 import SDWebImage
 
 class HomeFeedVC: UITableViewController {
@@ -67,6 +65,8 @@ class HomeFeedVC: UITableViewController {
      */
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
+        let cell = tableView.cellForRow(at: indexPath) as? HomeFeedCell
+        cell?.loadHighlightVideo()
         currentlyPlayingIndexPath = indexPath
     }
     
