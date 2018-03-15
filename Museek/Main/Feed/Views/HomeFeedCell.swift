@@ -15,7 +15,6 @@ class HomeFeedCell: UITableViewCell {
     fileprivate let profileImagePlaceholder = UIImage(named: "default user photo")!
     fileprivate var postRef: DatabaseReference?
     fileprivate var fireRefHandler: UInt!
-    //    fileprivate var postRef: DatabaseR
     //MARK: IB vars
     @IBOutlet fileprivate weak var songTitleLabel: UILabel!
     @IBOutlet fileprivate weak var userName: UILabel!
@@ -39,34 +38,24 @@ class HomeFeedCell: UITableViewCell {
         }
     }
     //MARK: avplayer vars
-    @IBOutlet  weak var videoView: HomeFeedPlayerView!
-//    fileprivate var avLayer: AVPlayerLayer?
-    fileprivate lazy var avPlayer = AVPlayer()
     var isPlaying = false {
         didSet{
             if !isPlaying { avPlayer.pause() }
         }
     }
+    @IBOutlet weak var videoView: HomeFeedPlayerView!
+    fileprivate var avPlayer: AVPlayer!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        //        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
-        //                                               object: self.avPlayer.currentItem,
-        //                                               queue: .main) { _ in
-        //                                                self.avPlayer.seek(to: kCMTimeZero)
-        //                                                self.avPlayer.play() }
-        //        avPlayerVC.view.frame = videoView.frame
-        //        videoView = avPlayerVC.view
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         profileImage.image = profileImagePlaceholder
         videoThumbnail.image = videoThumbnailPlaceholder
-//        avLayer?.removeFromSuperlayer()
         if isPlaying { avPlayer.pause() }
         Api.Post.REF_POST.child(post!.id!).removeObserver(withHandle: fireRefHandler)
-        
     }
     
     /**
@@ -75,7 +64,8 @@ class HomeFeedCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         //hide play icon which will be on top z layer
-        avPlayer.play()
+        if avPlayer != nil { avPlayer.play() }
+        
     }
     
     @IBAction fileprivate func likeButtonTapped(){
@@ -137,13 +127,14 @@ class HomeFeedCell: UITableViewCell {
      loads and displays video, but doesn't start playing
      */
     func loadHighlightVideo(){
-        if let highlightURLString = post!.highlightURL{
-            let highlightURL = URL(string: highlightURLString)
-            avPlayer = AVPlayer(url: highlightURL!)
-            avPlayer.externalPlaybackVideoGravity = .resizeAspect
-            videoView.player = avPlayer
-            videoThumbnail.isHidden = true
-            avPlayer.play()
+        if avPlayer == nil {
+            if let highlightURLString = post!.highlightURL{
+                let highlightURL = URL(string: highlightURLString)
+                avPlayer = AVPlayer(url: highlightURL!)
+                videoView.player = avPlayer
+                videoThumbnail.isHidden = true
+                avPlayer.play()
+            }
         }
     }
     
