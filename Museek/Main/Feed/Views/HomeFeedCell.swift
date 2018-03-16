@@ -15,7 +15,10 @@ class HomeFeedCell: UITableViewCell {
     fileprivate let profileImagePlaceholder = UIImage(named: "default user photo")!
     fileprivate var postRef: DatabaseReference?
     fileprivate var fireRefHandler: UInt!
-    //MARK: IB vars
+    fileprivate var highlightItem: AVPlayerItem?
+    fileprivate var fullItem: AVPlayerItem?
+    fileprivate var avPlayer: AVPlayer?
+    @IBOutlet weak var videoView: HomeFeedPlayerView!
     @IBOutlet fileprivate weak var songTitleLabel: UILabel!
     @IBOutlet fileprivate weak var userName: UILabel!
     @IBOutlet fileprivate weak var profileImage: UIImageView!
@@ -37,14 +40,15 @@ class HomeFeedCell: UITableViewCell {
             updateCellTop()
         }
     }
-    //MARK: avplayer vars
+    //end Model vars
     var isPlaying = false {
         didSet{
-            if !isPlaying { avPlayer.pause() }
+            if !isPlaying { avPlayer!.pause() }
         }
     }
-    @IBOutlet weak var videoView: HomeFeedPlayerView!
-    fileprivate var avPlayer: AVPlayer!
+    //MARK: end of vars
+    
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -54,7 +58,7 @@ class HomeFeedCell: UITableViewCell {
         super.prepareForReuse()
         profileImage.image = profileImagePlaceholder
         videoThumbnail.image = videoThumbnailPlaceholder
-        if isPlaying { avPlayer.pause() }
+        if isPlaying { avPlayer!.pause() }
         Api.Post.REF_POST.child(post!.id!).removeObserver(withHandle: fireRefHandler)
     }
     
@@ -64,7 +68,7 @@ class HomeFeedCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         //hide play icon which will be on top z layer
-        if avPlayer != nil { avPlayer.play() }
+        if avPlayer != nil { avPlayer!.play() }
         
     }
     
@@ -130,11 +134,20 @@ class HomeFeedCell: UITableViewCell {
         if avPlayer == nil {
             if let highlightURLString = post!.highlightURL{
                 let highlightURL = URL(string: highlightURLString)
-                avPlayer = AVPlayer(url: highlightURL!)
+                highlightItem = AVPlayerItem(url: highlightURL!)
+                avPlayer = AVPlayer(playerItem: highlightItem)
                 videoView.player = avPlayer
                 videoThumbnail.isHidden = true
-                avPlayer.play()
+                avPlayer?.play()
             }
+        }
+    }
+    
+    func loadAndShowFullVideo(){
+        if let fullVidURLString = post!.movieURL{
+            let fullVidURL = URL(string: fullVidURLString)
+            fullItem = AVPlayerItem(url: fullVidURL!)
+            avPlayer?.replaceCurrentItem(with: fullItem)
         }
     }
     
@@ -146,7 +159,6 @@ class HomeFeedCell: UITableViewCell {
             songTitleLabel.text = post.songTitle
             captionLabel.text = post.caption
             download(from: post.thumbnailURL, set: videoThumbnail, withPlaceholder: videoThumbnailPlaceholder)
-//            loadHighlightVideo()
             
             //needed for cell reuse
             Api.Post.REF_POST.child(post.id!).observeSingleEvent(of: .value){ snapshot in
@@ -166,7 +178,7 @@ class HomeFeedCell: UITableViewCell {
     fileprivate func updateFire(_ post: Post){
         let fireImage = post.isFire == nil || !post.isFire! ? "fire" : "fire (filled)"
         fireButton.imageView?.image = UIImage(named: fireImage)
-       
+        
         let fireCount = post.fireCount == nil || post.fireCount! == 0 ? " " : "\(post.fireCount!)"
         fireCountButton.setTitle(fireCount, for: .normal)
     }

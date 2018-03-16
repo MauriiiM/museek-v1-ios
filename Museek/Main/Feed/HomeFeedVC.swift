@@ -75,6 +75,14 @@ class HomeFeedVC: UITableViewController {
         return retrievedPosts.count
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        if let currentIndex = currentlyPlayingIndexPath{
+            let cell = tableView.cellForRow(at: currentIndex) as? HomeFeedCell
+            cell?.isPlaying = false
+            print("jjjjjjjjjjjjjjjjj")
+        }
+    }
+    
     fileprivate func fetchUser(withUID uid: String, completed: @escaping () -> Void){
         Api.User.observeUser(withUID: uid){ user in
             self.retrievedUsers.insert(user, at: 0)

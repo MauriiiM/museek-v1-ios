@@ -22,6 +22,7 @@ class HomeFeedPlayerView: UIView {
             playerLayer.player = newValue
             startReplayListener()
         }
+    
     }
     fileprivate var playerLayer: AVPlayerLayer {
         return layer as! AVPlayerLayer
@@ -31,8 +32,8 @@ class HomeFeedPlayerView: UIView {
     override static var layerClass: AnyClass {
         return AVPlayerLayer.self
     }
-    
 
+    
     /**
      Listen for the player's "AVPlayerItemDidPlayToEndTime" notification. When recieved, rewind
      to video's 0.0 time and starts playing.
